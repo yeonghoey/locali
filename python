@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-SETUP_ENV="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENVSH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "${SETUP_ENV}/lib/git.sh"
-source "${SETUP_ENV}/lib/localrc.sh"
+source "${ENVSH}/lib/git.sh"
+source "${ENVSH}/lib/localrc.sh"
 
 git-clone-or-pull 'https://github.com/pyenv/pyenv.git' "$HOME/.pyenv"
 
