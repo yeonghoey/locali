@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-clone-or-pull() {
+git-clone-or-pull() {
   local repo="$1"
   local directory="$2"
   if [[ -d "$directory" ]]; then
