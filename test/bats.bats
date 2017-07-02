@@ -2,7 +2,7 @@
 
 load test_helper
 
-@test "install bats" {
+@test "bats" {
   run "${LOCALISH}/bats"
   assert_success
   assert_line "Cloning into '${TESTDIR}/.local/repos/bats'..."

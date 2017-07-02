@@ -15,6 +15,19 @@ assert_success() {
   fi
 }
 
+assert_file() {
+  local expected
+  local actual
+  if [[ "$#" -eq 1 ]]; then
+    expected="$(cat -)"
+    actual="$(cat "$1")"
+  else
+    expected="$1"
+    actual="$(cat "$2")"
+  fi
+  assert_equal "$expected" "$actual"
+}
+
 assert_line() {
   if [[ "$1" -ge 0 ]] 2> /dev/null; then
     local i="$1"
@@ -35,14 +48,20 @@ assert_line() {
 
 assert_equal() {
   if [[ "$1" != "$2" ]]; then
-    { echo "expected: $1"
-      echo "actual:   $2"
+    { echo "EXPECTED: $1"
+      echo "ACTUAL:   $2"
     } | fail
   fi
 }
 
 fail() {
-  echo "$@" | sed "s:${TESTDIR}:<TESTDIR>:g" >&2
+  { if [[ "$#" -eq 0 ]]; then
+      cat -
+    else
+      echo "$@"
+    fi
+  } | sed "s:${TESTDIR}:<TESTDIR>:g" >&2
+
   echo
   echo 'TESTDIR:'
   echo "  ${TESTDIR}"
