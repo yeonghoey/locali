@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-LOCAL_ROOT="$HOME/.local"
+LOCAL_ROOT="${HOME}/.local"
 LOCAL_BIN="${LOCAL_ROOT}/bin"
 LOCAL_REPOS="${LOCAL_ROOT}/repos"
 
