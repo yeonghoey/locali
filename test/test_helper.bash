@@ -9,23 +9,30 @@ teardown() {
   rm -rf "${TESTDIR}"
 }
 
+X() {
+  fail '>>> X <<< '
+}
+
 assert_success() {
   if [[ "$status" -ne 0 ]]; then
     fail "Failed with exit status $status"
   fi
 }
 
-assert_file() {
-  local expected
-  local actual
-  if [[ "$#" -eq 1 ]]; then
-    expected="$(cat -)"
-    actual="$(cat "$1")"
-  else
-    expected="$1"
-    actual="$(cat "$2")"
+assert_failure() {
+  if [[ "$status" -eq 0 ]]; then
+    fail "Expected to fail, but succeeded"
   fi
-  assert_equal "$expected" "$actual"
+}
+
+assert_file() {
+  if [[ "$#" -eq 1 ]]; then
+    assert_equal "$(cat "$1")"
+  elif [[ "$#" -eq 2 ]]; then
+    assert_equal "$(cat "$1")" "$(cat "$2")"
+  else
+    assert_equal "$@"
+  fi
 }
 
 assert_line() {
@@ -39,7 +46,7 @@ assert_line() {
     local line
     for line in "${lines[@]}"; do
       if [[ "$line" == "$expected" ]]; then
-        return 0;
+        return 0
       fi
     done
     fail "expected line \`$expected'"
@@ -47,9 +54,23 @@ assert_line() {
 }
 
 assert_equal() {
-  if [[ "$1" != "$2" ]]; then
-    { echo "EXPECTED: $1"
-      echo "ACTUAL:   $2"
+  local expected
+  local actual
+  if [[ "$#" -eq 1 ]]; then
+    expected="$(cat -)"
+    actual="$1"
+  elif [[ "$#" -eq 2 ]]; then
+    expected="$1"
+    actual="$2"
+  else
+    fail "assert_equal accepts only one or two args, but got $#"
+    return 1
+  fi
+
+  if [[ "$expected" != "$actual" ]]; then
+    {
+      info 'EXPECTED:' "$expected"
+      info 'ACTUAL:' "$actual"
     } | fail
   fi
 }
@@ -60,14 +81,17 @@ fail() {
     else
       echo "$@"
     fi
-  } | sed "s:${TESTDIR}:<TESTDIR>:g" >&2
+  } | sed "s:${TESTDIR}:<TESTDIR>:g"
 
   echo
-  echo 'TESTDIR:'
-  echo "  ${TESTDIR}"
-  echo 'OUTPUT:'
-  echo "$output" | \
-    sed "s:${TESTDIR}:<TESTDIR>:g" | \
-    sed -e 's/^/  /' >&2 # indent 2 spaces
+  info "TESTDIR:" "${TESTDIR}"
+  info "OUTPUT:" "$output" | sed "s:${TESTDIR}:<TESTDIR>:g"
   return 1
+}
+
+info() {
+  local label="$1"
+  local message="$2"
+  echo "$label"
+  echo "$message" | sed 's/^/  /'
 }
