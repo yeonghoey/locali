@@ -30,9 +30,10 @@ else
 
   export LOCALRC="${HOME}/.localrc"
   touch "${LOCALRC}"
+
   localrc() {
     local content="$(cat -)"
-    if grep -q "$content" "${LOCALRC}"; then
+    if ! grep -q "${content}" "${LOCALRC}"; then
       echo "$content" >> "${LOCALRC}"
     fi
   }
