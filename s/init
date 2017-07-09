@@ -10,11 +10,13 @@ add_path() {
   fi 
 }
 
-export LOCAL_REPO="${HOME}/.local/repo"
-export LOCAL_BIN="${HOME}/.local/bin"
-add_path "$LOCAL_BIN"
+{
+  export LOCAL_REPO="${HOME}/.local/repo"
+  export LOCAL_BIN="${HOME}/.local/bin"
+  add_path "$LOCAL_BIN"
+}
 
 (
-mkdir -p "${LOCAL_BIN}"
-mkdir -p "${LOCAL_REPO}"
+  mkdir -p "${LOCAL_BIN}"
+  mkdir -p "${LOCAL_REPO}"
 )
