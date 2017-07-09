@@ -3,6 +3,10 @@
 set -euo pipefail
 
 run_macos() {
+  # Test whether git is availvable
+  # macOS will prompt to install git if not available
+  git --version
+
   # Run AppStore updates
   sudo softwareupdate -i -a
   
