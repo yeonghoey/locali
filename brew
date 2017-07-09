@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 {
 set -euo pipefail
-
 eval "$(curl -sL locali.sh/init.bash)"
 
 git_repo 'https://github.com/Homebrew/brew.git'

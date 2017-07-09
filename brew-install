@@ -1,9 +1,9 @@
 #/usr/bin/env bash
 {
 set -euo pipefail
+eval "$(curl -sL locali.sh/init.bash)"
 
-eval "$(curl -s locali.sh/init.bash)"
-curl -s locali.sh/brew | bash
+curl -sL locali.sh/brew | bash
 
 brew update
 brew install 'cmake'

@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 {
 git_repo() {
-  git -C "${LOCAL_REPO}" clone "$1" 2> /dev/null || true
+  local url="$1"
+  local name="$(basename ${url} .git)"
+  local target="${LOCAL_REPO}/${name}"
+  if [[ -e "${target_dir}" ]]; then
+    git -C "${target}" pull
+  else
+    git clone "${url}" ${target}"
+  fi
 }
 
 add_path() {
