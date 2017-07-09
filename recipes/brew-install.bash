@@ -19,6 +19,7 @@ run_brew_install() {
   $brew install 'ispell'
   $brew install 'node'
   $brew install 'readline'
+  $brew install 'stow'
   $brew install 'the_silver_searcher'
   $brew install 'tmux'
   $brew install 'wget'
