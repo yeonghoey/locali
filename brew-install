@@ -3,7 +3,8 @@
 set -euo pipefail
 
 main() {
-  eval "$(curl -s locali.sh/r/init.bash)"
+  eval "$(curl -s locali.sh/init.bash)"
+  curl -s locali.sh/brew | bash
   brew update
   brew install 'cmake'
   brew install 'diff-so-fancy'

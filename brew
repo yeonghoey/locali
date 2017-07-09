@@ -3,7 +3,7 @@
 set -euo pipefail
 
 main() {
-  eval "$(curl -s locali.sh/r/init.bash)"
+  eval "$(curl -s locali.sh/init.bash)"
   git_repo 'https://github.com/Homebrew/brew.git'
 
   # Add bin/brew to LOCAL_BIN
