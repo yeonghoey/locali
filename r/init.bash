@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 git_repo() {
-  git -C "${LOCAL_REPO}" clone "$1" || true
+  git -C "${LOCAL_REPO}" clone "$1" 2> /dev/null || true
 }
 
 add_path() {
