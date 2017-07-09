@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+
+git-repo() {
+  git -C "${LOCAL_REPO}" clone "$1" || true
+}
+
+run_init() {
+  export LOCAL_BIN="${HOME}/.local/bin"
+  mkdir -p "${LOCAL_BIN}"
+
+  export LOCAL_REPO="${HOME}/.local/repo"
+  mkdir -p "${LOCAL_REPO}"
+}
+
+run_init
+

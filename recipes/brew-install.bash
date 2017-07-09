@@ -23,6 +23,7 @@ run_brew_install() {
   $brew install 'tmux'
   $brew install 'wget'
   $brew install 'xz'
+  $brew install 'zsh'
 }
 
 run_brew_install
