@@ -6,10 +6,31 @@ if [[ "${LOCALISH_DEV-}" ]]; then
   unset LOCALISH_DEV
   source init.bash
 else
-  export LOCAL_REPO="${HOME}/.local/repo"
+  export LOCALRC="${HOME}/.localrc"
+  touch "${LOCALRC}"
+
+  export LOCAL_ROOT="${HOME}/.local"
+  mkdir -p "${LOCAL_ROOT}"
+
+  export LOCAL_BIN="${LOCAL_ROOT}/bin"
+  mkdir -p "${LOCAL_BIN}"
+
+  export LOCAL_REPO="${LOCAL_ROOT}/repo"
   mkdir -p "${LOCAL_REPO}"
 
-  git_repo() {
+  addpath() {
+    if [[ ":${PATH}:" != *":$1:"* ]]; then
+      PATH="$1:${PATH}"
+    fi
+  }
+
+  homepath() {
+    local path="$1"
+    local relpath="${path#"${HOME}"}"
+    echo "\${HOME}${relpath}"
+  }
+
+  gitrepo() {
     local url="$1"
     local name="$(basename ${url} .git)"
     if [[ "$#" == 1 ]]; then
@@ -25,9 +46,6 @@ else
     fi
   }
 
-  export LOCALRC="${HOME}/.localrc"
-  touch "${LOCALRC}"
-
   localrc() {
     local content="$(cat -)"
     if ! grep -q "${content}" "${LOCALRC}"; then
@@ -35,21 +53,6 @@ else
     fi
   }
 
-  export LOCAL_BIN="${HOME}/.local/bin"
-  mkdir -p "${LOCAL_BIN}"
-
-  add_path() {
-    if [[ ":${PATH}:" != *":$1:"* ]]; then
-      PATH="$1:${PATH}"
-    fi 
-  }
-
-  add_path "${LOCAL_BIN}"
-
-  home_relpath() {
-    local path="$1"
-    local relpath="${path#"${HOME}"}"
-    echo "\${HOME}${relpath}"
-  }
+  addpath "${LOCAL_BIN}"
 fi
 }

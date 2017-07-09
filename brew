@@ -3,6 +3,6 @@
 set -euo pipefail
 eval "$(curl -sL locali.sh/init.bash)"
 
-git_repo 'https://github.com/Homebrew/brew.git'
+gitrepo 'https://github.com/Homebrew/brew.git'
 ln -fs "${LOCAL_REPO}/brew/bin/brew" "${LOCAL_BIN}/"
 }
