@@ -6,10 +6,10 @@ eval "$(curl -sL locali.sh/init.bash)"
 git_repo 'https://github.com/pyenv/pyenv.git'
 git_repo 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins'
 
-localrc << 'EOF'
-export PYENV_ROOT="${LOCAL_REPO}/pyenv"
-export PATH="${PYENV_ROOT}/bin:${PATH}"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+localrc << EOF
+export PYENV_ROOT="$(home_relpath "${LOCAL_REPO}/pyenv")"
+export PATH="\${PYENV_ROOT}/bin:\${PATH}"
+eval "\$(pyenv init -)"
+eval "\$(pyenv virtualenv-init -)"
 EOF
 }
