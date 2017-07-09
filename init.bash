@@ -45,5 +45,4 @@ else
   mkdir -p "${LOCAL_BIN}"
   add_path "${LOCAL_BIN}"
 fi
-
 }
