@@ -53,4 +53,8 @@ localrc() {
 
 # Initialize
 addpath "${LOCAL_BIN}"
+
+localrc << EOF
+export PATH="$(homepath ${LOCAL_BIN}):\${PATH}"
+EOF
 }
