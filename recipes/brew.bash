@@ -8,12 +8,13 @@ run_brew() {
   mkdir -p "${LOCAL_BIN}"
 
   # Declare LOCAL_REPO
-  LOCAL_REPO="${HOME}/.local/repo"; mkdir -p "${LOCAL_REPO}"
+  LOCAL_REPO="${HOME}/.local/repo"
+  mkdir -p "${LOCAL_REPO}"
+
+  # Clone brew repository
   git-repo() {
     git -C "${LOCAL_REPO}" clone "$1" || true
   }
-
-  # Clone
   git-repo 'https://github.com/Homebrew/brew.git'
 
   # Add bin/brew to LOCAL_BIN
