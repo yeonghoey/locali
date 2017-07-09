@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
-
 {
+# Set LOCALISH_DEV to apply developing changes
+# before publishing it
+if [[ "${LOCALISH_DEV-}" ]]; then
+  unset LOCALISH_DEV
+  source init.bash
+  return 0
+fi
+
 git_repo() {
   local url="$1"
   local name="$(basename ${url} .git)"
@@ -24,9 +31,12 @@ add_path() {
 }
 
 export LOCALRC="${HOME}/.localrc"
+touch "${LOCALRC}"
 localrc() {
   local content="$(cat -)"
-  echo "$content"
+  if grep -q "$content" "${LOCALRC}"; then
+    echo "$content" >> "${LOCALRC}"
+  fi
 }
 
 export LOCAL_REPO="${HOME}/.local/repo"
