@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-run_macos() {
+main() {
   # Test whether git is availvable
   # macOS will prompt to install git if not available
   git --version
@@ -17,4 +17,4 @@ run_macos() {
   xcode-select --install || true
 }
 
-run_macos
+main
