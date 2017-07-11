@@ -36,9 +36,11 @@ gitrepo() {
     local prefix="$2"
     local target="${LOCAL_REPO}/${prefix}/${name}"
   fi
-  if [[ -e "${target}" ]]; then
+  if [[ -d "${target}" ]]; then
     git -C "${target}" pull
   else
+    # Ensure the parent directories exist
+    mkdir -p "${target}"
     git clone "${url}" "${target}"
   fi
 }
