@@ -3,7 +3,9 @@
 set -euo pipefail
 eval "$(curl -sL locali.sh/init)"
 
-curl -sL locali.sh/brew | bash
+include 'core'
+
+require 'brew'
 
 brew update
 brew install 'cmake'

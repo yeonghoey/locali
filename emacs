@@ -3,13 +3,14 @@
 set -euo pipefail
 eval "$(curl -sL locali.sh/init)"
 
-macos() {
-  curl -sL locali.sh/brew | bash
+include 'core'
 
+macos() {
+  require 'brew'
   brew tap 'd12frosted/emacs-plus'
   brew install 'emacs-plus'
 }
 
 # TODO: Support Ubuntu
-meacos
+macos
 }

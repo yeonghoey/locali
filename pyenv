@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 {
+set -x
 set -euo pipefail
 eval "$(curl -sL locali.sh/init)"
+
+include "core"
 
 gitrepo 'https://github.com/pyenv/pyenv.git'
 gitrepo 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins'
