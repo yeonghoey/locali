@@ -14,7 +14,7 @@ export LOCAL_REPO="${LOCAL_ROOT}/repo"
 mkdir -p "${LOCAL_REPO}"
 
 
-# Define helper functions
+# Helper functions
 addpath() {
   if [[ ":${PATH}:" != *":$1:"* ]]; then
     PATH="$1:${PATH}"
