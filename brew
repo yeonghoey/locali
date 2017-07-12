@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 {
 set -euo pipefail
-eval "$(curl -sL locali.sh/init)"
+eval "$(curl -sL locali.sh/init.bash)"
 
 include 'core'
 
