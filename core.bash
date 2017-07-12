@@ -45,6 +45,14 @@ gitrepo() {
   fi
 }
 
+symlink() {
+  local relpath="$1"
+  local target="$2"
+  # -i, interactive
+  # -s, symlink
+  ln -is "${LOCAL_REPO}/${relpath}" "${target}"
+}
+
 localrc() {
   local content="$(cat -)"
   if ! grep -q "${content}" "${LOCALRC}"; then
