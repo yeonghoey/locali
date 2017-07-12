@@ -3,7 +3,7 @@
 
 include() {
   if [[ "${LOCALISH:-}" ]]; then
-    source "$1"
+    source "$1.bash"
   else
     eval "$(curl -sL locali.sh/$1.bash)"
   fi
