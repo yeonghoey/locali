@@ -28,15 +28,35 @@ require() {
 }
 
 localrc() {
+  local label="$1"
   local content="$(cat -)"
-  if ! grep -q "${content}" "${LOCALRC}"; then
-    echo "$content" >> "${LOCALRC}"
+
+  # Replace '/user/<username>/.local/*' with '${HOME}/.local/*'
+  local relpath="${LOCAL_ROOT#"${HOME}"}"
+  local sedexp="s:${LOCAL_ROOT}:\${HOME}${relpath}:g"
+  content="$(echo $content | sed "${sedexp}")"
+
+  # Put label
+  content="$(echo -e "# ${label}\n${content}")"
+
+  # Append content only not literally matched
+  set -x
+  if ! grep -qF "${content}" "${LOCALRC}"; then
+    # Put a blank line
+    echo -e "\n${content}" >> "${LOCALRC}"
   fi
 }
 
-# Add to PATH
+# Add to PATH for current use
 export PATH="${LOCAL_BIN}:${PATH}"
-localrc <<- EOF
-  export PATH="$(homepath ${LOCAL_BIN}):\${PATH}"
+
+# Add to PATH in ~/.localrc for future use
+localrc 'localish' << EOF
+export PATH="${LOCAL_BIN}:\${PATH}"
 EOF
+
+localrc 'localish' << EOF
+testing
+EOF
+
 }

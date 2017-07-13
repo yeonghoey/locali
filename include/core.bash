@@ -6,12 +6,6 @@ addpath() {
   fi
 }
 
-homepath() {
-  local path="$1"
-  local relpath="${path#"${HOME}"}"
-  echo "\${HOME}${relpath}"
-}
-
 gitrepo() {
   local url="$1"
   local name="$(basename ${url} .git)"
