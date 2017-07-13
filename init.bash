@@ -21,9 +21,9 @@ include() {
 
 require() {
   if [[ "${LOCALISH:-}" ]]; then
-    "./$1"
+    "./r/$1"
   else
-    bash -c "$(curl -sL locali.sh/$1)"
+    bash -c "$(curl -sL locali.sh/r/$1)"
   fi
 }
 
