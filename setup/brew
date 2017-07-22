@@ -4,5 +4,5 @@ set -euo pipefail
 
 source 'init.bash'
 
-gitrepo 'https://github.com/Homebrew/brew.git'
-ln -fs "${DOTLOCAL_REPO}/brew/bin/brew" "${LOCAL_BIN}/"
+git-repo 'https://github.com/Homebrew/brew.git'
+bin-link "brew/bin/brew"

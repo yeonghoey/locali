@@ -1,19 +1,16 @@
 #!/usr/bin/env bash
 
 export LOCAL_ROOT="${HOME}/.local"
+export LOCAL_REPO="${LOCAL_ROOT}/repo"
+export LOCAL_BIN="${LOCAL_ROOT}/bin"
+export LOCAL_RC="${HOME}/.localrc"
+
 mkdir -p "${LOCAL_ROOT}"
-
-export LOCAL_REPO="${LOCALROOT}/repo"
 mkdir -p "${LOCAL_REPO}"
-
-export LOCAL_BIN="${LOCALROOT}/bin"
 mkdir -p "${LOCAL_BIN}"
+touch "${LOCAL_RC}"
 
-export LOCALRC="${HOME}/.localrc"
-touch "${LOCALRC}"
-
-
-localrc() {
+local-rc() {
   local label="$1"
   local content="$(cat -)"
 
@@ -25,21 +22,14 @@ localrc() {
   # Put label
   content="$(echo -e "# ${label}\n${content}")"
 
-  # Append content only not literally matched
-  set -x
-  if ! grep -qF "${content}" "${LOCALRC}"; then
+  # Append content only when the content is not literally matched
+  if ! grep -qF "${content}" "${LOCAL_RC}"; then
     # Put a blank line
-    echo -e "\n${content}" >> "${LOCALRC}"
+    echo -e "\n${content}" >> "${LOCAL_RC}"
   fi
 }
 
-addpath() {
-  if [[ ":${PATH}:" != *":$1:"* ]]; then
-    PATH="$1:${PATH}"
-  fi
-}
-
-gitrepo() {
+git-repo() {
   local url="$1"
   local name="$(basename ${url} .git)"
   if [[ "$#" == 1 ]]; then
@@ -57,19 +47,18 @@ gitrepo() {
   fi
 }
 
-symlink() {
+bin-link() {
   local relpath="$1"
   local target="$2"
   # -i, interactive
   # -s, symlink
-  ln -is "${LOCAL_REPO}/${relpath}" "${target}"
+  ln -is "${LOCAL_REPO}/${relpath}" "${LOCAL_BIN}/${target}"
 }
-
 
 # Add to PATH for current use
 export PATH="${LOCAL_BIN}:${PATH}"
 
 # Add to PATH in ~/.localrc for future use
-localrc 'localish' << EOF
+local-rc 'localish' << EOF
 export PATH="${LOCAL_BIN}:\${PATH}"
 EOF
