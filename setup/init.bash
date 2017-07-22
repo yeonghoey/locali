@@ -48,11 +48,15 @@ git-repo() {
 }
 
 bin-link() {
-  local relpath="$1"
-  local target="$2"
+
+  local src="${LOCAL_REPO}/$1"
+  local dst="${LOCAL_BIN}/"
+  if [[ "$#" == 2 ]]; then
+    dst="$dst/$2"
+  fi
   # -i, interactive
   # -s, symlink
-  ln -is "${LOCAL_REPO}/${relpath}" "${LOCAL_BIN}/${target}"
+  ln -is "$src" "$dst"
 }
 
 # Add to PATH for current use
