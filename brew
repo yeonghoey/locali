@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
-
 source 'init.bash'
 
 git-repo 'https://github.com/Homebrew/brew.git'
