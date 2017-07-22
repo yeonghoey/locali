@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${LOCALISH}/init.bash"
-
-(set -x; fc-cache -f "${LOCALISH}/fonts")
