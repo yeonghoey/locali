@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+source "${LOCALISH}/setup/init.bash"
+
+# NOTE: './setup/dotfiles -D' to unlink
+stow --dir="${LOCALISH}" --target="$HOME" "$@" 'dotfiles'
