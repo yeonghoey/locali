@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: css
+# key: css
+# --
+#+HTML_HEAD: <link href="http://spacemacs.yeonghoey.com/nanumgothic.css" rel="stylesheet">
+#+HTML_HEAD: <link href="http://spacemacs.yeonghoey.com/github.css" rel="stylesheet">
