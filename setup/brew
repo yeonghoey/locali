@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source 'init.bash'
+
+gitrepo 'https://github.com/Homebrew/brew.git'
+ln -fs "${DOTLOCAL_REPO}/brew/bin/brew" "${LOCAL_BIN}/"
