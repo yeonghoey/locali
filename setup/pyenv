@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
-{
-set -x
-set -euo pipefail
-eval "$(curl -sL locali.sh/init)"
 
-include "core"
+set -euo pipefail
+LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+source "${LOCALISH}/setup/init.bash"
 
 gitrepo 'https://github.com/pyenv/pyenv.git'
 gitrepo 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins'
 
-localrc << EOF
-export PYENV_ROOT="$(homepath "${LOCAL_REPO}/pyenv")"
+localrc 'pyenv' << EOF
+export PYENV_ROOT="${LOCAL_REPO}/pyenv"
 export PATH="\${PYENV_ROOT}/bin:\${PATH}"
 eval "\$(pyenv init -)"
 eval "\$(pyenv virtualenv-init -)"
 EOF
-}
