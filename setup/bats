@@ -5,6 +5,5 @@ LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 source "${LOCALISH}/setup/init.bash"
 
-gitrepo 'https://github.com/sstephenson/bats.git'
-
-"${LOCAL_REPO}/bats/install.sh" "${LOCAL_ROOT}"
+repo-git 'https://github.com/sstephenson/bats.git'
+repo-run 'bats/install.sh' "${LOCAL_ROOT}"

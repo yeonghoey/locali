@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-{
+
 set -euo pipefail
-eval "$(curl -sL locali.sh/init.bash)"
+LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-include 'core'
-require 'emacs'
+source "${LOCALISH}/setup/init.bash"
 
-gitrepo 'https://github.com/syl20bnr/spacemacs'
-symlink 'spacemacs' "${HOME}/.emacs.d"
-}
+repo-git 'https://github.com/syl20bnr/spacemacs'
+repo-sym 'spacemacs' "${HOME}/.emacs.d"

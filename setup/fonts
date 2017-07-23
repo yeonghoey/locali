@@ -5,4 +5,4 @@ LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 source "${LOCALISH}/setup/init.bash"
 
-(set -x; fc-cache -f "${LOCALISH}/fonts")
+fc-cache -f "${LOCALISH}/fonts"

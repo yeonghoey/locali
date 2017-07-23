@@ -10,9 +10,9 @@ mkdir -p "${LOCAL_REPO}"
 mkdir -p "${LOCAL_BIN}"
 touch "${LOCALRC}"
 
-localrc() {
+localrc-add() {
   local label="$1"
-  local content="$(homepath "$(cat -)")"
+  local content="$(relpath-home "$(cat -)")"
 
   # Put label
   content="$(echo -e "# ${label}\n${content}")"
@@ -24,7 +24,7 @@ localrc() {
   fi
 }
 
-homepath() {
+relpath-home() {
   # Replace '/user/<username>/.local/*' with '${HOME}/.local/*'
   local content="$1"
   local relpath="${LOCAL_ROOT#"${HOME}"}"
@@ -32,7 +32,7 @@ homepath() {
   echo "$content" | sed "${sedexp}"
 }
 
-gitrepo() {
+repo-git() {
   local url="$1"
   local name="$(basename ${url} .git)"
   if [[ "$#" == 1 ]]; then
@@ -50,21 +50,29 @@ gitrepo() {
   fi
 }
 
-binlink() {
+repo-sym() {
+  # The second argument of 'dst' is optional.
+  # Link to 'LOCAL_BIN' by default.
   local src="${LOCAL_REPO}/$1"
   local dst="${LOCAL_BIN}/"
   if [[ "$#" == 2 ]]; then
-    dst="$dst/$2"
+    dst="$2"
   fi
   # -i, interactive
   # -s, symlink
   ln -is "$src" "$dst"
 }
 
+repo-run() {
+  local run="${LOCAL_REPO}/$1"
+  shift
+  "$run" "$@"
+}
+
 # Add to PATH for current use
 export PATH="${LOCAL_BIN}:${PATH}"
 
 # Add to PATH in ~/.localrc for future use
-localrc 'localish' << EOF
+localrc-add 'localish' << EOF
 export PATH="${LOCAL_BIN}:\${PATH}"
 EOF

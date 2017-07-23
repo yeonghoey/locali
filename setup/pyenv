@@ -5,10 +5,10 @@ LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 source "${LOCALISH}/setup/init.bash"
 
-gitrepo 'https://github.com/pyenv/pyenv.git'
-gitrepo 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins'
+repo-git 'https://github.com/pyenv/pyenv.git'
+repo-git 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins'
 
-localrc 'pyenv' << EOF
+localrc-add 'pyenv' << EOF
 export PYENV_ROOT="${LOCAL_REPO}/pyenv"
 export PATH="\${PYENV_ROOT}/bin:\${PATH}"
 eval "\$(pyenv init -)"
