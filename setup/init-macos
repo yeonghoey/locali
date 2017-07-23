@@ -1,6 +1,9 @@
-#/usr/bin/env bash
-{
+#!/usr/bin/env bash
+
 set -euo pipefail
+LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+source "${LOCALISH}/setup/init.bash"
 
 # Test whether git is availvable
 # macOS will prompt to install git if not available
@@ -14,4 +17,3 @@ defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Xcode command line developer tools
 xcode-select --install || true
-}
