@@ -1,11 +1,8 @@
-#!/usr/bin/env bash
+#/usr/bin/env bash
 
 set -euo pipefail
 LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 source "${LOCALISH}/setup/init.bash"
 
-gitrepo 'https://github.com/Homebrew/brew.git'
-binlink "brew/bin/brew"
-
-brew tap Homebrew/bundle
+brew bundle --file="${LOCALISH}/setup/Brewfile"

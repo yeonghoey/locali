@@ -50,7 +50,7 @@ gitrepo() {
   fi
 }
 
-bin-link() {
+binlink() {
   local src="${LOCAL_REPO}/$1"
   local dst="${LOCAL_BIN}/"
   if [[ "$#" == 2 ]]; then
