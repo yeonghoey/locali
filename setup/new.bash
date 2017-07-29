@@ -22,6 +22,8 @@ cat <<'EOF' > "${NEW_SETUP_PATH}"
 
 set -euo pipefail
 LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+source "${LOCALISH}/setup/init.bash"
 EOF
 
 chmod +x "${NEW_SETUP_PATH}"
