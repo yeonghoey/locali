@@ -8,7 +8,7 @@ source "${LOCALISH}/setup/init.bash"
 # TODO: Currently macOS only
 # Use zsh shell
 if command-exists 'zsh'; then
-  # To use 'non-
+  # To use 'non-stand shells'
   echo "$(command-path 'zsh')" | sudo tee -a '/etc/shells'
   chsh -s "$(command-path 'zsh')"
 fi

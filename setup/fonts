@@ -5,4 +5,7 @@ LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 source "${LOCALISH}/setup/init.bash"
 
-fc-cache -f "${LOCALISH}/fonts"
+# TODO: Check macos
+# https://github.com/powerline/fonts/blob/master/install.sh
+stow --dir="${LOCALISH}" --target="$HOME/Library/Fonts" 'fonts'
+fc-cache -f "$HOME/Library/Fonts"
