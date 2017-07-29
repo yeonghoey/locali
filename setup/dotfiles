@@ -7,3 +7,7 @@ source "${LOCALISH}/setup/init.bash"
 
 # NOTE: './setup/dotfiles -D' to unlink
 stow --dir="${LOCALISH}" --target="${HOME}" "$@" 'dotfiles'
+
+repo-git 'https://github.com/tmux-plugins/tpm'
+repo-sym 'tpm' "$HOME/.tmux/plugins/tpm"
+repo-run 'tpm/bindings/install_plugins'

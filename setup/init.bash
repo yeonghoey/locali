@@ -57,6 +57,7 @@ repo-sym() {
   local dst="${LOCAL_BIN}/"
   if [[ "$#" == 2 ]]; then
     dst="$2"
+    mkdir -p "$(dirname "$dst")"
   fi
   # -i, interactive
   # -s, symlink
@@ -67,6 +68,15 @@ repo-run() {
   local run="${LOCAL_REPO}/$1"
   shift
   "$run" "$@"
+}
+
+command-exists() {
+  # SEE: https://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
+  command -v "$1" >/dev/null 2>&1
+}
+
+command-path() {
+  command -v "$1"
 }
 
 # Add to PATH for current use
