@@ -60,7 +60,7 @@ repo_sym() {
 #   $1              : A relative path to LOCAL_REPO for a command
 #   ${@:2}(optional): Arguments for the command
 ################################################################################
-repo-run() {
+repo_run() {
   local run="${LOCAL_REPO}/$1"
   "$run" "${@:2}"
 }
