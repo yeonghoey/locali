@@ -1,8 +1,0 @@
-#/usr/bin/env bash
-
-set -euo pipefail
-LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
-source "${LOCALISH}/setup/init.bash"
-
-brew bundle --file="${LOCALISH}/setup/Brewfile"

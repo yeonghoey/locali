@@ -24,3 +24,19 @@ answer_is_yes() {
     return 1
   fi
 }
+
+################################################################################
+# Require sudo athorization and keep it alive.
+################################################################################
+use_sudo() {
+  sudo -v &> /dev/null
+
+  # Update existing `sudo` time stamp
+  # until this script has finished.
+  # https://gist.github.com/cowboy/3118588
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done &> /dev/null &
+}
