@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
-source "${LOCALISH}/setup/init.bash"
-
-repo-git 'https://github.com/sstephenson/bats.git'
-repo-run 'bats/install.sh' "${LOCAL_ROOT}"

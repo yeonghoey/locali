@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
-source "${LOCALISH}/setup/init.bash"
-
-repo-git 'https://github.com/syl20bnr/spacemacs'
-repo-sym 'spacemacs' "${HOME}/.emacs.d"
