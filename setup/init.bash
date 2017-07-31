@@ -4,28 +4,6 @@
 
 # ------------------------------------------------------------------------------
 
-localrc-add() {
-  local label="$1"
-  local content="$(relpath-home "$(cat -)")"
-
-  # Put label
-  content="$(echo -e "# ${label}\n${content}")"
-
-  # Append content only when the content is not literally matched
-  if ! grep -qF "${content}" "${LOCALRC}"; then
-    # Put a blank line
-    echo -e "\n${content}" | tee -a "${LOCALRC}"
-  fi
-}
-
-relpath-home() {
-  # Replace '/user/<username>/.local/*' with '${HOME}/.local/*'
-  local content="$1"
-  local relpath="${LOCAL_ROOT#"${HOME}"}"
-  local sedexp="s:${LOCAL_ROOT}:\${HOME}${relpath}:g"
-  echo "$content" | sed "${sedexp}"
-}
-
 command-exists() {
   # SEE: https://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
   command -v "$1" >/dev/null 2>&1

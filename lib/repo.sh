@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Define helper functions related to LOCAL_REPO
+# Define LOCAL_REPO helper functions
 
 ################################################################################
 # Clones a git repostiory or pulls it if existing
