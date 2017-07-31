@@ -11,3 +11,6 @@ mkdir -p "${LOCAL_ROOT}"
 mkdir -p "${LOCAL_REPO}"
 mkdir -p "${LOCAL_BIN}"
 touch "${LOCALRC}"
+
+# Add LOCAL_BIN to PATH for current shell
+export PATH="${LOCAL_BIN}:${PATH}"

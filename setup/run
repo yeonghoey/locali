@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-
 readonly LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-source "${LOCALISH}/setup/init.bash"
 
 # ------------------------------------------------------------------------------
 
-source "${LOCALISH}/recipes/brew.bash"
+source "${LOCALISH}/lib/local.sh"
+source "${LOCALISH}/lib/repo.sh"
+source "${LOCALISH}/lib/file.sh"
+source "${LOCALISH}/lib/commands.sh"
+source "${LOCALISH}/lib/os.sh"
+source "${LOCALISH}/lib/ui.sh"
+
+for recipe in "$@"; do
+  echo ">>> ${recipe}"
+  source "${LOCALISH}/recipes/${recipe}.sh"
+done
