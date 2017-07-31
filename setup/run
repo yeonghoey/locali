@@ -8,7 +8,7 @@ readonly LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "${LOCALISH}/lib/local.sh"
 source "${LOCALISH}/lib/repo.sh"
 source "${LOCALISH}/lib/file.sh"
-source "${LOCALISH}/lib/commands.sh"
+source "${LOCALISH}/lib/cmd.sh"
 source "${LOCALISH}/lib/os.sh"
 source "${LOCALISH}/lib/ui.sh"
 
