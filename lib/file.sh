@@ -33,6 +33,7 @@ require_content() {
   local path="$1"
   local content="$2"
   if ! grep -qF "${content}" "${path}"; then
+    echo ">>> Append to '${path}"
     echo -e "\n${content}" | tee -a "${path}"
   fi
 }

@@ -16,7 +16,8 @@ source "${LOCALISH}/lib/ui.sh"
 
 for recipe in "$@"; do
   (
-    echo ">>> ${recipe}"
+    echo ">>> Run : '${recipe}'"
     source "${LOCALISH}/recipes/${recipe}.sh"
+    echo ">>> Done: '${recipe}'"
   )
 done

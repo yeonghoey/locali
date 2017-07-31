@@ -2,6 +2,7 @@
 #
 # User interactions
 
+
 ################################################################################
 # Prints a question and read 1 character.
 # Arguments:
