@@ -66,7 +66,7 @@
                          spacemacs-light
                          )
    dotspacemacs-colorize-cursor-according-to-state nil
-   dotspacemacs-default-font '("D2Coding"
+   dotspacemacs-default-font '("D2Coding for Powerline"
                                :size 14
                                :weight normal
                                :width normal
