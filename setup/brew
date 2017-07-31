@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "${LOCALISH}/setup/init.bash"
+
+# ------------------------------------------------------------------------------
+
+macos() {
+  repo-git 'https://github.com/Homebrew/brew.git'
+  repo-sym "brew/bin/brew"
+}
+
+# ------------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# ------------------------------------------------------------------------------
+
 export LOCAL_ROOT="${HOME}/.local"
 export LOCAL_REPO="${LOCAL_ROOT}/repo"
 export LOCAL_BIN="${LOCAL_ROOT}/bin"
@@ -9,6 +11,8 @@ mkdir -p "${LOCAL_ROOT}"
 mkdir -p "${LOCAL_REPO}"
 mkdir -p "${LOCAL_BIN}"
 touch "${LOCALRC}"
+
+# ------------------------------------------------------------------------------
 
 localrc-add() {
   local label="$1"
@@ -32,7 +36,7 @@ relpath-home() {
   echo "$content" | sed "${sedexp}"
 }
 
-repo-git() {
+repo_git() {
   local url="$1"
   local name="$(basename ${url} .git)"
   if [[ "$#" == 1 ]]; then
@@ -50,7 +54,7 @@ repo-git() {
   fi
 }
 
-repo-sym() {
+repo_sym() {
   # The second argument of 'dst' is optional.
   # Link to 'LOCAL_BIN' by default.
   local src="${LOCAL_REPO}/$1"
@@ -77,6 +81,32 @@ command-exists() {
 
 command-path() {
   command -v "$1"
+}
+
+macos() {
+  [[ "$(uname -s)" == "Darwin" ]]
+}
+
+ubuntu() {
+  [[ "$(uname -s)" == "Linux" ]] && [[ -e "/etc/lsb-release" ]]
+}
+
+exists_function() {
+  declare -f "$1" > /dev/null
+}
+
+prompt() {
+  echo "$1 (y/n) "
+  read -r -n 1
+  echo
+}
+
+answer_is_yes() {
+  if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 # Add to PATH for current use

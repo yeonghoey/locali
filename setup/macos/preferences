@@ -2,8 +2,8 @@
 
 set -euo pipefail
 LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
 source "${LOCALISH}/setup/init.bash"
+
 
 # TODO: Currently macOS only
 # Use zsh shell
