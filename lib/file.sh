@@ -7,7 +7,7 @@
 #
 # Arguments:
 #   $1: A string contains pathes
-# Returns:
+# Prints:
 #   A string containing '${HOME}' rather tan actual home pathes
 # Example:
 #   '/User/yeonghoey/.localrc' -> '${HOME}/.localrc'
