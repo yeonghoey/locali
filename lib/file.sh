@@ -21,7 +21,7 @@ home_relpathed() {
 }
 
 ################################################################################
-# Appends a content to a file if not existing. '\n' is placed before it.
+# Appends a content to a file if not existing.
 #
 # Arguments:
 #   $1: A file path
@@ -34,7 +34,7 @@ require_content() {
   local content="$2"
   if ! grep -qF "${content}" "${path}"; then
     echo ">>> Append to '${path}"
-    echo -e "\n${content}" | tee -a "${path}"
+    echo -e "${content}\n" | tee -a "${path}"
   fi
 }
 
