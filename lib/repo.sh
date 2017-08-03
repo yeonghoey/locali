@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 #
 # Define LOCAL_REPO helper functions
+#
+# Depends:
+#   lib/local.sh
+#   lib/file.sh
+#   lib/ui.sh
 
 ################################################################################
 # Clones a git repostiory or pulls it if existing
 #
-# Globals:
-#   LOCAL_REPO
 # Arguments:
 #   $1          : A URL for the git remote repository
 #   $2(optional): A path prefix under LOCAL_REPO
@@ -29,33 +32,49 @@ repo_git() {
 ################################################################################
 # Symlinks files under LOCAL_REPO
 #
-# Globals:
-#   LOCAL_REPO
-#   LOCAL_BIN
 # Arguments:
-#   $1          : A relative path to LOCAL_REPO
-#   $2(optional): A path for symlink. Make a symlink under LOCAL_BIN by default
+#   $1: A relative path to LOCAL_REPO
 ################################################################################
-repo_sym() {
-  local src="${LOCAL_REPO}/$1"
-  local dst="${LOCAL_BIN}"
-
-  if [[ "$#" == 2 ]]; then
-    dst="$2"
-    mkdir -p "$(dirname "$dst")"
-  fi
-
-  # -i, interactive
-  # -s, symlink
-  ln -is "$src" "$dst"
+repo_bin() {
+  local relpath="$1"
+  repo_sym "${relpath}" "${LOCAL_BIN}/$(basename "$relpath")"
 }
 
 ################################################################################
-# Clone a git repostiory or pull it if existing
+# Create a symlink from under LOCAL_REPO to a path
 #
-# Globals:
-#   LOCAL_REPO
-#   LOCAL_BIN
+# Arguments:
+#   $1: A relative path to LOCAL_REPO
+#   $2: A path for symlink. if path is a existing directory, prompts to delete
+################################################################################
+repo_sym() {
+  local src="${LOCAL_REPO}/$1"
+  local dst="$2"
+
+  info "Create a symlink from '$src' to '$dst'"
+
+  if [[ "$src" -ef "$(readlink "$dst")" ]]; then
+    info "Symlink already exists. skipped."
+    return 0
+  fi
+
+  if [[ -e "$dst" ]]; then
+    prompt "Path '$dst' already exists. Replace it?"
+    if answer_is_yes; then
+      local dstbk="$(numbered "${dst}.bk")"
+      info "Move '$dst' to '$dstbk'"
+      mv "$dst" "$dstbk"
+    else
+      return 1
+    fi
+  fi
+  # -s, symlink
+  ln -s "$(abspath $src)" "$(abspath $dst)"
+}
+
+################################################################################
+# Run a command under LOCAL_REPO
+#
 # Arguments:
 #   $1              : A relative path to LOCAL_REPO for a command
 #   ${@:2}(optional): Arguments for the command

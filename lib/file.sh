@@ -23,6 +23,8 @@ home_relpathed() {
 ################################################################################
 # Appends a content to a file if not existing.
 #
+# Uses:
+#   lib/ui.sh: info
 # Arguments:
 #   $1: A file path
 #   $2: A content to be existing in the file
@@ -33,8 +35,8 @@ require_content() {
   local path="$1"
   local content="$2"
   if ! grep -qF "${content}" "${path}"; then
-    echo ">>> Append to '${path}"
-    echo -e "${content}\n" | tee -a "${path}"
+    info "Append to '${path}'"
+    echo -e "${content}\n" | tee -a "${path}" | indented
   fi
 }
 
@@ -55,4 +57,39 @@ localrc() {
   content="$(echo -e "# ${label}\n${content}")"
 
   require_content "${LOCALRC}" "${content}"
+}
+
+################################################################################
+# Prints the absolute path.
+#
+# Arguments:
+#   $1: A path
+################################################################################
+abspath() {
+  echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+}
+
+################################################################################
+# Place a number extension with enusuring the path doesn't exist
+#
+# Arguments:
+#   $1: A path
+# Prints:
+#   numbered 'file.bk' -> 'file.bk' or 'file.bk.1', 'file.bk.2' etc.
+################################################################################
+numbered() {
+  local path="$1"
+  if [[ ! -e "$path" ]]; then
+    echo "$path"
+    return 0
+  fi
+
+  local n=0
+  while true; do
+    if [[ ! -e "$path.$n" ]]; then
+      echo "$path.$n"
+      return 0
+    fi
+    n="$((n + 1))"
+  done
 }

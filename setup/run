@@ -15,10 +15,10 @@ source "${LOCALISH}/lib/ui.sh"
 # ------------------------------------------------------------------------------
 
 for recipe in "$@"; do
-  (
-    noti "Run: '${recipe}'"
-    trap "noti \"Fail: '${recipe}'\"" ERR
-    source "${LOCALISH}/recipes/${recipe}.sh"
+  noti "Run: '${recipe}'"
+  if (source "${LOCALISH}/recipes/${recipe}.sh"); then
     noti "Done: '${recipe}'"
-  )
+  else
+    noti "Abort: '${recipe}'"
+  fi
 done
