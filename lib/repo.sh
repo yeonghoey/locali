@@ -21,11 +21,13 @@ repo_git() {
   local target="${LOCAL_REPO}/${prefix}${name}"
 
   if [[ -d "${target}" ]]; then
-    git -C "${target}" pull
+    info "Pull '${target}'"
+    indented git -C "${target}" pull
   else
     # Ensure the parent directories exist
+    info "Clone '${url}'"
     mkdir -p "${target}"
-    git clone "${url}" "${target}"
+    indented git clone "${url}" "${target}"
   fi
 }
 
