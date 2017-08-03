@@ -16,8 +16,9 @@ source "${LOCALISH}/lib/ui.sh"
 
 for recipe in "$@"; do
   (
-    echo ">>> Run : '${recipe}'"
+    noti "Run: '${recipe}'"
+    trap "noti \"Fail: '${recipe}'\"" ERR
     source "${LOCALISH}/recipes/${recipe}.sh"
-    echo ">>> Done: '${recipe}'"
+    noti "Done: '${recipe}'"
   )
 done
