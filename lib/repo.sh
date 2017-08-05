@@ -61,7 +61,7 @@ repo_sym() {
   fi
 
   if [[ -e "$dst" ]]; then
-    prompt "Path '$dst' already exists. Replace it?"
+    prompt_yn "Path '$dst' already exists. Replace it?"
     if answer_is_yes; then
       local dstbk="$(numbered "${dst}.bk")"
       info "Move '$dst' to '$dstbk'"
@@ -83,5 +83,6 @@ repo_sym() {
 ################################################################################
 repo_run() {
   local run="${LOCAL_REPO}/$1"
-  "$run" "${@:2}"
+  info "Run '$run'"
+  indented "$run" "${@:2}"
 }

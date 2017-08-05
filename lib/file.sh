@@ -21,19 +21,44 @@ home_relpathed() {
 }
 
 ################################################################################
+# Writes a content to a file
+#
+# Uses:
+#   lib/ui.sh: info
+# Arguments:
+#   $1          : A file path
+#   $2(optional): A content to be existing in the file, use stdin if not passed.
+################################################################################
+require_file() {
+  if [[ "$#" == 1 ]]; then
+    local path="$1"
+    local content="$(cat -)"
+  else
+    local path="$1"
+    local content="$2"
+  fi
+  info "Write to '${path}'"
+  echo "$content" | indented tee "${path}"
+}
+
+################################################################################
 # Appends a content to a file if not existing.
 #
 # Uses:
 #   lib/ui.sh: info
 # Arguments:
-#   $1: A file path
-#   $2: A content to be existing in the file
-# Note:
-#   Uses 'tee -a' to show the content
+#   $1          : A file path
+#   $2(optional): A content to be existing in the file, use stdin if not passed.
 ################################################################################
 require_content() {
-  local path="$1"
-  local content="$2"
+  if [[ "$#" == 1 ]]; then
+    local path="$1"
+    local content="$(cat -)"
+  else
+    local path="$1"
+    local content="$2"
+  fi
+
   if ! grep -qF "${content}" "${path}"; then
     info "Append to '${path}'"
     echo -e "${content}\n" | indented tee -a "${path}"
