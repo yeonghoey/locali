@@ -60,8 +60,8 @@
    dotspacemacs-startup-lists '()
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(material
-                         material-light
+   dotspacemacs-themes '(material-light
+                         material
                          spacemacs-dark
                          spacemacs-light
                          )
