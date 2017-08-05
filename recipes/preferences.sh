@@ -8,6 +8,7 @@ if exists_command 'zsh'; then
 fi
 
 localrc 'preferences' <<EOF
+export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
 EOF
 

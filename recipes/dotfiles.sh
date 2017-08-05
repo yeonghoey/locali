@@ -1,4 +1,6 @@
-stow --dir="${LOCALISH}" --target="${HOME}" 'dotfiles'
+stow_dotfiles() {
+  stow --dir="${LOCALISH}" --target="${HOME}" 'dotfiles'
+}
 
 init_gitconfig_local() {
   local target="${HOME}/.gitconfig.local"
@@ -28,5 +30,6 @@ init_tpm() {
   repo_run 'tpm/bindings/install_plugins'
 }
 
+stow_dotfiles
 init_gitconfig_local
 init_tpm
