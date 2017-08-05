@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-readonly LOCALISH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+realdir() {
+  if [[ -z "$1" ]]; then
+    pwd
+  else
+    (
+      cd "$(dirname "$1")"
+      realdir "$(readlink "$(basename "$1")")"
+    )
+  fi
+}
+
+readonly LOCALISH="$(dirname "$(realdir "$0")")"
 
 # ------------------------------------------------------------------------------
 
