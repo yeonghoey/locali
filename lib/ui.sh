@@ -80,3 +80,17 @@ use_sudo() {
     kill -0 "$$" || exit
   done &> /dev/null &
 }
+
+################################################################################
+# Run recipes
+################################################################################
+run_recipes() {
+  for recipe in "$@"; do
+    noti "Run: '${recipe}'"
+    if (source "${LOCALISH}/recipes/${recipe}.sh"); then
+      noti "Done: '${recipe}'"
+    else
+      noti "Abort: '${recipe}'"
+    fi
+  done
+}
