@@ -1,9 +1,15 @@
 recipes=(
   localish
   preferences
-  oh-my-zsh
+  brew
+  brew-bundle
   spacemacs
+  oh-my-zsh
   pyenv
+  bats
+  fonts
+  dotfiles
 )
 
-run_recipes "${recipes[@]}"
+indented \
+  run_recipes "${recipes[@]}"
