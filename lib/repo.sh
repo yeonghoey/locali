@@ -22,13 +22,29 @@ repo_git() {
 
   if [[ -d "${target}" ]]; then
     info "Pull '${target}'"
-    indented git -C "${target}" pull
+    git -C "${target}" pull
   else
     # Ensure the parent directories exist
     info "Clone '${url}'"
     mkdir -p "${target}"
-    indented git clone "${url}" "${target}"
+    git clone "${url}" "${target}"
   fi
+}
+
+################################################################################
+# Get a compressed file and extract it as a repo
+#
+# Arguments:
+#   $1: A URL for download via wget
+#   $2: A folder name under LOCAL_REPO where the file is extracted in
+################################################################################
+repo_get() {
+  local url="$1"
+  local download_path="$(mktemp -d)/$(basename "$url")"
+
+  wget -qO "$download_path" "$url" &> /dev/null
+  #     │└─ write output to file
+  #     └─ don't show output
 }
 
 ################################################################################
@@ -84,5 +100,5 @@ repo_sym() {
 repo_run() {
   local run="${LOCAL_REPO}/$1"
   info "Run '$run'"
-  indented "$run" "${@:2}"
+  "$run" "${@:2}"
 }

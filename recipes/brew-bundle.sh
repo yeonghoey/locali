@@ -1,4 +1,3 @@
 macos && {
-  indented \
-    brew bundle --file="${LOCALISH}/macos/Brewfile"
+  brew bundle --file="${LOCALISH}/macos/Brewfile"
 }

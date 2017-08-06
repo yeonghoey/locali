@@ -5,8 +5,7 @@ if exists_command 'zsh'; then
   info "Use zsh"
   ZSH_PATH="$(command_path 'zsh')"
   require_content '/etc/shells' "${ZSH_PATH}"
-  indented \
-    chsh -s "${ZSH_PATH}"
+  chsh -s "${ZSH_PATH}"
 fi
 
 info "Set locale environment variables to 'en_US.UTF-8'"
@@ -18,6 +17,5 @@ EOF
 # macOS specific preferences
 macos && {
   info "Install Xcode Command Line Tools"
-  indented \
-    xcode-select --install 2> /dev/null || true
+  xcode-select --install 2> /dev/null || true
 }

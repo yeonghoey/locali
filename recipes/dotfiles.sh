@@ -7,8 +7,7 @@ init_gitconfig_local() {
 
   if [[ -e "$target" ]]; then
     info "'$target' already exists. skipped."
-    indented \
-      cat "$target"
+    cat "$target"
     return 0
   fi
 
