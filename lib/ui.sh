@@ -93,6 +93,7 @@ run_recipes() {
       noti "Done: '${recipe}'"
     else
       noti "Abort: '${recipe}'"
+      return 1
     fi
   done
 }

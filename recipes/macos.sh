@@ -8,6 +8,8 @@ recipes=(
   pyenv
   bats
   fonts
+  trans
+  terraform
   dotfiles
 )
 

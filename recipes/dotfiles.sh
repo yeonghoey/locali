@@ -24,10 +24,8 @@ EOF
 }
 
 init_tpm() {
-  # Init tmux
   repo_git 'https://github.com/tmux-plugins/tpm'
   repo_sym 'tpm' "$HOME/.tmux/plugins/tpm"
-  repo_run 'tpm/bindings/install_plugins'
 }
 
 stow_dotfiles

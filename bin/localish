@@ -17,11 +17,10 @@ readonly LOCALISH="$(dirname "$(realdir "$0")")"
 
 # ------------------------------------------------------------------------------
 
-source "${LOCALISH}/lib/local.sh"
-source "${LOCALISH}/lib/repo.sh"
 source "${LOCALISH}/lib/file.sh"
-source "${LOCALISH}/lib/cmd.sh"
+source "${LOCALISH}/lib/local.sh"
 source "${LOCALISH}/lib/os.sh"
+source "${LOCALISH}/lib/repo.sh"
 source "${LOCALISH}/lib/ui.sh"
 
 # ------------------------------------------------------------------------------
