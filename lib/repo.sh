@@ -38,16 +38,37 @@ repo_git() {
 #   $1: A URL for download via wget
 #   $2: A folder name under LOCAL_REPO where the file is extracted in
 ################################################################################
-repo_get() {
+repo_zip() {
   local url="$1"
+  local repo="${LOCAL_REPO}/$2"
   local download_path="$(mktemp -d)/$(basename "$url")"
-  local repo_path="${LOCAL_REPO}/$2"
 
+  mkdir -p "$repo"
+  info "Download '$url'"
   wget -qO "$download_path" "$url" &> /dev/null
   #     │└─ write output to file
   #     └─ don't show output
 
-  extract "$downalod_path" "$repo_path"
+  extract "$download_path" "$repo_path"
+}
+
+################################################################################
+# Get a file and put it into a repo
+#
+# Arguments:
+#   $1: A URL for download via wget
+#   $2: A folder name under LOCAL_REPO where the file is extracted in
+################################################################################
+repo_get() {
+  local url="$1"
+  local repo="${LOCAL_REPO}/$2"
+  local download_path="$repo/$(basename "$url")"
+
+  mkdir -p "$repo"
+  info "Download '$url' into '$download_path'"
+  wget -qO "$download_path" "$url" &> /dev/null
+  #     │└─ write output to file
+  #     └─ don't show output
 }
 
 ################################################################################
@@ -58,6 +79,9 @@ repo_get() {
 ################################################################################
 repo_bin() {
   local relpath="$1"
+  local binpath="${LOCAL_REPO}/$1"
+  info "Make '$binpath' executable."
+  chmod +x "$binpath"
   repo_sym "${relpath}" "${LOCAL_BIN}/$(basename "$relpath")"
 }
 
