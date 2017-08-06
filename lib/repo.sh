@@ -42,14 +42,9 @@ repo_zip() {
   local url="$1"
   local repo="${LOCAL_REPO}/$2"
   local download_path="$(mktemp -d)/$(basename "$url")"
-  mkdir -p "$repo"
 
-  info "Download '$url'"
-  wget -qO "$download_path" "$url" &> /dev/null
-  #     │└─ write output to file
-  #     └─ don't show output
-
-  extract "$download_path" "$repo"
+  download "$url" "$download_path"
+  extract  "$download_path" "$repo"
 }
 
 ################################################################################
@@ -63,12 +58,8 @@ repo_get() {
   local url="$1"
   local repo="${LOCAL_REPO}/$2"
   local download_path="$repo/$(basename "$url")"
-  mkdir -p "$repo"
 
-  info "Download '$url' into '$download_path'"
-  wget -qO "$download_path" "$url" &> /dev/null
-  #     │└─ write output to file
-  #     └─ don't show output
+  download "$url" "$download_path"
 }
 
 ################################################################################

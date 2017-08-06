@@ -1,7 +1,7 @@
 use_sudo
 
 # Add current 'zsh' binary to /etc/shells for default shell use.
-if exists_command 'zsh'; then
+if command_exists 'zsh'; then
   info "Use zsh"
   ZSH_PATH="$(command_path 'zsh')"
   require_content '/etc/shells' "${ZSH_PATH}"

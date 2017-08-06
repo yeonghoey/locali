@@ -119,6 +119,46 @@ numbered() {
   done
 }
 
+
+################################################################################
+# Download a file
+#
+# Arguments:
+#   $1: A source URL
+#   $2: A target path
+################################################################################
+download() {
+  local url="$1"
+  local path="$2"
+
+  mkdir -p "$(dirname "$path")"
+
+  # A ripoff from
+  # https://github.com/alrra/dotfiles/blob/master/src/os/setup.sh
+
+  info "Download '$url' into '$path'"
+  if command_exists 'wget'; then
+
+    wget -qO "$path" "$url" &> /dev/null
+    #     │└─ write output to file
+    #     └─ don't show output
+    return "$?"
+
+  elif command_exists 'curl'; then
+
+    curl -LsSo "$path" "$url" &> /dev/null
+    #     │││└─ write output to file
+    #     ││└─ show error messages
+    #     │└─ don't show the progress meter
+    #     └─ follow redirects
+    return "$?"
+
+  else
+    info "Unable to use 'wget' or 'curl'."
+    return 1
+  fi
+}
+
 ################################################################################
 # Extract a file
 #
@@ -126,11 +166,13 @@ numbered() {
 #   $1: A path
 #   $2: A target directory
 ################################################################################
-extract () {
+extract() {
   local path="$1"
   local target_dir="$2"
 
-  info "Extract '"$(basename "$path")"' into '$target_dir'"
+  mkdir -p "$target_dir"
+
+  info "Extract '$path' into '$target_dir'"
   if [[ -f "$path" ]]; then
     case "$path" in
       *.tar.bz2) tar -C "$target_dir" -jxvf "$path"          ;;
@@ -152,7 +194,7 @@ extract () {
 # Returns:
 #   0 if exists, 1 otherwise
 ################################################################################
-exists_command() {
+command_exists() {
   # SEE: https://stackoverflow.com/questions/592620/check-if-a-program-exists-from-a-bash-script
   command -v "$1" >/dev/null 2>&1
 }
