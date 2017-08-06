@@ -124,27 +124,24 @@ numbered() {
 #
 # Arguments:
 #   $1: A path
+#   $2: A target directory
 ################################################################################
 extract () {
-  if [[ -f "$1" ]]; then
-    case "$1" in
-      *.tar.bz2) tar -jxvf $1                        ;;
-      *.tar.gz)  tar -zxvf $1                        ;;
-      *.bz2)     bunzip2 $1                          ;;
-      *.dmg)     hdiutil mount $1                    ;;
-      *.gz)      gunzip $1                           ;;
-      *.tar)     tar -xvf $1                         ;;
-      *.tbz2)    tar -jxvf $1                        ;;
-      *.tgz)     tar -zxvf $1                        ;;
-      *.zip)     unzip $1                            ;;
-      *.ZIP)     unzip $1                            ;;
-      *.pax)     cat $1 | pax -r                     ;;
-      *.pax.Z)   uncompress $1 --stdout | pax -r     ;;
-      *.rar)     unrar x $1                          ;;
-      *.Z)       uncompress $1                       ;;
-      *)         info "'$1' cannot be extracted/mounted via extract()" ;;
+  local path="$1"
+  local target_dir="$2"
+
+  info "Extract '"$(basename "$path")"' into '$target_dir'"
+  if [[ -f "$path" ]]; then
+    case "$path" in
+      *.tar.bz2) tar -C "$target_dir" -jxvf "$path"          ;;
+      *.tar.gz)  tar -C "$target_dir" -zxvf "$path"          ;;
+      *.tar)     tar -C "$target_dir" -xvf "$path"           ;;
+      *.zip)     unzip -d "$target_dir" "$path"              ;;
+      *.ZIP)     unzip -d "$target_dir" "$path"              ;;
+      *)         info "Unabled to extract '$path'"; return 1 ;;
     esac
   else
-    echo "'$1' is not a valid file"
+    info "File '$path' doesn't exist."
+    return 1
   fi
 }

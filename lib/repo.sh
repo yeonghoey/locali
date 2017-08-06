@@ -41,10 +41,13 @@ repo_git() {
 repo_get() {
   local url="$1"
   local download_path="$(mktemp -d)/$(basename "$url")"
+  local repo_path="${LOCAL_REPO}/$2"
 
   wget -qO "$download_path" "$url" &> /dev/null
   #     │└─ write output to file
   #     └─ don't show output
+
+  extract "$downalod_path" "$repo_path"
 }
 
 ################################################################################
