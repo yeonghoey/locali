@@ -16,13 +16,6 @@ touch "${LOCALRC}"
 export PATH="${LOCAL_BIN}:${PATH}"
 
 ################################################################################
-# Read commands from stdin and run under LOCALRC
-################################################################################
-localrc_shell() {
-  bash --rcfile "${LOCALRC}" -i <(cat -)
-}
-
-################################################################################
 # Appends a content from stdin to localrc if not existing.
 #
 # Globals:
@@ -39,4 +32,11 @@ localrc() {
   content="$(echo -e "# ${label}\n${content}")"
 
   require_content "${LOCALRC}" "${content}"
+}
+
+################################################################################
+# Read commands from stdin and run under LOCALRC
+################################################################################
+localrc_shell() {
+  bash --rcfile "${LOCALRC}" -i <(cat -)
 }
