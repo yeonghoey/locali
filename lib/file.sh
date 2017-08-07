@@ -66,25 +66,6 @@ require_content() {
 }
 
 ################################################################################
-# Appends a content from stdin to localrc if not existing.
-#
-# Globals:
-#   LOCALRC
-# Arguments:
-#   $1        : A label for the content
-#   /dev/stdin: A content to be appended to "${HOME}/.localrc"
-################################################################################
-localrc() {
-  local label="$1"
-  local content="$(home_relpathed "$(cat -)")"
-
-  # Put label
-  content="$(echo -e "# ${label}\n${content}")"
-
-  require_content "${LOCALRC}" "${content}"
-}
-
-################################################################################
 # Prints the absolute path.
 #
 # Arguments:
