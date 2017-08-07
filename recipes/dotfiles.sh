@@ -28,6 +28,6 @@ init_tpm() {
   repo_sym 'tpm' "$HOME/.tmux/plugins/tpm"
 }
 
-stow_dotfiles
-init_gitconfig_local
-init_tpm
+stow_dotfiles        || return 1
+init_gitconfig_local || return 1
+init_tpm             || return 1
