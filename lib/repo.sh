@@ -12,20 +12,19 @@
 #
 # Arguments:
 #   $1          : A URL for the git remote repository
-#   $2(optional): A path prefix under LOCAL_REPO
+#   $2(optional): A repo name which will be placed under LOCAL_REPO
 ################################################################################
 repo_git() {
   local url="$1"
-  local name="$(basename ${url} .git)"
-  local prefix="${2:-}"
-  local target="${LOCAL_REPO}/${prefix}${name}"
+  local name="${2-$(basename $url .git)}"
+  local target="${LOCAL_REPO}/${name}"
 
   if [[ -d "${target}" ]]; then
     info "Pull '${target}'"
     git -C "${target}" pull
   else
     # Ensure the parent directories exist
-    info "Clone '${url}'"
+    info "Clone '${url}' into '$target'"
     mkdir -p "${target}"
     git clone "${url}" "${target}"
   fi

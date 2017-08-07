@@ -1,5 +1,5 @@
 repo_git 'https://github.com/pyenv/pyenv.git'
-repo_git 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins/'
+repo_git 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins/pyenv-virtualenv'
 
 localrc 'pyenv' << EOF
 export PYENV_ROOT="${LOCAL_REPO}/pyenv"
