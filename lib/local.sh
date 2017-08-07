@@ -37,6 +37,6 @@ localrc() {
 ################################################################################
 # Read commands from stdin and run under LOCALRC
 ################################################################################
-localrc_shell() {
+localrc_run() {
   bash --rcfile "${LOCALRC}" -i <(cat -)
 }
