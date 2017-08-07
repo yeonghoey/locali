@@ -140,7 +140,7 @@
 
   ;; Korean language setting
   (setq-default default-input-method "korean-hangul")
-  (set-fontset-font t 'hangul (font-spec :name "D2Coding"))
+  (set-fontset-font t 'hangul (font-spec :name "D2Coding for Powerline"))
 
   ;; Indentations
   (setq-default
