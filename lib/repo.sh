@@ -24,8 +24,9 @@ repo_git() {
     git -C "${target}" pull
   else
     # Ensure the parent directories exist
-    info "Clone '${url}' into '$target'"
     mkdir -p "${target}"
+
+    info "Clone '${url}'"
     git clone "${url}" "${target}"
   fi
 }
