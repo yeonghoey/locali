@@ -66,7 +66,7 @@
                          spacemacs-light
                          )
    dotspacemacs-colorize-cursor-according-to-state nil
-   dotspacemacs-default-font '("D2Coding for Powerline"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 14
                                :weight normal
                                :width normal
@@ -140,7 +140,7 @@
 
   ;; Korean language setting
   (setq-default default-input-method "korean-hangul")
-  (set-fontset-font t 'hangul (font-spec :name "D2Coding for Powerline"))
+  (set-fontset-font t 'hangul (font-spec :name "Source Code Pro for Powerline"))
 
   ;; Indentations
   (setq-default
