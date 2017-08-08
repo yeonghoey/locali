@@ -67,7 +67,7 @@
                          )
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("Source Code Pro for Powerline"
-                               :size 14
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
