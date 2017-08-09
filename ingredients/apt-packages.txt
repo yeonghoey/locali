@@ -1,7 +1,6 @@
 build-essential
 curl
 emacs
-emacs25
 libbz2-dev
 libncurses5-dev
 libncursesw5-dev
