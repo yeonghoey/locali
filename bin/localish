@@ -274,8 +274,6 @@ macos() {
 ubuntu() {
   [[ "$(uname -s)" == "Linux" ]] && [[ -e "/etc/lsb-release" ]]
 }
-source "${LOCALISH}/lib/repo.sh"
-source "${LOCALISH}/lib/ui.sh"
 
 
 ################################################################################
