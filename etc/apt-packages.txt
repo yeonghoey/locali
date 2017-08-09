@@ -1,6 +1,7 @@
 build-essential
 curl
 emacs
+emacs25
 libbz2-dev
 libncurses5-dev
 libncursesw5-dev
@@ -9,6 +10,7 @@ libsqlite3-dev
 libssl-dev
 llvm
 make
+shellcheck
 stow
 tk-dev
 wget
