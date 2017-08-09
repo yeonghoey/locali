@@ -49,6 +49,8 @@ require_file() {
 # Arguments:
 #   $1          : A file path
 #   $2(optional): A content to be existing in the file, use stdin if not passed.
+# Returns:
+#   0 if content appended, 1 otherwise.
 ################################################################################
 require_content() {
   if [[ "$#" == 1 ]]; then
@@ -62,6 +64,9 @@ require_content() {
   if ! grep -qF "${content}" "${path}"; then
     info "Append to '${path}'"
     echo -e "${content}\n" | tee -a "${path}"
+    return 0
+  else
+    return 1
   fi
 }
 

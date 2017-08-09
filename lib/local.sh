@@ -30,13 +30,8 @@ localrc() {
 
   # Put label
   content="$(echo -e "# ${label}\n${content}")"
-
-  require_content "${LOCALRC}" "${content}"
-}
-
-################################################################################
-# Read commands from stdin and run under LOCALRC
-################################################################################
-localrc_run() {
-  bash --rcfile "${LOCALRC}" -i <(cat -)
+  require_content "${LOCALRC}" "${content}" && {
+    # Eval content for current shell if content is newley appended.
+    eval "${content}"
+  }
 }
