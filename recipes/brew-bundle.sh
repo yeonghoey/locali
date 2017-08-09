@@ -1,3 +1,3 @@
 macos && {
-  brew bundle --file="${LOCALISH}/etc/Brewfile"
+  brew bundle --file="${LOCALISH}/ingredients/Brewfile"
 }
