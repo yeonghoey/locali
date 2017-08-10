@@ -1,5 +1,5 @@
 stow_dotfiles() {
-  stow --dir="${LOCALISH}" --target="${HOME}" 'dotfiles'
+  stow --dir="${LOCALISH}/ingredients" --target="${HOME}" 'dotfiles'
 }
 
 init_gitconfig_local() {
