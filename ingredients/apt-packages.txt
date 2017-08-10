@@ -1,6 +1,7 @@
 build-essential
 curl
 emacs
+gawk
 libbz2-dev
 libncurses5-dev
 libncursesw5-dev
