@@ -1,0 +1,4 @@
+boto3==1.4.1
+botocore==1.4.78
+clipboard==0.0.4
+pycurl==7.43.0

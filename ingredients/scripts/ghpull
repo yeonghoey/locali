@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+pull () {
+  git -C "$1" pull > /dev/null || echo "Failed to pull \"$1\""
+}
+
+pull "$HOME/localish"
+pull "$HOME/org"
+pull "$HOME/notes"
+git -C "$HOME/notes" lfs pull
