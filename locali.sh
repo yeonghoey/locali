@@ -95,9 +95,11 @@ require_content() {
     local content="$2"
   fi
 
-  if ! grep -qF "${content}" "${path}"; then
-    info "Append to '${path}'"
-    echo -e "${content}\n" | tee -a "${path}"
+  if ! contains "$(cat "$path")" "$content"; then
+    info "Append to '$path'"
+    echo -e "\n${content}\n" | tee -a "${path}"
+  else
+    info "'$LOCALRC' already contains the content. Skipped."
   fi
 }
 
@@ -121,6 +123,20 @@ require_file() {
   fi
   info "Write to '${path}'"
   echo "$content" | tee "${path}"
+}
+
+
+################################################################################
+# Tests whether a string contains another
+#
+# Arguments:
+#   $1: A string to be tested
+#   $2: A substring
+################################################################################
+contains() {
+  local str="$1"
+  local sub="$2"
+  [[ "$str" == *"$sub"* ]]
 }
 
 
@@ -371,7 +387,7 @@ symlink() {
   info "Create a symlink from '$src' to '$dst'"
 
   if [[ "$src" -ef "$(readlink "$dst")" ]]; then
-    info "Symlink already exists. skipped."
+    info "Symlink already exists. Skipped."
     return 0
   fi
 
