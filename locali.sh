@@ -20,8 +20,7 @@ realdir() {
   fi
 }
 
-
-readonly LOCALISH="$(dirname "$(realdir "$0")")"
+readonly LOCALISH="$(realdir "$0")"
 
 declare -rx LOCAL_ROOT="${HOME}/.local"
 declare -rx LOCAL_REPO="${LOCAL_ROOT}/repo"
@@ -336,11 +335,11 @@ repo_get() {
 #   $1: A relative path to LOCAL_REPO
 ################################################################################
 repo_bin() {
-  local relpath="$1"
-  local binpath="${LOCAL_REPO}/$1"
+  local src="${LOCAL_REPO}/$1"
+  local dst="${LOCAL_BIN}/$(basename "$src")"
   info "Make '$binpath' executable."
-  chmod +x "$binpath"
-  repo_sym "${relpath}" "${LOCAL_BIN}/$(basename "$relpath")"
+  chmod +x "$src"
+  symlink "$src" "$dst"
 }
 
 
@@ -349,10 +348,24 @@ repo_bin() {
 #
 # Arguments:
 #   $1: A relative path to LOCAL_REPO
-#   $2: A path for symlink. if path is a existing directory, prompts to delete
+#   $2: A path for symlink. if path is a existing directory, prompts to replace
 ################################################################################
 repo_sym() {
   local src="${LOCAL_REPO}/$1"
+  local dst="$2"
+  symlink "$src" "$dst"
+}
+
+
+################################################################################
+# Create a symlink
+#
+# Arguments:
+#   $1: A src path
+#   $2: A path for symlink. if path is a existing directory, prompts to replace
+################################################################################
+symlink() {
+  local src="$1"
   local dst="$2"
 
   info "Create a symlink from '$src' to '$dst'"
@@ -375,6 +388,7 @@ repo_sym() {
   # -s, symlink
   ln -s "$(abspath $src)" "$(abspath $dst)"
 }
+
 
 
 ################################################################################
