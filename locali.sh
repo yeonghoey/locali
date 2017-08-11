@@ -337,7 +337,7 @@ repo_get() {
 repo_bin() {
   local src="${LOCAL_REPO}/$1"
   local dst="${LOCAL_BIN}/$(basename "$src")"
-  info "Make '$binpath' executable."
+  info "Make '$src' executable."
   chmod +x "$src"
   symlink "$src" "$dst"
 }

@@ -1,5 +1,5 @@
 recipes=(
-  localish
+  locali.sh
   preferences
   brew
   brew-bundle
