@@ -33,6 +33,12 @@ mkdir -p "${LOCAL_BIN}"
 touch "${LOCALRC}"
 
 
+# Add LOCAL_BIN to PATH if not existing
+if [[ ":${PATH}:" != *":${LOCAL_BIN}:"* ]]; then
+  export PATH="${LOCAL_BIN}:${PATH}"
+fi
+
+
 ################################################################################
 # Appends a content from stdin to localrc if not existing.
 #
@@ -46,10 +52,7 @@ localrc() {
 
   # Put label
   content="$(echo -e "# ${label}\n${content}")"
-  require_content "${LOCALRC}" "${content}" && {
-    # Eval content for current shell if content is newley appended.
-    eval "${content}"
-  }
+  require_content "${LOCALRC}" "${content}"
 }
 
 
@@ -95,9 +98,6 @@ require_content() {
   if ! grep -qF "${content}" "${path}"; then
     info "Append to '${path}'"
     echo -e "${content}\n" | tee -a "${path}"
-    return 0
-  else
-    return 1
   fi
 }
 
