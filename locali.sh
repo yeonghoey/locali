@@ -296,17 +296,17 @@ ubuntu() {
 repo_git() {
   local url="$1"
   local name="${2-$(basename $url .git)}"
-  local target="${LOCAL_REPO}/${name}"
+  local repo="${LOCAL_REPO}/$name"
 
-  if [[ -d "${target}" ]]; then
-    info "Pull '${target}'"
-    git -C "${target}" pull
+  if [[ -d "$repo" ]]; then
+    info "Pull '$repo'"
+    git -C "$repo" pull
   else
     # Ensure the parent directories exist
-    mkdir -p "${target}"
+    mkdir -p "$repo"
 
-    info "Clone '${url}'"
-    git clone "${url}" "${target}"
+    info "Clone '$url'"
+    git clone "$url" "$repo"
   fi
 }
 
@@ -320,8 +320,11 @@ repo_git() {
 ################################################################################
 repo_zip() {
   local url="$1"
-  local repo="${LOCAL_REPO}/$2"
-  local download_path="$(mktemp -d)/$(basename "$url")"
+  local file="$(basename $url)"
+  local filename="${file%.*}"
+  local name="${2-$filename}"
+  local repo="${LOCAL_REPO}/$name"
+  local download_path="$(mktemp -d)/$file"
 
   download "$url" "$download_path"
   extract  "$download_path" "$repo"
@@ -333,13 +336,11 @@ repo_zip() {
 #
 # Arguments:
 #   $1: A URL for download via wget
-#   $2: A folder name under LOCAL_REPO where the file is extracted in.
+#   $2: A relpath under LOCAL_REPO
 ################################################################################
 repo_get() {
   local url="$1"
-  local repo="${LOCAL_REPO}/$2"
-  local download_path="$repo/$(basename "$url")"
-
+  local download_path="${LOCAL_REPO}/$2"
   download "$url" "$download_path"
 }
 
