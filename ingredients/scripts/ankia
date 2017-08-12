@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import time
+
+import clipboard
+
+
+def main():
+    anki_media, srcpath, ss, to = params()
+    srcname = os.path.basename(srcpath)
+
+    now = int(time.time())
+    dstname = f'{srcname}-{now}.mp3'
+    dstpath = os.path.join(anki_media, dstname)
+
+    do_ffmpeg(srcpath, ss, to, dstpath)
+    clip(dstname)
+    play(dstpath)
+
+
+def params():
+    anki_media = os.getenv('ANKI_MEDIA', None)
+    if anki_media is None:
+        print("'ANKI_MEDIA' is not set. Use current working directory.")
+        anki_media = '.'
+
+    if len(sys.argv) != 4:
+        cmd = os.path.basename(sys.argv[0])
+        errexit(f'Usage: {cmd} <srcpath> <ss> <to>')
+
+    srcpath, ss, to = sys.argv[1:]
+    if not os.path.exists(srcpath):
+        errexit(f"'{srcpath}' not exsisting")
+
+    return anki_media, srcpath, ss, to
+
+
+def do_ffmpeg(srcpath, ss, to, dstpath):
+    cmd = ' '.join([
+        'ffmpeg',
+        '-y',                      # Overwrite output files without asking
+        '-loglevel 0',             # Panic, only show fatal errors
+        f"-i '{srcpath}'",         # Input
+        '-vn',                     # Disable video
+        '-codec:a libmp3lame',     # Encode mp3
+        '-qscale:a 3',             # Just audible is enough
+        f"-ss '{ss}' -to '{to}'",  # Specify range
+        f"'{dstpath}'"             # Output
+    ])
+    os.system(cmd)
+
+
+def clip(filename):
+    anki_sound_field = f'[sound:{filename}]'
+    clipboard.copy(anki_sound_field)
+    print(f"Copied '{anki_sound_field}' to clipboard")
+
+
+def play(dstpath):
+    cmd = f"(afplay '{dstpath}' &)"
+    os.system(cmd)
+
+
+def errexit(message):
+    print(message, file=sys.stderr)
+    sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
