@@ -10,6 +10,8 @@ libsqlite3-dev
 libssl-dev
 llvm
 make
+nodejs
+npm
 shellcheck
 stow
 tk-dev

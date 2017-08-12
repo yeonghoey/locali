@@ -66,7 +66,7 @@
                          spacemacs-light
                          )
    dotspacemacs-colorize-cursor-according-to-state nil
-   dotspacemacs-default-font '("DejaVuSansMono for Powerline"
+   dotspacemacs-default-font '("DejaVu Sans Mono for Powerline"
                                :size 14
                                :weight normal
                                :width normal
