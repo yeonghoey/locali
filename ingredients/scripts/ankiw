@@ -24,7 +24,11 @@ def main():
 
 
 def params():
-    anki_media = os.getenv('ANKI_MEDIA', '.')
+    anki_media = os.getenv('ANKI_MEDIA', None)
+    if anki_media is None:
+        print("'ANKI_MEDIA' is not set. Use current working directory.")
+        anki_media = '.'
+
     if len(sys.argv) != 2:
         cmd = os.path.basename(sys.argv[0])
         errexit(f'Usage: {cmd} <word>')
@@ -67,7 +71,9 @@ def save(filepath, bytes_):
 
 
 def clip(filename):
-    clipboard.copy(f'[sound:{filename}]')
+    anki_sound_field = f'[sound:{filename}]'
+    clipboard.copy(anki_sound_field)
+    print(f"Copied '{anki_sound_field}' to clipboard")
 
 
 def play(filepath):
