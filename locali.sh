@@ -42,36 +42,27 @@ fi
 ################################################################################
 # Appends a content from stdin to localrc if not existing.
 #
-# Arguments:
+# Params:
 #   $1        : A label for the content
 #   /dev/stdin: A content to be appended to "${HOME}/.localrc"
 ################################################################################
 localrc() {
+
   local label="$1"
-  local content="$(home_relpathed "$(cat -)")"
+  local content=""
 
-  # Put label
+
+  # Read from '/dev/stdin', mostly for Here document
+  content="$(cat -)"
+
+  # Normalize home pathes relative to $HOME
+  content="${content//$HOME/\$HOME}"
+
+  # Put the label at head
   content="$(echo -e "# ${label}\n${content}")"
+
+
   require_content "${LOCALRC}" "${content}"
-}
-
-
-################################################################################
-# Replaces actual home pathes with ${HOME}
-#
-# Arguments:
-#   $1: A string contains pathes
-# Prints:
-#   A string containing '${HOME}' rather tan actual home pathes
-# Example:
-#   '/User/yeonghoey/.localrc' -> '${HOME}/.localrc'
-################################################################################
-home_relpathed() {
-  # Replace '/user/<username>/*' with '${HOME}/.local/*'
-  local content="$1"
-  local relpath="${LOCAL_ROOT#"${HOME}"}"
-  local sedexp="s:${LOCAL_ROOT}:\${HOME}${relpath}:g"
-  echo "$content" | sed "${sedexp}"
 }
 
 
