@@ -2,11 +2,33 @@
 
 # ------------------------------------------------------------------------------
 
-require_ubuntu
+# require_ubuntu
 
 # ------------------------------------------------------------------------------
 
-# sudo add-apt-repository $(requirements "${LOCALISH}/apt/repositories.txt")
-sudo apt-get update
-sudo apt-get install -y $(requirements "${LOCALISH}/apt/packages.txt")
-sudo apt autoremove
+readonly PACKAGES=(
+  build-essential
+  curl
+  emacs
+  gawk
+  libbz2-dev
+  libncurses5-dev
+  libncursesw5-dev
+  libreadline-dev
+  libsqlite3-dev
+  libssl-dev
+  llvm
+  make
+  nodejs
+  npm
+  shellcheck
+  stow
+  tk-dev
+  wget
+  xz-utils
+  zlib1g-dev
+)
+
+echo sudo apt-get update
+echo sudo apt-get install -y "${PACKAGES[@]}"
+echo sudo apt autoremove
