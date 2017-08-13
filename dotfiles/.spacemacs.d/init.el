@@ -155,6 +155,11 @@
 
   ;; Shell
   (setq-default
+   flycheck-disabled-checkers
+   '(
+     sh-posix-bash
+     sh-posix-dash
+     )
    flycheck-shellcheck-excluded-warnings
    '(
      "SC1090" ;; No source: https://github.com/koalaman/shellcheck/wiki/SC1090
