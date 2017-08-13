@@ -153,6 +153,15 @@
    web-mode-css-indent-offset 2
    css-indent-offset 2)
 
+  ;; Shell
+  (setq-default
+   flycheck-shellcheck-excluded-warnings
+   '(
+     "SC1090" ;; No source: https://github.com/koalaman/shellcheck/wiki/SC1090
+     "SC2039" ;; No POSIX : https://github.com/koalaman/shellcheck/wiki/SC2039
+     )
+   )
+
   ;; Python
   ;; SEE: https://github.com/timothycrosley/isort#multi-line-output-modes
   (setq-default py-isort-options '("-m 4"))
