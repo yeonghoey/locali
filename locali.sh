@@ -438,6 +438,12 @@ symlink() {
 }
 
 
+stow_localish() {
+  local src="$1"
+  local dst="$2"
+  stow --verbose --dir="${LOCALISH}" "${src}" --target="${dst}"
+}
+
 
 ################################################################################
 # Run a command under LOCAL_REPO
