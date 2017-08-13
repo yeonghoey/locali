@@ -174,7 +174,7 @@
 
   ;; Org
   (setq-default
-   org-directory "~/org/"
+   org-directory "~/yeonghoey-org/"
    org-agenda-files `(,org-directory)
    org-refile-targets '((org-agenda-files :level . 1))
    org-startup-indented t
@@ -207,59 +207,50 @@
   (advice-add 'org-refile :after 'my-org-save-all-org-buffers)
   (advice-add 'org-archive :after 'my-org-save-all-org-buffers)
 
-  ;; my- Customizations
   (setq-default
-   my-org-inbox (concat org-directory "inbox.org")
-   my-org-work  (concat org-directory "what-studio.org")
+   yeonghoey-org-inbox (concat org-directory "inbox.org")
+   org-capture-templates
+   `(
+
+     ("c" "Create a task"
+
+      entry (file+headline
+             ,yeonghoey-org-inbox
+             "Inbox"
+             )
+
+
+      "* TODO %t %?"
+
+
+      :empty-lines 1
+      )
+
+     )
    )
 
-  (setq-default
-   org-capture-templates `(("c" "Create a task"
-                            entry (file+headline ,my-org-inbox "Inbox")
-                            "* TODO %t %?"
-                            :empty-lines 1)
-
-                           ("w" "Create a task (work)"
-                            entry (file+headline ,my-org-work "Inbox")
-                            "* TODO %t %?"
-                            :empty-lines 1))
-   )
-
-  (defun my-find-dot-files ()
+  (defun yeonghoey-find-org-inbox ()
     (interactive)
-    (let ((default-directory "~/.dotfiles/"))
-      (spacemacs/helm-find-files nil))
+    (find-file yeonghoey-org-inbox)
     )
-  (defun my-find-org-files ()
+  (defun yeonghoey-find-org-files ()
     (interactive)
     (let ((default-directory org-directory))
-      (spacemacs/helm-find-files nil))
+      (spacemacs/helm-find-files nil)
+      )
     )
-  (defun my-find-notes-files ()
-    (interactive)
-    (let ((default-directory "~/notes/"))
-      (spacemacs/helm-find-files nil))
-    )
-  (defun my-find-org-inbox ()
-    (interactive)
-    (find-file my-org-inbox)
-    )
-  (defun my-find-org-work ()
-    (interactive)
-    (find-file my-org-work)
-    )
-  (defun my-ag-org-files ()
+  (defun yeonghoey-ag-org-directory ()
     (interactive)
     (spacemacs/helm-files-do-ag org-directory)
     )
-  (defun my-toggle-org-archived ()
+  (defun yeonghoey-toggle-org-archived ()
     (interactive)
     (if (string-match "^.*[.]org$" buffer-file-name)
         (find-file (concat buffer-file-name "_archive"))
       (find-file (replace-regexp-in-string "_archive$" "" buffer-file-name))
       )
     )
-  (defun my-trans-en-ko (start end)
+  (defun yeonghoey-trans-en-ko (start end)
     (interactive "r")
     (let* ((text (buffer-substring-no-properties start end))
            (command (format "trans -brief -no-autocorrect -to en+ko \"%s\"" text))
@@ -281,17 +272,13 @@
     "o8" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-8-and-exit
     "o9" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-9-and-exit
 
-    "o." `my-find-dot-files
-    "of" 'my-find-org-files
-    "on" `my-find-notes-files
+    "oi" 'yeonghoey-find-org-inbox
+    "of" 'yeonghoey-find-org-files
+    "o/" 'yeonghoey-ag-org-directory
+    "oa" 'yeonghoey-toggle-org-archived
+    "ot" 'yeonghoey-trans-en-ko
 
-    "oi" 'my-find-org-inbox
-    "ow" 'my-find-org-work
-    "o/" 'my-ag-org-files
-    "oa" 'my-toggle-org-archived
-    "ot" 'my-trans-en-ko
     "oT" 'spacemacs/toggle-transparency
-
     "or" 'org-redisplay-inline-images
     )
   )
