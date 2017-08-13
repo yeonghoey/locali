@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-ghpull
+"${HOME}/locali.sh/update.sh"
+"${HOME}/yeonghoey/update.sh"
+"${HOME}/yeonghoey-org/update.sh"
+
 emacs &
