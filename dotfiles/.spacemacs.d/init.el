@@ -159,6 +159,7 @@
    '(
      "SC1090" ;; No source: https://github.com/koalaman/shellcheck/wiki/SC1090
      "SC2039" ;; No POSIX : https://github.com/koalaman/shellcheck/wiki/SC2039
+     "SC2046" ;; No quote : https://github.com/koalaman/shellcheck/wiki/SC2046
      )
    )
 

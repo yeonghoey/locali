@@ -141,6 +141,24 @@ contains() {
 
 
 ################################################################################
+# Parse text files formatted like 'requirements.txt'. Exclude '#' lines.
+#
+# Arguments:
+#   $1: A path to requirements file
+# Prints:
+#   Names of requirements separated whitespaces
+# See:
+#   https://askubuntu.com/questions/252734/apt-get-mass-install-packages-from-a-file
+################################################################################
+requirements() {
+
+  local path="$1"
+
+  grep -vE "^\s*#" "${path}"  | tr "\n" " "
+}
+
+
+################################################################################
 # Prints the absolute path.
 #
 # Arguments:
@@ -481,7 +499,7 @@ info() {
 #   $1: A question.
 ################################################################################
 prompt() {
-  printf "? $1: "
+  printf "? %s: " "$1"
   read -r
 }
 
@@ -502,7 +520,7 @@ answer() {
 #   $1: A question.
 ################################################################################
 prompt_yn() {
-  printf "? $1 (y/n) "
+  printf "? %s (y/n) " "$1"
   read -r -n 1
   echo
 }
