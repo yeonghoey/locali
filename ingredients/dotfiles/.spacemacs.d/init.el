@@ -136,7 +136,7 @@
   (remove-hook 'prog-mode-hook #'smartparens-mode) ;; Disable smartparens
   (spacemacs/toggle-smartparens-globally-off)      ;; https://github.com/syl20bnr/spacemacs/issues/1603#issuecomment-213553034
 
-  (add-hook 'after-change-major-mode-hook 'spacemacs/toggle-truncate-lines-on) ;; No line-wrapping
+  ;; (add-hook 'after-change-major-mode-hook 'spacemacs/toggle-truncate-lines-on) ;; No line-wrapping
 
   ;; Korean language setting
   (setq-default default-input-method "korean-hangul")
