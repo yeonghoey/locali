@@ -118,6 +118,15 @@ require_file() {
 
 
 ################################################################################
+# Params:
+#   $1: A file path which requires that its directory exists
+################################################################################
+require_dir() {
+  mkdir -p "$(dirname "$1")"
+}
+
+
+################################################################################
 # Tests whether a string contains another
 #
 # Arguments:
@@ -343,10 +352,17 @@ repo_get() {
 #   $1: A relative path to LOCAL_REPO
 ################################################################################
 repo_bin() {
+
   local src="${LOCAL_REPO}/$1"
-  local dst="${LOCAL_BIN}/$(basename "$src")"
+  local dst=""
+
+  # Use the same file name
+  dst="${LOCAL_BIN}/$(basename "$src")"
+
+
   info "Make '$src' executable."
   chmod +x "$src"
+
   symlink "$src" "$dst"
 }
 
@@ -359,8 +375,10 @@ repo_bin() {
 #   $2: A path for symlink. if path is a existing directory, prompts to replace
 ################################################################################
 repo_sym() {
+
   local src="${LOCAL_REPO}/$1"
   local dst="$2"
+
   symlink "$src" "$dst"
 }
 
@@ -373,28 +391,50 @@ repo_sym() {
 #   $2: A path for symlink. if path is a existing directory, prompts to replace
 ################################################################################
 symlink() {
+
   local src="$1"
   local dst="$2"
+  local dstbk=""
 
-  info "Create a symlink from '$src' to '$dst'"
+
+  info "Create a symlink from '${src}' to '${dst}'"
+
 
   if [[ "$src" -ef "$(readlink "$dst")" ]]; then
+    #           └┤
+    #            └ True if both refer to the same device and inode numbers.
     info "Symlink already exists. Skipped."
     return 0
   fi
 
-  if [[ -e "$dst" ]]; then
-    prompt_yn "Path '$dst' already exists. Replace it?"
+
+  if [[ ! -e "${src}" ]]; then
+    info "'${src}' does not exist."
+    return 1
+  fi
+
+
+  if [[ -e "${dst}" ]]; then
+
+    prompt_yn "Path '${dst}' already exists. Replace it?"
     if answer_is_yes; then
-      local dstbk="$(numbered "${dst}.bk")"
-      info "Move '$dst' to '$dstbk'"
-      mv "$dst" "$dstbk"
+
+      dstbk="$(numbered "${dst}.bk")"
+
+      info "Move '${dst}' to '${dstbk}'"
+      mv "${dst}" "${dstbk}"
+
     else
       return 1
     fi
+  else
+
+    require_dir "${dst}"
+
   fi
-  # -s, symlink
-  ln -s "$(abspath $src)" "$(abspath $dst)"
+
+
+  ln -s "$(abspath "${src}")" "$(abspath "${dst}")"
 }
 
 
