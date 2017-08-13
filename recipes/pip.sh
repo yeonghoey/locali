@@ -1,4 +1,24 @@
-info "Use '$(command_path 'pip')'"
+# Install pip packages
 
-pip install -r "${LOCALISH}/pip/requirements.txt"
-pip3 install -r "${LOCALISH}/pip/requirements3.txt"
+# ------------------------------------------------------------------------------
+
+info "Use '$(command_path 'pip')'"
+pip install -r <(cat <<EOF
+
+boto3==1.4.1
+botocore==1.4.78
+
+EOF
+)
+
+# ------------------------------------------------------------------------------
+
+info "Use '$(command_path 'pip3')'"
+
+pip3 install -r <(cat <<EOF
+
+clipboard==0.0.4
+pycurl==7.43.0
+
+EOF
+)
