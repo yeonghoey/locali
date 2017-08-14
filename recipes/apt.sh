@@ -17,6 +17,7 @@ readonly PACKAGES=(
   gawk
   git
   libbz2-dev
+  libcurl4-openssl-dev
   libncurses5-dev
   libncursesw5-dev
   libreadline-dev
