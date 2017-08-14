@@ -8,6 +8,7 @@ pip install -r <(cat <<EOF
 boto3==1.4.1
 botocore==1.4.78
 bpython==0.16
+requests==2.18.3
 
 EOF
 )
