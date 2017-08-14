@@ -6,11 +6,16 @@
 
 # ------------------------------------------------------------------------------
 
+readonly REPOSITORIES=(
+  ppa:git-core/ppa
+)
+
 readonly PACKAGES=(
   build-essential
   curl
   emacs
   gawk
+  git
   libbz2-dev
   libncurses5-dev
   libncursesw5-dev
@@ -29,6 +34,6 @@ readonly PACKAGES=(
   zlib1g-dev
 )
 
-echo sudo apt-get update
-echo sudo apt-get install -y "${PACKAGES[@]}"
-echo sudo apt autoremove
+sudo add-apt-repository "${REPOSITORIES[@]}"
+sudo apt-get update
+sudo apt-get install -y "${PACKAGES[@]}"
