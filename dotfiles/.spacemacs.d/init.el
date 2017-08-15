@@ -250,6 +250,11 @@
       (find-file (replace-regexp-in-string "_archive$" "" buffer-file-name))
       )
     )
+  (defun yeonghoey-tr-line-chars (start end)
+    (interactive "r")
+    (let* ((table (make-translation-table '((?| . ?│) (?+ . ?└) (?- . ?─)))))
+      (translate-region start end table))
+    )
   (defun yeonghoey-trans-en-ko (start end)
     (interactive "r")
     (let* ((text (buffer-substring-no-properties start end))
@@ -277,6 +282,7 @@
     "o/" 'yeonghoey-ag-org-directory
     "oa" 'yeonghoey-toggle-org-archived
     "ot" 'yeonghoey-trans-en-ko
+    "ol" 'yeonghoey-tr-line-chars
 
     "oT" 'spacemacs/toggle-transparency
     "or" 'org-redisplay-inline-images
