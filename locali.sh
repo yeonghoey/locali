@@ -78,12 +78,13 @@ localrc() {
 #   0 if content appended, 1 otherwise.
 ################################################################################
 require_content() {
+  local path="$1"
+  local content=""
+
   if [[ "$#" == 1 ]]; then
-    local path="$1"
-    local content="$(cat -)"
+    content="$(cat -)"
   else
-    local path="$1"
-    local content="$2"
+    content="$2"
   fi
 
   if ! contains "$(cat "$path")" "$content"; then
@@ -105,13 +106,15 @@ require_content() {
 #   $2(optional): A content to be existing in the file, use stdin if not passed.
 ################################################################################
 require_file() {
+  local path="$1"
+  local content=""
+
   if [[ "$#" == 1 ]]; then
-    local path="$1"
-    local content="$(cat -)"
+    content="$(cat -)"
   else
-    local path="$1"
-    local content="$2"
+    content="$2"
   fi
+
   info "Write to '${path}'"
   echo "$content" | tee "${path}"
 }
@@ -313,7 +316,7 @@ require_ubuntu() {
 ################################################################################
 repo_git() {
   local url="$1"
-  local name="${2-$(basename $url .git)}"
+  local name="${2-$(basename "$url" .git)}"
   local repo="${LOCAL_REPO}/$name"
 
   if [[ -d "$repo" ]]; then
@@ -338,11 +341,16 @@ repo_git() {
 ################################################################################
 repo_zip() {
   local url="$1"
-  local file="$(basename $url)"
+
+  local file=""
+  file="$(basename "$url")"
+
   local filename="${file%.*}"
   local name="${2-$filename}"
   local repo="${LOCAL_REPO}/$name"
-  local download_path="$(mktemp -d)/$file"
+
+  local download_path=""
+  download_path="$(mktemp -d)/$file"
 
   download "$url" "$download_path"
   extract  "$download_path" "$repo"
