@@ -10,6 +10,6 @@ EOF
 
 localrc_zsh 'locali.sh' <<EOF
 
-fpath=("$LOCAL_COMPS_ZSH" \$fpath)
+fpath=("${LOCAL_COMPS_ZSH}" \$fpath)
 
 EOF

@@ -5,9 +5,6 @@ set -euo pipefail
 
 ################################################################################
 # Prints a real directory of the path by following symlinks.
-#
-# Arguments:
-#   $1: A path
 ################################################################################
 realdir() {
   if [[ -z "$1" ]]; then
