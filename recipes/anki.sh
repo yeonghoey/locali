@@ -1,4 +1,4 @@
-# configure 'ANKI_MEDIA', Anki2 required {macOS}
+# macOS | configure 'ANKI_MEDIA' for Anki2
 
 # ------------------------------------------------------------------------------
 

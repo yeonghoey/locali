@@ -20,18 +20,26 @@ readonly LOCALISH="$(realdir "$(command -v 'locali.sh')")"
 local -a recipes
 #      └─ array
 
-local recipe_name
-local recipe_desc
+local name
+local line
+local -a elems
+#      └─ array
+local desc
 
 recipes=()
 for recipe in $LOCALISH/recipes/*.sh; do
-  recipe_name="$(basename "${recipe%.*}")"
-  recipe_desc="$(head -n 1 "$recipe")"
+  name="$(basename "${recipe%.*}")"
+  line="$(head -n 1 "$recipe")"
 
   # Remove leading '# '
-  recipe_desc="${recipe_desc#\# }"
+  line="${line#\# }"
 
-  recipes+=("${recipe_name}:${recipe_desc}")
+  # Split the line by  ' | '
+  # '@' modifier is zsh specific
+  elems=("${(@s/ | /)line}")
+
+  desc="$(printf '%6s | %s' "${elems[@]}")"
+  recipes+=("${name}:${desc}")
 done
 
 # ------------------------------------------------------------------------------
