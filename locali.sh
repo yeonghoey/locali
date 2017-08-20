@@ -513,9 +513,14 @@ symlink() {
 
 
 stow_localish() {
-  local src="$1"
-  local dst="$2"
-  stow --verbose --dir="${LOCALISH}" "${src}" --target="${dst}"
+  local dir=""
+  local package=""
+  local target="$2"
+
+  dir="${LOCALISH}/$(dirname "$1")"
+  package="$(basename "$1")"
+
+  stow --verbose --dir="${dir}" "${package}" --target="${target}"
 }
 
 
