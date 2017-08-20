@@ -98,6 +98,7 @@ trim() {
   # Remove trailing whitespace characters
   s="${s%"${s##*[![:space:]]}"}"
   echo -n "$s"
+  #     └─ do not print the trailing newline character
 }
 
 
