@@ -1,11 +1,16 @@
+# .localrc
 if [[ -f "$HOME/.localrc" ]]; then
   source "$HOME/.localrc"
 fi
 
+if [[ -f "$HOME/.localrc.zsh" ]]; then
+  source "$HOME/.localrc.zsh"
+fi
+
 # oh-my-zsh
 if [[ "$ZSH" ]]; then
-  ZSH_THEME='afowler'
-  plugins=(
+  export ZSH_THEME='afowler'
+  export plugins=(
     git
     colorize
     osx

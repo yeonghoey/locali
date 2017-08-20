@@ -26,11 +26,15 @@ declare -rx LOCAL_ROOT="${HOME}/.local"
 declare -rx LOCAL_REPO="${LOCAL_ROOT}/repo"
 declare -rx LOCAL_BIN="${LOCAL_ROOT}/bin"
 declare -rx LOCALRC="${HOME}/.localrc"
+declare -rx LOCALRC_BASH="${HOME}/.localrc.bash"
+declare -rx LOCALRC_ZSH="${HOME}/.localrc.zsh"
 
 mkdir -p "${LOCAL_ROOT}"
 mkdir -p "${LOCAL_REPO}"
 mkdir -p "${LOCAL_BIN}"
 touch "${LOCALRC}"
+touch "${LOCALRC_BASH}"
+touch "${LOCALRC_ZSH}"
 
 
 # Add LOCAL_BIN to PATH if not existing
@@ -43,26 +47,57 @@ fi
 # Appends a content from stdin to localrc if not existing.
 #
 # Params:
-#   $1        : A label for the content
-#   /dev/stdin: A content to be appended to "${HOME}/.localrc"
+#   $1        : Target localrc path. One of LOCALRC variables
+#   $2        : A label for the content
+#   /dev/stdin: A content to be appended to
 ################################################################################
-localrc() {
+append_localrc() {
 
-  local label="$1"
+  local target="$1"
+  local label="$2"
   local content=""
-
 
   # Read from '/dev/stdin', mostly for Here document
   content="$(cat -)"
+  content="$(trim "$content")"
 
-  # Normalize home pathes relative to $HOME
-  content="${content//$HOME/\$HOME}"
+  # Normalize home pathes relative to '$HOME'
+  local homevar="\${HOME}"
+  content="${content//$HOME/$homevar}"
 
   # Put the label at head
   content="$(echo -e "# ${label}\n${content}")"
 
+  require_content "${target}" "${content}"
+}
 
-  require_content "${LOCALRC}" "${content}"
+localrc() {
+  append_localrc "${LOCALRC}" "$1"
+}
+
+localrc_bash() {
+  append_localrc "${LOCALRC_BASH}" "$1"
+}
+
+localrc_zsh() {
+  append_localrc "${LOCALRC_ZSH}" "$1"
+}
+
+
+################################################################################
+# Trims a string
+# Parameter:
+#   $1: A string
+# Reference:
+#   https://stackoverflow.com/questions/369758/how-to-trim-whitespace-from-a-bash-variable
+################################################################################
+trim() {
+  local s="$1"
+  # Remove leading whitespace characters
+  s="${s#"${s%%[![:space:]]*}"}"
+  # Remove trailing whitespace characters
+  s="${s%"${s##*[![:space:]]}"}"
+  echo -n "$s"
 }
 
 
