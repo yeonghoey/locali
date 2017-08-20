@@ -3,7 +3,7 @@ repo_git 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins/pyenv-vi
 
 localrc 'pyenv' << EOF
 
-export PYENV_ROOT="${LOCAL_REPO}/pyenv"
+export PYENV_ROOT="${LOCAL_REPOS}/pyenv"
 export PATH="\${PYENV_ROOT}/bin:\${PATH}"
 eval "\$(pyenv init -)"
 eval "\$(pyenv virtualenv-init -)"

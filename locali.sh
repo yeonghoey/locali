@@ -23,20 +23,23 @@ realdir() {
 readonly LOCALISH="$(realdir "$0")"
 
 declare -rx LOCAL_ROOT="${HOME}/.local"
-declare -rx LOCAL_REPO="${LOCAL_ROOT}/repo"
 declare -rx LOCAL_BIN="${LOCAL_ROOT}/bin"
-declare -rx LOCAL_COMPLETION_BASH="${LOCAL_ROOT}/completion/bash"
-declare -rx LOCAL_COMPLETION_ZSH="${LOCAL_ROOT}/completion/zsh"
+
+# local repositories and completions
+declare -rx LOCAL_REPOS="${LOCAL_ROOT}/repos"
+declare -rx LOCAL_COMPS_BASH="${LOCAL_ROOT}/comps/bash"
+declare -rx LOCAL_COMPS_ZSH="${LOCAL_ROOT}/comps/zsh"
 
 declare -rx LOCALRC="${HOME}/.localrc"
 declare -rx LOCALRC_BASH="${HOME}/.localrc.bash"
 declare -rx LOCALRC_ZSH="${HOME}/.localrc.zsh"
 
 mkdir -p "${LOCAL_ROOT}"
-mkdir -p "${LOCAL_REPO}"
 mkdir -p "${LOCAL_BIN}"
-mkdir -p "${LOCAL_COMPLETION_BASH}"
-mkdir -p "${LOCAL_COMPLETION_ZSH}"
+
+mkdir -p "${LOCAL_REPOS}"
+mkdir -p "${LOCAL_COMPS_BASH}"
+mkdir -p "${LOCAL_COMPS_ZSH}"
 
 touch "${LOCALRC}"
 touch "${LOCALRC_BASH}"
@@ -354,12 +357,12 @@ require_ubuntu() {
 #
 # Arguments:
 #   $1          : A URL for the git remote repository
-#   $2(optional): A repo name which will be placed under LOCAL_REPO
+#   $2(optional): A repo name which will be placed under LOCAL_REPOS
 ################################################################################
 repo_git() {
   local url="$1"
   local name="${2-$(basename "$url" .git)}"
-  local repo="${LOCAL_REPO}/$name"
+  local repo="${LOCAL_REPOS}/$name"
 
   if [[ -d "$repo" ]]; then
     info "Pull '$repo'"
@@ -379,7 +382,7 @@ repo_git() {
 #
 # Arguments:
 #   $1: A URL for download via wget
-#   $2: A folder name under LOCAL_REPO where the file is extracted in.
+#   $2: A folder name under LOCAL_REPOS where the file is extracted in.
 ################################################################################
 repo_zip() {
   local url="$1"
@@ -389,7 +392,7 @@ repo_zip() {
 
   local filename="${file%.*}"
   local name="${2-$filename}"
-  local repo="${LOCAL_REPO}/$name"
+  local repo="${LOCAL_REPOS}/$name"
 
   local download_path=""
   download_path="$(mktemp -d)/$file"
@@ -404,24 +407,24 @@ repo_zip() {
 #
 # Arguments:
 #   $1: A URL for download via wget
-#   $2: A relpath under LOCAL_REPO
+#   $2: A relpath under LOCAL_REPOS
 ################################################################################
 repo_get() {
   local url="$1"
-  local download_path="${LOCAL_REPO}/$2"
+  local download_path="${LOCAL_REPOS}/$2"
   download "$url" "$download_path"
 }
 
 
 ################################################################################
-# Symlinks files under LOCAL_REPO
+# Symlinks files under LOCAL_REPOS
 #
 # Arguments:
-#   $1: A relative path to LOCAL_REPO
+#   $1: A relative path to LOCAL_REPOS
 ################################################################################
 repo_bin() {
 
-  local src="${LOCAL_REPO}/$1"
+  local src="${LOCAL_REPOS}/$1"
   local dst=""
 
   # Use the same file name
@@ -436,15 +439,15 @@ repo_bin() {
 
 
 ################################################################################
-# Create a symlink from under LOCAL_REPO to a path
+# Create a symlink from under LOCAL_REPOS to a path
 #
 # Arguments:
-#   $1: A relative path to LOCAL_REPO
+#   $1: A relative path to LOCAL_REPOS
 #   $2: A path for symlink. if path is a existing directory, prompts to replace
 ################################################################################
 repo_sym() {
 
-  local src="${LOCAL_REPO}/$1"
+  local src="${LOCAL_REPOS}/$1"
   local dst="$2"
 
   symlink "$src" "$dst"
@@ -482,7 +485,10 @@ symlink() {
   fi
 
 
-  if [[ -e "${dst}" ]]; then
+  if [[ -L "${dst}" || -e "${dst}" ]]; then
+    #    │              └─ true if actual file exists
+    #                      false if the path is a dangling symlink
+    #    └─ true if a file is symlink
 
     prompt_yn "Path '${dst}' already exists. Replace it?"
     if answer_is_yes; then
@@ -514,14 +520,14 @@ stow_localish() {
 
 
 ################################################################################
-# Run a command under LOCAL_REPO
+# Run a command under LOCAL_REPOS
 #
 # Arguments:
-#   $1              : A relative path to LOCAL_REPO for a command
+#   $1              : A relative path to LOCAL_REPOS for a command
 #   ${@:2}(optional): Arguments for the command
 ################################################################################
 repo_run() {
-  local run="${LOCAL_REPO}/$1"
+  local run="${LOCAL_REPOS}/$1"
   info "Run '$run'"
   "$run" "${@:2}"
 }
