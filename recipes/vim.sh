@@ -1,4 +1,4 @@
-# * | install 'Vundle.vim' [dotfiles]
+# * | install 'Vundle.vim' | dotfiles
 
 # ------------------------------------------------------------------------------
 

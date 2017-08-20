@@ -1,4 +1,4 @@
-# * | install packages [pyenv-install]
+# * | install packages | pyenv-install
 
 # ------------------------------------------------------------------------------
 
