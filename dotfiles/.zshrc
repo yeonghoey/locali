@@ -9,8 +9,15 @@ fi
 
 # oh-my-zsh
 if [[ "$ZSH" ]]; then
-  export ZSH_THEME='afowler'
-  export plugins=(
+  # 'oh-my-zsh' configs are falsely considered unused.
+  # Disable unused check.
+
+  # shellcheck disable=SC2034
+  #                      └─ unused check
+  ZSH_THEME='afowler'
+
+  # shellcheck disable=SC2034
+  plugins=(
     git
     colorize
     osx
