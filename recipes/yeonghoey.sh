@@ -1,4 +1,4 @@
-# persionalize 'locali.sh' and clone personal repositories
+# install personal repositories
 
 # ------------------------------------------------------------------------------
 

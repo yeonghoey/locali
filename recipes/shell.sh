@@ -1,3 +1,5 @@
+# configure shell preferences (set zsh as default)
+
 info "Set locale environment variables to 'en_US.UTF-8'"
 
 localrc 'shell' <<EOF

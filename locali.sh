@@ -627,9 +627,18 @@ use_sudo() {
 #   Names of recipes in "$LOCALISH/recipes"
 ################################################################################
 run_recipes() {
+  local recipe_path
+
   for recipe in "$@"; do
+    recipe_path="${LOCALISH}/recipes/${recipe}.sh"
+
+    if [[ ! -f  "${recipe_path}" ]]; then
+      noti "Ignore: '${recipe}' does not exist"
+      continue
+    fi
+
     noti "Run: '${recipe}'"
-    if (source "${LOCALISH}/recipes/${recipe}.sh"); then
+    if (source "${recipe_path}"); then
       noti "Done: '${recipe}'"
     else
       noti "Abort: '${recipe}'"

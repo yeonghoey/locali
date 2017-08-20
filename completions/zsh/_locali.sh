@@ -28,6 +28,9 @@ for recipe in $LOCALISH/recipes/*.sh; do
   recipe_name="$(basename "${recipe%.*}")"
   recipe_desc="$(head -n 1 "$recipe")"
 
+  # Remove leading '# '
+  recipe_desc="${recipe_desc#\# }"
+
   recipes+=("${recipe_name}:${recipe_desc}")
 done
 

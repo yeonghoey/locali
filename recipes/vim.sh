@@ -1,4 +1,4 @@
-# Init Vim (dotfiles required)
+# install 'Vundle.vim' [dotfiles]
 
 # ------------------------------------------------------------------------------
 

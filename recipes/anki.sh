@@ -1,4 +1,4 @@
-# Add ANKI_MEDIA which anki scripts depend on to .localrc (macOS, Anki2)
+# configure 'ANKI_MEDIA', Anki2 required {macOS}
 
 # ------------------------------------------------------------------------------
 

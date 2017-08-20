@@ -1,4 +1,4 @@
-# Install pip packages
+# install packages [pyenv-install]
 
 # ------------------------------------------------------------------------------
 

@@ -1,3 +1,5 @@
+# install packages {macOS} [brew]
+
 brew bundle --file=<(cat <<EOF
 
 tap 'caskroom/cask'

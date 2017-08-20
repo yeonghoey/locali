@@ -1,4 +1,4 @@
-# Add apt repositories and install packages
+# install packages {ubuntu}
 
 # ------------------------------------------------------------------------------
 

@@ -1,3 +1,5 @@
+# install 'brew' {macOS}
+
 info 'Require macOS'
 on_macos || return 1
 
