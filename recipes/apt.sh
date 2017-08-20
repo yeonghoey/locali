@@ -16,6 +16,8 @@ readonly PACKAGES=(
   emacs
   gawk
   git
+  git-flow
+  git-lfs
   libbz2-dev
   libcurl4-openssl-dev
   libncurses5-dev
@@ -35,6 +37,9 @@ readonly PACKAGES=(
   zlib1g-dev
 )
 
-sudo add-apt-repository "${REPOSITORIES[@]}"
+# git-lfs
+curl -s 'https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh' | sudo bash
+
+sudo add-apt-repository -y "${REPOSITORIES[@]}"
 sudo apt-get update
 sudo apt-get install -y "${PACKAGES[@]}"
