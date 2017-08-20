@@ -16,6 +16,7 @@ readonly PACKAGES=(
   emacs
   gawk
   git
+  git-flow
   libbz2-dev
   libcurl4-openssl-dev
   libncurses5-dev
@@ -38,3 +39,7 @@ readonly PACKAGES=(
 sudo add-apt-repository -y "${REPOSITORIES[@]}"
 sudo apt-get update
 sudo apt-get install -y "${PACKAGES[@]}"
+
+# Post install: 'git-lfs' requires 'curl'
+curl -s 'https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh' | sudo bash
+sudo apt-get install -y git-lfs

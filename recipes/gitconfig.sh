@@ -1,18 +1,4 @@
-# Install git plugins and config '.gitconfig.local'
-
-# ------------------------------------------------------------------------------
-
-
-require_ubuntu && {
-  # git-flow
-  sudo apt-get update
-  sudo apt-get install -y git-flow
-
-  # git-lfs
-  curl -s 'https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh' | sudo bash
-  sudo apt-get install -y git-lfs
-  git lfs install
-}
+# Prompt for '.gitconfig.local'
 
 # ------------------------------------------------------------------------------
 
