@@ -1,4 +1,9 @@
-# Personal repositories
+# persionalize 'locali.sh' and clone personal repositories
+
+# ------------------------------------------------------------------------------
+
+git -C "${LOCALISH}" remote set-url \
+    origin 'git@github.com:yeonghoey/locali.sh.git'
 
 # ------------------------------------------------------------------------------
 
