@@ -1,4 +1,4 @@
-# macos | install packages | brew
+# install packages | (macos) brew
 
 brew bundle --file=<(cat <<EOF
 

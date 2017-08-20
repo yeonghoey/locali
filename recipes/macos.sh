@@ -1,4 +1,4 @@
-# macos | configure macOS specific things
+# configure macOS specific things | (macos)
 
 on_macos && {
   info "Install Xcode Command Line Tools"

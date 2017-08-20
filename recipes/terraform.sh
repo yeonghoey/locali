@@ -1,4 +1,4 @@
-# * | install 'terraform'
+# install 'terraform'
 
 macos && {
   repo_zip \

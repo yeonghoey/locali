@@ -1,4 +1,4 @@
-# * | install 'pyenv' and 'pyenv-virtualenv'
+# install 'pyenv' and 'pyenv-virtualenv'
 
 repo_git 'https://github.com/pyenv/pyenv.git'
 repo_git 'https://github.com/pyenv/pyenv-virtualenv.git' 'pyenv/plugins/pyenv-virtualenv'

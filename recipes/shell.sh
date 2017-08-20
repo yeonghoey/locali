@@ -1,4 +1,4 @@
-# * | configure shell preferences (set zsh as default)
+# configure shell preferences; use zsh
 
 info "Set locale environment variables to 'en_US.UTF-8'"
 

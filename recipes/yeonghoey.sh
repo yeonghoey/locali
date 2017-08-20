@@ -1,4 +1,4 @@
-# * | install personal repositories
+# install personal repositories
 
 # ------------------------------------------------------------------------------
 

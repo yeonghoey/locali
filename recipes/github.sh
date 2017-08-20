@@ -1,4 +1,4 @@
-# * | configure GitHub SSH key
+# configure GitHub SSH key
 
 # Generate '.ssh/id_rsa'
 ID_RSA="${HOME}/.ssh/id_rsa"

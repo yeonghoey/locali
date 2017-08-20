@@ -38,7 +38,7 @@ for recipe in $LOCALISH/recipes/*.sh; do
   # '@' modifier is zsh specific
   elems=("${(@s/ | /)line}")
 
-  desc="$(printf '%6s | %-48s | %-s' "${elems[@]}")"
+  desc="$(printf '%-48s | %-s' "${elems[@]}")"
   recipes+=("${name}:${desc}")
 done
 
