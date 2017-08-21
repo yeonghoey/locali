@@ -1,4 +1,4 @@
-# install 'locali.sh'
+# bootstrap
 
 symlink "${LOCALISH}/locali.sh" "${LOCAL_BIN}/locali.sh"
 

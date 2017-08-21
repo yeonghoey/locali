@@ -1,4 +1,4 @@
-# install packages | (ubuntu)
+# add apt repositories and install packages
 
 # ------------------------------------------------------------------------------
 
@@ -34,6 +34,7 @@ readonly PACKAGES=(
   wget
   xz-utils
   zlib1g-dev
+  zsh
 )
 
 sudo add-apt-repository -y "${REPOSITORIES[@]}"

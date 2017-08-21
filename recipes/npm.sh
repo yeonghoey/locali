@@ -1,4 +1,4 @@
-# install pacakges
+# install npm global pacakges
 
 sudo npm install -g tern
 sudo npm install -g js-beautify

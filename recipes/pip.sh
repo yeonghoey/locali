@@ -1,4 +1,4 @@
-# install packages | pyenv-install
+# install packages through both pip and pip3
 
 # ------------------------------------------------------------------------------
 

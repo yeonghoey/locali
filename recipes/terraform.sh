@@ -1,4 +1,4 @@
-# install 'terraform'
+# install Terraform 0.10.0
 
 macos && {
   repo_zip \

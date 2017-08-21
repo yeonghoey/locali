@@ -1,4 +1,4 @@
-# configure 'ANKI_MEDIA' for Anki2 | (macos)
+# add envvar ANKI_MEDIA for Anki2 on macOS
 
 # ------------------------------------------------------------------------------
 

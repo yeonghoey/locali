@@ -1,4 +1,4 @@
-# install '2.7.13', '3.6.2', 'venv' and 'venv3' | pyenv
+# install 2.7.13, 3.6.2, venv and venv3
 
 # '|| true' not to cause to abort when skipping install
 pyenv install 2.7.13 || true

@@ -21,24 +21,16 @@ local -a recipes
 #      └─ array
 
 local name
-local line
-local -a elems
-#      └─ array
 local desc
 
 recipes=()
 for recipe in $LOCALISH/recipes/*.sh; do
   name="$(basename "${recipe%.*}")"
-  line="$(head -n 1 "$recipe")"
+  desc="$(head -n 1 "$recipe")"
 
   # Remove leading '# '
-  line="${line#\# }"
+  desc="${desc#\# }"
 
-  # Split the line by  ' | '
-  # '@' modifier is zsh specific
-  elems=("${(@s/ | /)line}")
-
-  desc="$(printf '%-48s | %-s' "${elems[@]}")"
   recipes+=("${name}:${desc}")
 done
 

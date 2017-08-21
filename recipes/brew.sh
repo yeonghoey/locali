@@ -1,4 +1,4 @@
-# install 'brew' | (macos)
+# install brew under ~/.local/repos
 
 info 'Require macOS'
 on_macos || return 1
