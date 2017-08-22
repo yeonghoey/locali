@@ -36,6 +36,7 @@
      (shell :variables shell-default-shell 'multi-term)
      shell-scripts
      (spell-checking :variables spell-checking-enable-by-default nil)
+     sql
      syntax-checking
      terraform
      twitter
