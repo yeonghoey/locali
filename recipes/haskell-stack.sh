@@ -1,5 +1,5 @@
-# install haskell-stack packages
+# install haskell-stack and initialize it
 
+curl -sSL https://get.haskellstack.org/ | sh
 stack upgrade
-stack update
-stack install ShellCheck
+stack setup
