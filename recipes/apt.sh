@@ -17,6 +17,7 @@ readonly PACKAGES=(
   gawk
   git
   git-flow
+  haskell-stack
   libbz2-dev
   libcurl4-openssl-dev
   libncurses5-dev
@@ -28,7 +29,6 @@ readonly PACKAGES=(
   make
   nodejs
   npm
-  shellcheck
   stow
   tk-dev
   wget
