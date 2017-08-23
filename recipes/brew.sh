@@ -3,5 +3,5 @@
 info 'Require macOS'
 on_macos || return 1
 
-repo_git 'https://github.com/Homebrew/brew.git'
-repo_bin 'brew/bin/brew'
+INSTALL_URL='https://raw.githubusercontent.com/Homebrew/install/master/install'
+/usr/bin/ruby -e "$(curl -fsSL "$INSTALL_URL")"
