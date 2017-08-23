@@ -1,6 +1,6 @@
 setup() {
-  export LOCALISH="${BATS_TEST_DIRNAME}/.."
-  export TESTDIR="${BATS_TMPDIR}/localish"
+  export LOCALI="${BATS_TEST_DIRNAME}/.."
+  export TESTDIR="${BATS_TMPDIR}/locali"
   export HOME="${TESTDIR}"
   mkdir -p "${HOME}"
 }

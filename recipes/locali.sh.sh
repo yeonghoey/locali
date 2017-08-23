@@ -1,16 +1,16 @@
 # bootstrap
 
-symlink "${LOCALISH}/locali.sh" "${LOCAL_BIN}/locali.sh"
+symlink "${LOCALI}/locali" "${LOCAL_BIN}/locali"
 
 
-localrc 'locali.sh' <<EOF
+localrc 'locali' <<EOF
 
 export PATH="${LOCAL_BIN}:\${PATH}"
 
 EOF
 
 
-localrc_zsh 'locali.sh' <<EOF
+localrc_zsh 'locali' <<EOF
 
 fpath=("${LOCAL_COMPS_ZSH}" \$fpath)
 

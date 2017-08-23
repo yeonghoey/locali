@@ -1,3 +1,3 @@
 # stow dotfiles
 
-stow_localish "dotfiles" "${HOME}"
+stow_locali "dotfiles" "${HOME}"

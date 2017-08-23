@@ -17,7 +17,7 @@ realdir() {
   fi
 }
 
-readonly LOCALISH="$(realdir "$0")"
+readonly LOCALI="$(realdir "$0")"
 
 declare -rx LOCAL_ROOT="${HOME}/.local"
 declare -rx LOCAL_BIN="${LOCAL_ROOT}/bin"
@@ -509,12 +509,12 @@ symlink() {
 }
 
 
-stow_localish() {
+stow_locali() {
   local dir=""
   local package=""
   local target="$2"
 
-  dir="${LOCALISH}/$(dirname "$1")"
+  dir="${LOCALI}/$(dirname "$1")"
   package="$(basename "$1")"
 
   stow --verbose --dir="${dir}" "${package}" --target="${target}"
@@ -624,13 +624,13 @@ use_sudo() {
 ################################################################################
 # Run recipes
 # Arguments:
-#   Names of recipes in "$LOCALISH/recipes"
+#   Names of recipes in "$LOCALI/recipes"
 ################################################################################
 run_recipes() {
   local recipe_path
 
   for recipe in "$@"; do
-    recipe_path="${LOCALISH}/recipes/${recipe}.sh"
+    recipe_path="${LOCALI}/recipes/${recipe}.sh"
 
     if [[ ! -f  "${recipe_path}" ]]; then
       noti "Ignore: '${recipe}' does not exist"

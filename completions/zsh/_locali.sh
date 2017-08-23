@@ -1,4 +1,4 @@
-#compdef locali.sh
+#compdef locali
 
 # ------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ realdir() {
   fi
 }
 
-readonly LOCALISH="$(realdir "$(command -v 'locali.sh')")"
+readonly LOCALI="$(realdir "$(command -v 'locali')")"
 
 # ------------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ local name
 local desc
 
 recipes=()
-for recipe in $LOCALISH/recipes/*.sh; do
+for recipe in $LOCALI/recipes/*.sh; do
   name="$(basename "${recipe%.*}")"
   desc="$(head -n 1 "$recipe")"
 

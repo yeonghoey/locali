@@ -2,9 +2,9 @@
 
 # ------------------------------------------------------------------------------
 
-info "Set url of 'origin': 'git@github.com:yeonghoey/locali.sh.git'"
-git -C "${LOCALISH}" remote set-url \
-    origin 'git@github.com:yeonghoey/locali.sh.git'
+info "Set url of 'origin': 'git@github.com:yeonghoey/locali.git'"
+git -C "${LOCALI}" remote set-url \
+    origin 'git@github.com:yeonghoey/locali.git'
 
 # ------------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-"${HOME}/locali.sh/update.sh"
+"${HOME}/locali/update.sh"
 "${HOME}/yeonghoey/update.sh"
 "${HOME}/yeonghoey-org/update.sh"
 
