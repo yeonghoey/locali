@@ -517,7 +517,7 @@ stow_locali() {
   dir="${LOCALI}/$(dirname "$1")"
   package="$(basename "$1")"
 
-  stow --verbose --dir="${dir}" "${package}" --target="${target}"
+  stow --verbose --dir="${dir}" "${package}" --target="${target}" --adopt
 }
 
 
