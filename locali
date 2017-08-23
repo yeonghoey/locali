@@ -131,7 +131,15 @@ require_content() {
 
   if ! contains "$(cat "$path")" "$content"; then
     info "Append to '$path'"
-    echo -e "\n${content}\n" | tee -a "${path}"
+
+    if [[ -w "${path}" ]]; then
+      #    └─ writable
+      echo -e "\n${content}\n" | tee -a "${path}"
+    else
+      # Files on the system require sudo
+      echo -e "\n${content}\n" | sudo tee -a "${path}"
+    fi
+
   else
     info "'$LOCALRC' already contains the content. Skipped."
   fi
