@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-echo -e "\n> Update 'locali";        "${HOME}/locali/update.sh"
-echo -e "\n> Update 'yeonghoey";     "${HOME}/yeonghoey/update.sh"
-echo -e "\n> Update 'yeonghoey-org"; "${HOME}/yeonghoey-org/update.sh"
+echo -e "\n> Update 'locali'";        "${HOME}/locali/update.sh"
+echo -e "\n> Update 'yeonghoey'";     "${HOME}/yeonghoey/update.sh"
+echo -e "\n> Update 'yeonghoey-org'"; "${HOME}/yeonghoey-org/update.sh"
 
 echo -e "\n> Run Emacs as a background process"
 emacs &
