@@ -54,6 +54,7 @@ cask 'slack'
 cask 'spectacle'
 cask 'visualvm'
 
+mas 'Kindle', id: 405399194
 mas 'Lightshot Screenshot', id: 526298438
 mas 'Microsoft Remote Desktop', id: 715768417
 mas 'Movist', id: 461788075
