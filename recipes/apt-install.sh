@@ -27,6 +27,7 @@ readonly PACKAGES=(
   llvm
   make
   nodejs
+  nodejs-legacy # for 'node' command
   npm
   stow
   tk-dev
