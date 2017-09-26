@@ -1,6 +1,6 @@
 # install brew, cask, mas packages
 
-brew bundle --file=<(cat <<EOF
+brew bundle --verbose --file=<(cat <<EOF
 
 tap 'caskroom/cask'
 tap 'd12frosted/emacs-plus'
