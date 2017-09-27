@@ -63,3 +63,5 @@ mas 'Pixelmator', id: 407963104
 
 EOF
 )
+
+symlink '/Library/Tex/texbin/pdflatex' "${LOCAL_BIN}/pdflatex"
