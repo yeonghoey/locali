@@ -21,7 +21,7 @@ info "Use '$(command_path 'pip3')'"
 pip3 install -r <(cat <<EOF
 
 clipboard==0.0.4
-maup==0.0.2
+mkup==0.0.1
 pycurl==7.43.0
 
 EOF
