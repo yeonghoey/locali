@@ -23,12 +23,11 @@ index-servers =
   pypitest
 
 [pypi]
-repository=https://pypi.python.org/pypi
 username=${USERNAME}
 password=${PASSWORD}
 
 [pypitest]
-repository=https://testpypi.python.org/pypi
+repository=https://test.pypi.org/legacy
 username=${USERNAME}
 password=${PASSWORD}
 EOF
