@@ -29,6 +29,7 @@ readonly PACKAGES=(
   nodejs
   nodejs-legacy # for 'node' command
   npm
+  silversearcher-ag
   stow
   tk-dev
   wget
