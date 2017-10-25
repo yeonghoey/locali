@@ -6,6 +6,7 @@ info "Use '$(command_path 'pip')'"
 
 pip install -r <(cat <<EOF
 
+ansible==2.4.0.0
 boto3==1.4.1
 botocore==1.4.78
 bpython==0.16
