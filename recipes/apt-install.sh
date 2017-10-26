@@ -13,6 +13,7 @@ readonly REPOSITORIES=(
 readonly PACKAGES=(
   build-essential
   curl
+  dvipng  # For LaTeX
   emacs
   gawk
   git
@@ -31,6 +32,8 @@ readonly PACKAGES=(
   npm
   silversearcher-ag
   stow
+  texlive    # LaTeX
+  texstudio  # SEE: https://tex.stackexchange.com/questions/289458/download-and-installation-of-latex-for-linux-ubuntu
   tk-dev
   wget
   xz-utils
