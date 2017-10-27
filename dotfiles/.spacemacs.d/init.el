@@ -194,7 +194,7 @@
    org-html-htmlize-font-prefix "org-"
    org-format-latex-options '(:foreground "Black"
                               :background "White"
-                              :scale      2.0
+                              :scale      1.5
                               )
    )
 
