@@ -192,7 +192,23 @@
    org-html-postamble nil
    org-html-htmlize-output-type 'css
    org-html-htmlize-font-prefix "org-"
+   org-format-latex-options '(:foreground "Black"
+                              :background "White"
+                              :scale      2.0
+                              )
    )
+
+  ; Org Babel Languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((dot . t)
+     (emacs-lisp . t)
+     (latex . t)
+     (python . t)
+     (sh . t)
+     )
+   )
+
 
   ;; Org TODO customizations
   (setq-default
