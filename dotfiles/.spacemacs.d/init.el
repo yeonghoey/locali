@@ -33,7 +33,7 @@
      restclient
      rust
      scala
-     (shell :variables shell-default-shell 'multi-term)
+     (shell :variables shell-default-shell 'eshell)
      shell-scripts
      (spell-checking :variables spell-checking-enable-by-default nil)
      sql
