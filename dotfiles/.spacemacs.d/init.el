@@ -38,6 +38,7 @@
      (spell-checking :variables spell-checking-enable-by-default nil)
      sql
      syntax-checking
+     systemd
      terraform
      twitter
      version-control
