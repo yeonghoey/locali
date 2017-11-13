@@ -55,6 +55,7 @@ cask 'quicklook-csv'
 cask 'quicklook-json'
 cask 'slack'
 cask 'spectacle'
+cask 'steam'
 cask 'visualvm'
 
 mas 'KakaoTalk',                id: 869223134
