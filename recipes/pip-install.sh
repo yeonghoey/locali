@@ -23,7 +23,7 @@ pip3 install -r <(cat <<EOF
 
 clipboard==0.0.4
 mkup==0.0.1
-pycurl==7.43.0
+requests==2.18.3
 
 EOF
 )

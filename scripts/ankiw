@@ -6,8 +6,8 @@ import os
 import re
 import sys
 
-import pycurl
 import clipboard
+import requests
 
 
 def main():
@@ -39,29 +39,24 @@ def params():
 def voice_of(word):
     page_source = fetch_endic_naver(word)
     voice_url = extract_voice_url(page_source)
-    return do_curl(voice_url)
+    return  make_request(voice_url)
 
 
 def voice_of(word):
     url = 'http://endic.naver.com/search.nhn?sLn=en&query={}'.format(word)
-    page_source = do_curl(url).decode('utf-8')
+    page_source = make_request(url).decode('utf-8')
 
     mo = re.search(r'playlist="([^"]+)"', page_source)
     if mo:
         voice_url = mo.group(1)
-        return do_curl(voice_url)
+        return  make_request(voice_url)
     else:
         errexit(f"Unable to find voice for '{word}'")
 
 
-def do_curl(url):
-    buf = BytesIO()
-    c = pycurl.Curl()
-    c.setopt(c.URL, url)
-    c.setopt(c.WRITEDATA, buf)
-    c.perform()
-    c.close()
-    return buf.getvalue()
+def make_request(url):
+    response = requests.get(url)
+    return response.content
 
 
 def save(filepath, bytes_):
