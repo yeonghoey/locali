@@ -5,9 +5,18 @@ from io import BytesIO
 import os
 import re
 import sys
+import webbrowser
 
 import clipboard
 import requests
+
+
+LOOKUPS = [
+    'http://www.thesaurus.com/browse/%s',
+    'https://www.vocabulary.com/dictionary/%s',
+    'http://www.google.com/search?tbm=isch&q=%s',
+    'http://endic.naver.com/search.nhn?sLn=kr&query=%s',
+]
 
 
 def main():
@@ -17,6 +26,7 @@ def main():
     filepath = os.path.join(anki_media, filename)
     bytes_ = voice_of(word)
 
+    lookup(word)
     save(filepath, bytes_)
     clip(filename)
     play(filepath)
@@ -34,6 +44,11 @@ def params():
     else:
         word = sys.argv[1]
         return anki_media, word
+
+
+def lookup(word):
+    for l in LOOKUPS:
+        webbrowser.open_new_tab(l % word)
 
 
 def voice_of(word):
