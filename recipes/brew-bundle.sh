@@ -36,6 +36,7 @@ brew 'xz'
 brew 'zsh'
 
 cask '1password'
+cask 'adobe-acrobat-reader'
 cask 'anki'
 cask 'betterzipql'
 cask 'docker-toolbox'
