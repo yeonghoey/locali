@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+
+import sys
+import clipboard
+
+
+def main():
+    trie = {}
+    for line in sys.stdin:
+        for word in line.split(','):
+            add(trie, word.strip())
+
+    lines = [format_line(prefix, rest) for prefix, rest in traverse(trie)]
+    content = '\n'.join(lines)
+
+    clipboard.copy(content)
+    print(content)
+
+
+def add(trie,  word, n=0):
+    if n >= len( word):
+        trie[''] =  word
+        return
+
+    c =  word[n]
+    if c in trie:
+        node = trie[c]
+        if node == word:
+            return
+        if is_leaf(node):
+            trie[c] = {}
+            add(trie[c], node, n+1)
+
+        add(trie[c],  word, n+1)
+    else:
+        trie[c] =  word
+
+
+def is_leaf(node):
+    return isinstance(node, str)
+
+
+def traverse(trie, pre=''):
+    for c, node in trie.items():
+        prefix = pre + c
+        if is_leaf(node):
+            rest = node[len(prefix):]
+            yield prefix, rest
+        else:
+            yield from traverse(node, prefix)
+
+
+def format_line(prefix, word):
+    return '%s{{c1::%s}}' % (prefix, word)
+
+
+if __name__ == '__main__':
+    main()
