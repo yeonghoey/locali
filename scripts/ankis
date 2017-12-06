@@ -7,8 +7,8 @@ import clipboard
 def main():
     trie = {}
     for line in sys.stdin:
-        for word in line.split(','):
-            add(trie, word.strip())
+        for term in parse(line):
+            add(trie, term)
 
     lines = [format_line(prefix, rest) for prefix, rest in traverse(trie)]
     content = '\n'.join(lines)
@@ -17,23 +17,30 @@ def main():
     print(content)
 
 
-def add(trie,  word, n=0):
-    if n >= len( word):
-        trie[''] =  word
+def parse(line):
+    for term in line.split(','):
+        t = term.strip()
+        if t:
+            yield t
+
+
+def add(trie, term, n=0):
+    if n >= len(term):
+        trie[''] = term
         return
 
-    c =  word[n]
+    c = term[n]
     if c in trie:
         node = trie[c]
-        if node == word:
+        if node == term:
             return
         if is_leaf(node):
             trie[c] = {}
             add(trie[c], node, n+1)
 
-        add(trie[c],  word, n+1)
+        add(trie[c], term, n+1)
     else:
-        trie[c] =  word
+        trie[c] = term
 
 
 def is_leaf(node):
@@ -50,8 +57,8 @@ def traverse(trie, pre=''):
             yield from traverse(node, prefix)
 
 
-def format_line(prefix, word):
-    return '%s{{c1::%s}}' % (prefix, word)
+def format_line(prefix, term):
+    return '%s{{c1::%s}}' % (prefix, term)
 
 
 if __name__ == '__main__':
