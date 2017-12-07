@@ -48,7 +48,6 @@ cask 'google-chrome'
 cask 'iterm2'
 cask 'java'
 cask 'mactex'
-cask 'ocenaudio'
 cask 'qlcolorcode'
 cask 'qlimagesize'
 cask 'qlmarkdown'
@@ -61,6 +60,7 @@ cask 'spectacle'
 cask 'steam'
 cask 'the-unarchiver'
 cask 'visualvm'
+cask 'vlc'
 
 mas 'KakaoTalk',                id: 869223134
 mas 'Kindle',                   id: 405399194
