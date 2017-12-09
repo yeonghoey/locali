@@ -8,8 +8,9 @@ import clipboard
 
 @click.command()
 @click.option('-n', '--no-hint', is_flag=True)
+@click.option('-d', '--delim', default='\n')
 @click.argument('cloze', default=1, type=click.INT)
-def main(no_hint, cloze):
+def main(no_hint, delim, cloze):
     trie = {}
     for line in sys.stdin:
         for term in parse(line):
@@ -21,7 +22,7 @@ def main(no_hint, cloze):
         rest = p+r if no_hint else r
         line = format_line(prefix, cloze, rest)
         lines.append(line)
-    content = '\n'.join(lines)
+    content = delim.join(lines)
 
     clipboard.copy(content)
     print(content)
