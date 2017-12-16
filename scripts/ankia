@@ -5,37 +5,29 @@ from datetime import datetime
 import os
 import sys
 
+import click
 import clipboard
 
 
-def main():
-    anki_media, srcpath, ss, to = params()
-    srcname = os.path.basename(srcpath)
+SRCPATH_TYPE = click.Path(exists=True,
+                          file_okay=True,
+                          dir_okay=False,
+                          resolve_path=True)
 
+@click.command()
+@click.option('--anki-media', envvar='ANKI_MEDIA')
+@click.option('-n', '--no-anki', is_flag=True)
+@click.argument('srcpath', type=SRCPATH_TYPE)
+@click.argument('ss')
+@click.argument('to')
+def main(anki_media, no_anki, srcpath, ss, to):
     now = datetime.now().strftime('%Y%m%d-%H%M%S')
     dstname = '%s.mp3' % now
-    dstpath = os.path.join(anki_media, dstname)
-
+    dstpath = (dstname if no_anki else
+               os.path.join(anki_media, dstname))
     do_ffmpeg(srcpath, ss, to, dstpath)
     clip(dstname)
     play(dstpath)
-
-
-def params():
-    anki_media = os.getenv('ANKI_MEDIA', None)
-    if anki_media is None:
-        print("'ANKI_MEDIA' is not set. Use current working directory.")
-        anki_media = '.'
-
-    if len(sys.argv) != 4:
-        cmd = os.path.basename(sys.argv[0])
-        errexit('Usage: %s <srcpath> <ss> <to>' % cmd)
-
-    srcpath, ss, to = sys.argv[1:]
-    if not os.path.exists(srcpath):
-        errexit("'%s' not exsisting" % srcpath)
-
-    return anki_media, srcpath, ss, to
 
 
 def do_ffmpeg(srcpath, ss, to, dstpath):
@@ -60,7 +52,7 @@ def clip(filename):
 
 
 def play(dstpath):
-    cmd = "(afplay '%s' &)" % dstpath
+    cmd = "afplay '%s'" % dstpath
     os.system(cmd)
 
 
