@@ -14,7 +14,7 @@ import requests
 LOOKUPS = [
     # 'http://www.dictionary.com/browse/%s',
     # 'http://www.thesaurus.com/browse/%s',
-    'https://endic.naver.com/search.nhn?sLn=kr&query=%s',
+    'http://endic.naver.com/search.nhn?sLn=kr&query=%s',
     'https://www.vocabulary.com/dictionary/%s',
     'https://www.google.com/search?q=define+%s',
 ]
