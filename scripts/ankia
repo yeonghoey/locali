@@ -16,17 +16,15 @@ SRCPATH_TYPE = click.Path(exists=True,
 
 @click.command()
 @click.option('--anki-media', envvar='ANKI_MEDIA')
-@click.option('-n', '--no-anki', is_flag=True)
+@click.option('-t', '--target')
 @click.argument('srcpath', type=SRCPATH_TYPE)
 @click.argument('ss')
 @click.argument('to')
-def main(anki_media, no_anki, srcpath, ss, to):
+def main(anki_media, target, srcpath, ss, to):
     now = datetime.now().strftime('%Y%m%d-%H%M%S')
-    dstname = '%s.mp3' % now
-    dstpath = (dstname if no_anki else
-               os.path.join(anki_media, dstname))
+    dstpath = (target if target else os.path.join(anki_media, now)) + '.mp3'
     do_ffmpeg(srcpath, ss, to, dstpath)
-    clip(dstname)
+    clip(os.path.relpath(dstpath, anki_media))
     play(dstpath)
 
 
