@@ -17,6 +17,7 @@ LOOKUPS = [
     # 'https://www.google.com/search?q=define+%s',
     'http://endic.naver.com/search.nhn?sLn=kr&query=%s',
     'http://www.google.com/search?tbm=isch&q=%s',
+    'http://wordinfo.info/results/%s',
     'https://www.vocabulary.com/dictionary/%s',
 ]
 
