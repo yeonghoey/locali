@@ -5,6 +5,9 @@ import time
 import clipboard
 
 
+HR = '-' * 100
+
+
 def main():
     last = ''
     while True:
@@ -12,13 +15,17 @@ def main():
         if current != last:
             replaced = replace(current)
             clipboard.copy(replaced)
-            print("'%s' replaced" % replaced)
+            print(HR)
+            print(replaced)
             last = replaced
         time.sleep(1)
 
 
 def replace(orig):
-    return orig.replace('. ', '.\n')
+    r = orig
+    r = r.strip()
+    r = r.replace('. ', '.\n')
+    return r
 
 
 if __name__ == '__main__':
