@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import time
+
+import clipboard
+
+
+def main():
+    last = ''
+    while True:
+        current = clipboard.paste()
+        if current != last:
+            replaced = replace(current)
+            clipboard.copy(replaced)
+            print("'%s' replaced" % replaced)
+            last = replaced
+        time.sleep(1)
+
+
+def replace(orig):
+    return orig.replace('. ', '.\n')
+
+
+if __name__ == '__main__':
+    main()
