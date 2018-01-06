@@ -28,8 +28,9 @@ LOOKUPS = [
 def main(anki_media, no_lookup, words):
 
     filenames = []
-    for word in words:
-        filename = f'{word}.mp3'
+    for w in words:
+        word = w.lower()
+        filename = '%s.mp3' % word
         filenames.append(filename)
         filepath = os.path.join(anki_media, filename)
         bytes_ = voice_of(word)
@@ -40,7 +41,7 @@ def main(anki_media, no_lookup, words):
         save(filepath, bytes_)
         play(filepath)
 
-    content = '\n'.join(f'[sound:{fn}]' for fn in filenames)
+    content = '\n'.join('[sound:%s]' % fn for fn in filenames)
     clipboard.copy(content)
     print(content)
 
@@ -65,7 +66,7 @@ def voice_of(word):
         voice_url = mo.group(1)
         return  make_request(voice_url)
     else:
-        errexit(f"Unable to find voice for '{word}'")
+        errexit("Unable to find voice for '%s'" % word)
 
 
 def make_request(url):
@@ -79,7 +80,7 @@ def save(filepath, bytes_):
 
 
 def play(filepath):
-    cmd = f"( afplay '{filepath}' & )"
+    cmd = "( afplay '%s' & )" % filepath
     os.system(cmd)
 
 
