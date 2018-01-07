@@ -25,7 +25,7 @@ def main(anki_media):
 
 
 def pick_filepath(anki_media):
-    files = glob.glob(os.path.join(anki_media, '*'))
+    files = glob.glob(os.path.join(anki_media, '*.mp3'))
     latest = max(files, key=os.path.getctime)
     return latest
 
@@ -48,7 +48,8 @@ def recognize(wav_filepath):
     with speech_recognition.AudioFile(wav_filepath) as source:
         audio = r.record(source)
         text = r.recognize_google_cloud(audio)
-        pyperclip.copy(text)
+        transcripted = '%s\n%s' % (pyperclip.paste(), text)
+        pyperclip.copy(transcripted)
         print(text)
 
 
