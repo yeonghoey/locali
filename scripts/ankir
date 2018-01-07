@@ -48,8 +48,7 @@ def recognize(wav_filepath):
     with speech_recognition.AudioFile(wav_filepath) as source:
         audio = r.record(source)
         text = r.recognize_google_cloud(audio)
-        transcripted = '%s\n%s' % (pyperclip.paste(), text)
-        pyperclip.copy(transcripted)
+        pyperclip.copy(text)
         print(text)
 
 
