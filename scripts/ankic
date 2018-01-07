@@ -3,7 +3,7 @@
 import sys
 
 import click
-import clipboard
+import pyperclip
 
 
 @click.command()
@@ -24,7 +24,7 @@ def main(no_hint, delim, cloze):
         lines.append(line)
     content = delim.join(lines)
 
-    clipboard.copy(content)
+    pyperclip.copy(content)
     print(content)
 
 

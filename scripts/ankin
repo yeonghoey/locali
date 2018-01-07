@@ -2,7 +2,7 @@
 
 import time
 
-import clipboard
+import pyperclip
 
 
 HR = '-' * 100
@@ -11,10 +11,10 @@ HR = '-' * 100
 def main():
     last = ''
     while True:
-        current = clipboard.paste()
+        current = pyperclip.paste()
         if current != last:
             replaced = replace(current)
-            clipboard.copy(replaced)
+            pyperclip.copy(replaced)
             print(HR)
             print(replaced)
             last = replaced

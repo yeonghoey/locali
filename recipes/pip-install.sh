@@ -12,8 +12,11 @@ botocore==1.4.78
 bpython==0.16
 click==6.7
 google-api-python-client==1.6.4
-google-cloud=0.32.0
+google-cloud==0.32.0
+pydub==0.20.0
+pyperclip==1.6.0
 requests==2.18.3
+SpeechRecognition==3.8.1
 
 EOF
 )
@@ -25,7 +28,7 @@ info "Use '$(command_path 'pip3')'"
 pip3 install -r <(cat <<EOF
 
 click==6.7
-clipboard==0.0.4
+pyperclip==1.6.0
 mkup==0.0.1
 requests==2.18.3
 

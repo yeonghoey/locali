@@ -6,7 +6,7 @@ import os
 import sys
 
 import click
-import clipboard
+import pyperclip
 
 
 SRCPATH_TYPE = click.Path(exists=True,
@@ -45,8 +45,8 @@ def do_ffmpeg(srcpath, ss, to, dstpath):
 
 def clip(filename):
     anki_sound_field = '[sound:%s]' % filename
-    clipboard.copy(anki_sound_field)
-    print("Copied '%s' to clipboard" % anki_sound_field)
+    pyperclip.copy(anki_sound_field)
+    print("Copied '%s' to pyperclip" % anki_sound_field)
 
 
 def play(dstpath):
