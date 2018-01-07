@@ -28,6 +28,7 @@ info "Use '$(command_path 'pip3')'"
 pip3 install -r <(cat <<EOF
 
 click==6.7
+cookiecutter==1.6.0
 pyperclip==1.6.0
 mkup==0.0.1
 requests==2.18.3
