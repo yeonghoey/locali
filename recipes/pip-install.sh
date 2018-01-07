@@ -12,7 +12,6 @@ botocore==1.4.78
 bpython==0.16
 click==6.7
 google-cloud=0.32.0
-gcloud==0.18.3
 requests==2.18.3
 
 EOF
