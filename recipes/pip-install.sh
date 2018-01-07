@@ -11,6 +11,7 @@ boto3==1.4.1
 botocore==1.4.78
 bpython==0.16
 click==6.7
+google-api-python-client==1.6.4
 google-cloud=0.32.0
 requests==2.18.3
 
