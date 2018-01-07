@@ -6,6 +6,7 @@ tap 'caskroom/cask'
 tap 'd12frosted/emacs-plus'
 
 brew 'cmake'
+brew 'cmu-pocketsphinx'
 brew 'emacs-plus'
 brew 'fasd'
 brew 'ffmpeg'
