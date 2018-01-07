@@ -75,3 +75,9 @@ EOF
 )
 
 symlink '/Library/Tex/texbin/pdflatex' "${LOCAL_BIN}/pdflatex"
+
+localrc 'gcloud' << EOF
+
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+EOF
