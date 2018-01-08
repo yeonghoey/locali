@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import re
 import time
 
 import pyperclip
@@ -25,7 +26,11 @@ def replace(orig):
     r = orig
     r = r.strip()
     r = r.replace('. ', '.\n')
-    return r
+    m = re.match(r'^\{\{c\d::([^}]+)\}\}', r)
+    if m is None:
+        return r
+    else:
+        return m.group(1)
 
 
 if __name__ == '__main__':
