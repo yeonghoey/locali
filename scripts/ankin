@@ -13,7 +13,7 @@ def main():
     last = ''
     while True:
         current = pyperclip.paste()
-        if current != last:
+        if current and current != last:
             replaced = replace(current)
             pyperclip.copy(replaced)
             print(HR)
