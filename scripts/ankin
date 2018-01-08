@@ -6,7 +6,7 @@ import time
 import pyperclip
 
 
-HR = '-' * 100
+HR = '-' * 80
 
 
 def main():
