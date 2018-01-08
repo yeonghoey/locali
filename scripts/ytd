@@ -9,15 +9,12 @@ from pytube import YouTube
 
 @click.command()
 @click.option('--itag', default=22)
-@click.option('--target-dir',
-              type=click.Path(exists=True, dir_okay=True, file_okay=False),
-              default=os.path.join(os.path.expanduser("~"), "Downloads"))
 @click.argument('url')
 @click.argument('name', default=None)
-def main(itag, target_dir, url, name):
+def main(itag, url, name):
     yt = YouTube(url)
     stream = yt.streams.get_by_itag(itag)
-    stream.download(target_dir, name)
+    stream.download(filename=name)
 
 
 if __name__ == '__main__':
