@@ -1,3 +1,4 @@
 #!/bin/bash
 
-open "http://sfrom.net/$1"
+# itag: 18(Medium) or 22(High)
+pytube --itag 18 "$1"
