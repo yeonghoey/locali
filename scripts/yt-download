@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# itag: 18(Medium) or 22(High)
-cd "${HOME}/Downloads" && pytube --itag 18 "$1"
