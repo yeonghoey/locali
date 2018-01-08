@@ -19,7 +19,7 @@ def main():
             print(HR)
             print(replaced)
             last = replaced
-        time.sleep(1)
+        time.sleep(.3)
 
 
 def replace(orig):
