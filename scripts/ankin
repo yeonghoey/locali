@@ -8,9 +8,7 @@ import time
 from pyperclip import copy, paste
 
 
-HR1 = '-' * 80
-HR2 = 'o' * 80
-HR3 = 'x' * 80
+HR = '-' * 80
 
 LAST, WORKING = 0, 1
 
@@ -23,7 +21,7 @@ def main():
     def toggle(signum, frame):
         cxt[LAST] = ''
         cxt[WORKING] = not cxt[WORKING]
-        print(HR2 if cxt[WORKING] else HR3)
+        print('- Enabled' if cxt[WORKING] else '- Disabled')
 
     signal(SIGINT, quit)
     signal(SIGTSTP, toggle)
@@ -35,10 +33,10 @@ def main():
             continue
 
         s = paste()
-        r = replace(s)
-        if r != last:
+        if s != last:
+            r = replace(s)
             copy(r)
-            print(HR1)
+            print(HR)
             print(r)
             cxt[LAST] = r
 
