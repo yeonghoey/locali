@@ -5,6 +5,7 @@ from signal import signal, SIGINT, SIGTSTP
 import sys
 import time
 
+import click
 from pyperclip import copy, paste
 
 
@@ -12,23 +13,33 @@ HR = '-' * 80
 
 LAST, WORKING = 0, 1
 
-def main():
-    cxt = ['', True]
+
+@click.group()
+@click.pass_context
+def cli(ctx):
+    ctx.obj[LAST] = ''
+    ctx.obj[WORKING] = True
 
     def quit(signum, frame):
         sys.exit()
 
     def toggle(signum, frame):
-        cxt[LAST] = ''
-        cxt[WORKING] = not cxt[WORKING]
-        print('- Enabled' if cxt[WORKING] else '- Disabled')
+        ctx.obj[LAST] = ''
+        ctx.obj[WORKING] = not ctx.obj[WORKING]
+        print('- Enabled' if ctx.obj[WORKING] else '- Disabled')
 
     signal(SIGINT, quit)
     signal(SIGTSTP, toggle)
 
+
+@cli.command()
+@click.pass_context
+def linter(ctx):
     while True:
         time.sleep(.3)
-        last, working = cxt
+
+        last = ctx.obj[LAST]
+        working = ctx.obj[WORKING]
         if not working:
             continue
 
@@ -38,7 +49,7 @@ def main():
             copy(r)
             print(HR)
             print(r)
-            cxt[LAST] = r
+            ctx.obj[LAST] = r
 
 def replace(s):
     r = s
@@ -49,4 +60,4 @@ def replace(s):
 
 
 if __name__ == '__main__':
-    main()
+    cli(obj={})
