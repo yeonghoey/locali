@@ -42,9 +42,9 @@ def main():
 
 def replace(s):
     r = s
+    r = re.sub(r'\{\{c\d::([^}]+)\}\}', r'\1', r)
     r = r.strip()
     r = r.replace('. ', '.\n')
-    r = re.sub(r'\{\{c\d::([^}]+)\}\}', r'\1', r)
     return r
 
 
