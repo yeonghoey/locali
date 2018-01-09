@@ -1,36 +1,53 @@
 #!/usr/bin/env python3
 
 import re
+from signal import signal, SIGINT, SIGTSTP
+import sys
 import time
 
-import pyperclip
+from pyperclip import copy, paste
 
 
-HR = '-' * 80
+HR1 = '-' * 80
+HR2 = 'o' * 80
+HR3 = 'x' * 80
 
+LAST, WORKING = 0, 1
 
 def main():
-    last = ''
+    cxt = ['', True]
+
+    def quit(signum, frame):
+        sys.exit()
+
+    def toggle(signum, frame):
+        cxt[LAST] = ''
+        cxt[WORKING] = not cxt[WORKING]
+        print(HR2 if cxt[WORKING] else HR3)
+
+    signal(SIGINT, quit)
+    signal(SIGTSTP, toggle)
+
     while True:
-        current = pyperclip.paste()
-        if current and current != last:
-            replaced = replace(current)
-            pyperclip.copy(replaced)
-            print(HR)
-            print(replaced)
-            last = replaced
         time.sleep(.3)
+        last, working = cxt
+        if not working:
+            continue
 
+        s = paste()
+        r = replace(s)
+        if r != last:
+            copy(r)
+            print(HR1)
+            print(r)
+            cxt[LAST] = r
 
-def replace(orig):
-    r = orig
+def replace(s):
+    r = s
     r = r.strip()
     r = r.replace('. ', '.\n')
-    m = re.match(r'^\{\{c\d::([^}]+)\}\}', r)
-    if m is None:
-        return r
-    else:
-        return m.group(1)
+    r = re.sub(r'\{\{c\d::([^}]+)\}\}', r'\1', r)
+    return r
 
 
 if __name__ == '__main__':
