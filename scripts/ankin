@@ -44,7 +44,7 @@ def linter(ctx):
             continue
 
         s = paste()
-        if s != last:
+        if s and s != last:
             r = replace(s)
             copy(r)
             print(HR)
