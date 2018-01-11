@@ -12,12 +12,10 @@ import requests
 
 
 LOOKUPS = [
-    # 'http://www.dictionary.com/browse/%s',
-    # 'http://www.thesaurus.com/browse/%s',
-    # 'https://www.google.com/search?q=define+%s',
     'http://endic.naver.com/search.nhn?sLn=kr&query=%s',
-    'http://www.google.com/search?tbm=isch&q=%s',
     'https://www.vocabulary.com/dictionary/%s',
+    'http://www.thesaurus.com/browse/%s',
+    'http://www.google.com/search?tbm=isch&q=%s',
 ]
 
 
