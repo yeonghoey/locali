@@ -29,7 +29,7 @@ def main(anki_media, no_lookup, words):
     for w in words:
         word = w.lower()
         filename = '%s.mp3' % word
-        filenames.append(filename)
+        filenames.append((word, filename))
         filepath = os.path.join(anki_media, filename)
         bytes_ = voice_of(word)
 
@@ -39,7 +39,7 @@ def main(anki_media, no_lookup, words):
         save(filepath, bytes_)
         play(filepath)
 
-    content = '\n'.join('[sound:%s]' % fn for fn in filenames)
+    content = '\n'.join('%s [sound:%s]' % (w, fn) for w, fn in filenames)
     pyperclip.copy(content)
     print(content)
 
