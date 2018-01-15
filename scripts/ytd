@@ -23,7 +23,6 @@ def main(itag, url, name):
     caption = yt.captions.get_by_language_code('en')
     if caption is not None:
         with open('%s.srt' % name, 'w') as f:
-            print(caption.generate_srt_captions())
             f.write(caption.generate_srt_captions())
 
 if __name__ == '__main__':
