@@ -15,13 +15,15 @@ def main(itag, url, name):
     yt = YouTube(url)
 
     stream = yt.streams.get_by_itag(itag)
-    default_name, _ = os.path.splitext(stream.default_filename)
+    default_name, ext = os.path.splitext(stream.default_filename)
     name = name or default_name
 
+    click.echo("Download: '%s%s'" % (name, ext))
     stream.download(filename=name)
 
     caption = yt.captions.get_by_language_code('en')
     if caption is not None:
+        click.echo("Download: '%s.srt'" % name)
         with open('%s.srt' % name, 'w') as f:
             f.write(caption.generate_srt_captions())
 
