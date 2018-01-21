@@ -13,9 +13,9 @@ import requests
 
 LOOKUPS = [
     'http://www.google.com/search?tbm=isch&q=%s',
-    'https://www.vocabulary.com/dictionary/%s',
-    'http://www.thesaurus.com/browse/%s',
     'http://endic.naver.com/search.nhn?sLn=kr&query=%s',
+    'http://www.thesaurus.com/browse/%s',
+    'https://www.vocabulary.com/dictionary/%s',
 ]
 
 
