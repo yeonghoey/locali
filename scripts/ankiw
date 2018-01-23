@@ -12,7 +12,6 @@ import requests
 
 
 LOOKUPS = [
-    'http://endic.naver.com/search.nhn?sLn=kr&query=%s',
     'http://www.google.com/search?tbm=isch&q=%s',
     'http://englishdictionary.naver.com/#/search?query=%s',
     'http://www.thesaurus.com/browse/%s',
