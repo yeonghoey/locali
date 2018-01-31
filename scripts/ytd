@@ -4,6 +4,7 @@ import os
 import sys
 
 import click
+import pyperclip
 from pytube import YouTube
 
 
@@ -13,6 +14,10 @@ from pytube import YouTube
 @click.argument('name', default=None, required=False)
 def main(itag, url, name):
     yt = YouTube(url)
+
+    atag = '<a href="%s">%s</a>' % (url, yt.title)
+    pyperclip.copy(atag)
+    click.echo('Copy: %s' % atag)
 
     stream = yt.streams.get_by_itag(itag)
     default_name, ext = os.path.splitext(stream.default_filename)
@@ -26,6 +31,7 @@ def main(itag, url, name):
         click.echo("Download: '%s.srt'" % name)
         with open('%s.srt' % name, 'w') as f:
             f.write(caption.generate_srt_captions())
+
 
 if __name__ == '__main__':
     main()
