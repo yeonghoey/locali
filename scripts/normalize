@@ -19,11 +19,14 @@ def main(dir_, input_pattern, output_pattern):
     renamer = compile_renamer(input_pattern, output_pattern)
     outputs = [renamer(p) for p in inputs]
 
-    if not inputs:
+    plans = [(ip, op) for ip, op in zip(inputs, outputs) if op is not None]
+    plans = sorted(plans)
+
+    if not plans:
         click.echo("No files in '%s'" % dir_)
         sys.exit(0)
 
-    apply_(inputs, outputs)
+    apply_(plans)
 
 
 def list_inputs(dir_):
@@ -34,7 +37,7 @@ def list_inputs(dir_):
         if os.path.isfile(p):
             inputs.append(p)
 
-    return sorted(inputs)
+    return inputs
 
 
 def compile_renamer(input_pattern, output_pattern):
@@ -48,7 +51,7 @@ def compile_renamer(input_pattern, output_pattern):
         if mo is not None:
             d = {k: int(v) for k, v in mo.groupdict().items()}
             renamed = fmt.format(**d)
-            return os.path.join(renamed + ext)
+            return os.path.join(head, renamed + ext)
         else:
             return None
 
@@ -79,19 +82,17 @@ def compile_output_pattern(output_pattern):
     return re.sub(r'(\d)\1*', repl, output_pattern)
 
 
-def apply_(inputs, outputs):
+def apply_(plans):
+    iw = max(len(ip) for ip, _ in plans)
+    ow = max(len(op) for _, op in plans)
 
-    iw = max(len(p) for p in inputs)
-    ow = max(len(p) for p in outputs)
-
-    # all_ = Fase
-    for ip, op in zip(inputs, outputs):
+    for ip, op in plans:
         click.secho('{:{width}}'.format(ip, width=iw), fg='red', nl=False)
         click.secho(' -> ', nl=False)
         click.secho('{:{width}}'.format(op, width=ow), fg='green')
 
     if click.confirm(' rename?'):
-        for ip, op in zip(inputs, outputs):
+        for ip, op in plans:
             os.rename(ip, op)
 
 
