@@ -23,7 +23,7 @@ def main(dir_, input_pattern, output_pattern):
     plans = sorted(plans)
 
     if not plans:
-        click.echo("No files in '%s'" % dir_)
+        click.echo("No matches in '%s'" % dir_)
         sys.exit(0)
 
     apply_(plans)
