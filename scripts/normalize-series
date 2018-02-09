@@ -2,6 +2,7 @@
 
 import os
 import re
+import sys
 
 import click
 
@@ -16,29 +17,38 @@ DIR = click.Path(exists=True, file_okay=False, dir_okay=True)
 def main(dir_, input_pattern, output_pattern):
     inputs = list_inputs(dir_)
     renamer = compile_renamer(input_pattern, output_pattern)
-    for f in inputs:
-        print(f, '\t', renamer(f))
+    outputs = [renamer(p) for p in inputs]
+
+    if not inputs:
+        click.echo("No files in '%s'" % dir_)
+        sys.exit(0)
+
+    apply_(inputs, outputs)
 
 
 def list_inputs(dir_):
+    inputs = []
+
     for e in os.listdir(dir_):
         p = os.path.join(dir_, e)
         if os.path.isfile(p):
-            yield p
+            inputs.append(p)
+
+    return sorted(inputs)
 
 
 def compile_renamer(input_pattern, output_pattern):
     ro = compile_input_pattern(input_pattern)
     fmt = compile_output_pattern(output_pattern)
-    print(fmt)
 
     def f(input_):
-        name, ext = os.path.splitext(input_)
+        head, tail = os.path.split(input_)
+        name, ext = os.path.splitext(tail)
         mo = ro.match(name)
         if mo is not None:
             d = {k: int(v) for k, v in mo.groupdict().items()}
             renamed = fmt.format(**d)
-            return renamed + ext
+            return os.path.join(renamed + ext)
         else:
             return None
 
@@ -52,7 +62,8 @@ def compile_input_pattern(input_pattern):
         assert all(a == ch for ch in x)
         return r'(?P<_%s>%s)' % (a, '\d'*len(x))
 
-    patterns = [re.sub(r'\d+', repl, term) for term in input_pattern.split()]
+    terms = input_pattern.split()
+    patterns = [re.sub(r'(\d)\1*', repl, term) for term in terms]
     patterns = [r'^'] + patterns + [r'$']
     regex = r'.*'.join(patterns)
     return re.compile(regex)
@@ -65,7 +76,23 @@ def compile_output_pattern(output_pattern):
         assert all(a == ch for ch in x)
         return r'{_%s:0%dd}' % (a, len(x))
 
-    return re.sub(r'\d+', repl, output_pattern)
+    return re.sub(r'(\d)\1*', repl, output_pattern)
+
+
+def apply_(inputs, outputs):
+
+    iw = max(len(p) for p in inputs)
+    ow = max(len(p) for p in outputs)
+
+    # all_ = Fase
+    for ip, op in zip(inputs, outputs):
+        click.secho('{:{width}}'.format(ip, width=iw), fg='red', nl=False)
+        click.secho(' -> ', nl=False)
+        click.secho('{:{width}}'.format(op, width=ow), fg='green')
+
+    if click.confirm(' rename?'):
+        for ip, op in zip(inputs, outputs):
+            os.rename(ip, op)
 
 
 if __name__ == '__main__':
