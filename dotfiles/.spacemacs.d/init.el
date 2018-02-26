@@ -182,7 +182,7 @@
    org-startup-indented t
    org-startup-folded t
    org-download-method 'directory
-   org-download-image-dir "./img"
+   org-download-image-dir "./_img"
    org-download-heading-lvl nil
    org-download-annotate-function (lambda (x) nil)
    org-download-screenshot-method "ln -sfF \"$(ls -t $HOME/screenshots/* | head -n 1)\" %s"
