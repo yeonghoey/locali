@@ -282,6 +282,20 @@
       (kill-new output)
       (message output))
     )
+
+  (defun yeonghoey-org-download-screenshot ()
+    (interactive)
+    (progn
+      (org-download-screenshot)
+      (evil-previous-line)
+      (evil-previous-line)
+      (delete-blank-lines)
+      (delete-blank-lines)
+      (evil-org-open-below 1)
+      (evil-normal-state)
+      )
+    )
+
   (spacemacs/set-leader-keys
     "oo" 'spacemacs/workspaces-transient-state/body
     "o0" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-0-and-exit
@@ -304,5 +318,7 @@
 
     "oT" 'spacemacs/toggle-transparency
     "or" 'org-redisplay-inline-images
+
+    "os" 'yeonghoey-org-download-screenshot
     )
   )
