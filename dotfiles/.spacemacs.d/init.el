@@ -298,9 +298,13 @@
 
   (defun yeonghoey-org-new-readme ()
     (interactive )
-    (find-file (concat (file-name-as-directory (magit-toplevel))
-                       (file-name-as-directory (read-string "org-new-readme: "))
-                       "README.org"))
+    (let ((dir (concat (file-name-as-directory (magit-toplevel))
+                       (file-name-as-directory (read-string "org-new-readme: ")))))
+      (when (not (file-directory-p dir))
+        (make-directory dir)
+        )
+      (find-file (concat dir "README.org"))
+      )
     )
 
   (spacemacs/set-leader-keys
