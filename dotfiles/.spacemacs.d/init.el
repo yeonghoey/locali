@@ -296,6 +296,13 @@
       )
     )
 
+  (defun yeonghoey-org-new-readme ()
+    (interactive )
+    (find-file (concat (file-name-as-directory (magit-toplevel))
+                       (file-name-as-directory (read-string "org-new-readme: "))
+                       "README.org"))
+    )
+
   (spacemacs/set-leader-keys
     "oo" 'spacemacs/workspaces-transient-state/body
     "o0" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-0-and-exit
@@ -320,5 +327,6 @@
     "or" 'org-redisplay-inline-images
 
     "os" 'yeonghoey-org-download-screenshot
+    "on" 'yeonghoey-org-new-readme
     )
   )
