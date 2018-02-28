@@ -30,6 +30,7 @@ pip3 install -r <(cat <<EOF
 click==6.7
 cookiecutter==1.6.0
 hew>=0.0.3
+pipenv==10.1.0
 pyperclip==1.6.0
 pytube==8.0.2
 mkup==0.0.1
