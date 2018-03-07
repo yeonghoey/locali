@@ -45,7 +45,10 @@
      vimscript
      yaml
      )
-   dotspacemacs-additional-packages '(bats-mode editorconfig)
+   dotspacemacs-additional-packages '(bats-mode
+                                      editorconfig
+                                      vue-mode
+                                      )
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only))
@@ -156,7 +159,7 @@
    css-indent-offset 2)
 
   ;; Depend on eslint and transcompilers Instead
-  (js2-mode-hide-warnings-and-errors)
+  (add-hook 'js2-mode-hook 'js2-mode-hide-warnings-and-errors)
 
   ;; http://editorconfig.org/
   (editorconfig-mode 1)
