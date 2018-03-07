@@ -45,7 +45,7 @@
      vimscript
      yaml
      )
-   dotspacemacs-additional-packages '(bats-mode)
+   dotspacemacs-additional-packages '(bats-mode editorconfig)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only))
@@ -154,6 +154,12 @@
    js2-basic-offset 2
    web-mode-css-indent-offset 2
    css-indent-offset 2)
+
+  ;; Depend on eslint and transcompilers Instead
+  (js2-mode-hide-warnings-and-errors)
+
+  ;; http://editorconfig.org/
+  (editorconfig-mode 1)
 
   ;; Shell
   (setq-default
