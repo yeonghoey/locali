@@ -4,6 +4,7 @@ brew bundle --verbose --file=<(cat <<EOF
 
 tap 'caskroom/cask'
 tap 'd12frosted/emacs-plus'
+tap 'heroku/brew'
 
 brew 'cmake'
 brew 'emacs-plus'
@@ -16,6 +17,7 @@ brew 'git-extras'
 brew 'git-flow'
 brew 'git-lfs'
 brew 'go'
+brew 'heroku'
 brew 'hub'
 brew 'hugo'
 brew 'imagemagick'
