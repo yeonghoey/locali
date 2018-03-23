@@ -1,6 +1,12 @@
 # install npm global pacakges
 
-sudo npm install -g eslint
-sudo npm install -g js-beautify
-sudo npm install -g nodemon
-sudo npm install -g tern
+localrc 'npm' << EOF
+export PATH="node_modules/.bin:\${PATH}"
+EOF
+
+npm install --global awsmobile-cli
+npm install --global eslint
+npm install --global js-beautify
+npm install --global nodemon
+npm install --global tern
+npm install --global vue-cli
