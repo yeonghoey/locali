@@ -7,6 +7,7 @@ tap 'd12frosted/emacs-plus'
 tap 'heroku/brew'
 
 brew 'cmake'
+brew 'editorconfig'
 brew 'emacs-plus'
 brew 'fasd'
 brew 'ffmpeg'
