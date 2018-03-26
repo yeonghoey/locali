@@ -108,6 +108,7 @@
    dotspacemacs-inactive-transparency 75
    dotspacemacs-show-transient-state-title t
    dotspacemacs-show-transient-state-color-guide t
+   dotspacemacs-mode-line-theme 'spacemacs
    dotspacemacs-mode-line-unicode-symbols nil
    dotspacemacs-smooth-scrolling t
    dotspacemacs-line-numbers nil
@@ -305,8 +306,8 @@
       )
     )
 
-  (defun yeonghoey-org-new-readme ()
-    (interactive )
+  (defun yeonghoey-org-open-readme ()
+    (interactive)
     (let ((dir (concat (file-name-as-directory (magit-toplevel))
                        (file-name-as-directory (read-string "org-new-readme: ")))))
       (when (not (file-directory-p dir))
@@ -314,6 +315,11 @@
         )
       (find-file (concat dir "README.org"))
       )
+    )
+
+  (defun yeonghoey-org-references-drawer ()
+    (interactive)
+    (org-insert-drawer nil "REFERENCES")
     )
 
   (spacemacs/set-leader-keys
@@ -329,6 +335,9 @@
     "o8" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-8-and-exit
     "o9" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-9-and-exit
 
+    "or" 'org-redisplay-inline-images
+    "oT" 'spacemacs/toggle-transparency
+
     "oi" 'yeonghoey-find-org-inbox
     "of" 'yeonghoey-find-org-files
     "o/" 'yeonghoey-ag-org-directory
@@ -336,10 +345,8 @@
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
 
-    "oT" 'spacemacs/toggle-transparency
-    "or" 'org-redisplay-inline-images
-
     "os" 'yeonghoey-org-download-screenshot
-    "on" 'yeonghoey-org-new-readme
+    "on" 'yeonghoey-org-open-readme
+    "od" 'yeonghoey-org-references-drawer
     )
   )
