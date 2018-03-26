@@ -308,7 +308,7 @@
 
   (defun yeonghoey-org-open-readme ()
     (interactive)
-    (let ((dir (concat (file-name-as-directory (magit-toplevel))
+    (let ((dir (concat (file-name-as-directory "~/yeonghoey")
                        (file-name-as-directory (read-string "org-open-readme: ")))))
       (when (not (file-directory-p dir))
         (make-directory dir)
