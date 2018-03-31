@@ -295,29 +295,6 @@
       )
     )
 
-  (spacemacs/set-leader-keys
-    "oo" 'spacemacs/workspaces-transient-state/body
-    "o0" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-0-and-exit
-    "o1" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-1-and-exit
-    "o2" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-2-and-exit
-    "o3" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-3-and-exit
-    "o4" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-4-and-exit
-    "o5" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-5-and-exit
-    "o6" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-6-and-exit
-    "o7" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-7-and-exit
-    "o8" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-8-and-exit
-    "o9" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-9-and-exit
-
-    "oT" 'spacemacs/toggle-transparency
-
-    "oi" 'yeonghoey-find-org-inbox
-    "of" 'yeonghoey-find-org-files
-    "o/" 'yeonghoey-ag-org-directory
-    "ot" 'yeonghoey-trans-en-ko
-    "ol" 'yeonghoey-tr-line-chars
-    "on" 'yeonghoey-open
-    )
-
   (defun yeonghoey-org-download-screenshot ()
     (interactive)
     (progn
@@ -344,10 +321,39 @@
       )
     )
 
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+  (defun yeonghoey-flycheck-reset ()
+    (interactive)
+    (setq flycheck-disabled-checkers nil)
+    (flycheck-buffer)
+    )
+
+  (spacemacs/set-leader-keys
+    "oo" 'spacemacs/workspaces-transient-state/body
+    "o0" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-0-and-exit
+    "o1" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-1-and-exit
+    "o2" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-2-and-exit
+    "o3" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-3-and-exit
+    "o4" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-4-and-exit
+    "o5" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-5-and-exit
+    "o6" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-6-and-exit
+    "o7" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-7-and-exit
+    "o8" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-8-and-exit
+    "o9" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-9-and-exit
+
+    "oT" 'spacemacs/toggle-transparency
+
+    "oi" 'yeonghoey-find-org-inbox
+    "of" 'yeonghoey-find-org-files
+    "o/" 'yeonghoey-ag-org-directory
+    "ot" 'yeonghoey-trans-en-ko
+    "ol" 'yeonghoey-tr-line-chars
+    "on" 'yeonghoey-open
+
     "or" 'org-redisplay-inline-images
     "os" 'yeonghoey-org-download-screenshot
     "od" 'yeonghoey-org-references-drawer
     "oa" 'yeonghoey-toggle-org-archived
+
+    "oe" 'yeonghoey-flycheck-reset
     )
   )
