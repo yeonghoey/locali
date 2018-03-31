@@ -269,13 +269,6 @@
     (interactive)
     (spacemacs/helm-files-do-ag org-directory)
     )
-  (defun yeonghoey-toggle-org-archived ()
-    (interactive)
-    (if (string-match "^.*[.]org$" buffer-file-name)
-        (find-file (concat buffer-file-name "_archive"))
-      (find-file (replace-regexp-in-string "_archive$" "" buffer-file-name))
-      )
-    )
   (defun yeonghoey-tr-line-chars (start end)
     (interactive "r")
     (let* ((table (make-translation-table '((?| . ?│) (?+ . ?└) (?- . ?─)))))
@@ -291,33 +284,15 @@
       (message output))
     )
 
-  (defun yeonghoey-org-download-screenshot ()
-    (interactive)
-    (progn
-      (org-download-screenshot)
-      (evil-previous-line)
-      (evil-previous-line)
-      (org-kill-line)
-      (org-kill-line)
-      (evil-org-open-below 1)
-      (evil-normal-state)
-      )
-    )
-
-  (defun yeonghoey-org-open-readme ()
+  (defun yeonghoey-open ()
     (interactive)
     (let ((dir (concat (file-name-as-directory "~/yeonghoey")
-                       (file-name-as-directory (read-string "org-open-readme: ")))))
+                       (file-name-as-directory (read-string "yeonghoey-open: ")))))
       (when (not (file-directory-p dir))
         (make-directory dir)
         )
       (find-file (concat dir "README.org"))
       )
-    )
-
-  (defun yeonghoey-org-references-drawer ()
-    (interactive)
-    (org-insert-drawer nil "REFERENCES")
     )
 
   (spacemacs/set-leader-keys
@@ -333,18 +308,46 @@
     "o8" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-8-and-exit
     "o9" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-9-and-exit
 
-    "or" 'org-redisplay-inline-images
     "oT" 'spacemacs/toggle-transparency
 
     "oi" 'yeonghoey-find-org-inbox
     "of" 'yeonghoey-find-org-files
     "o/" 'yeonghoey-ag-org-directory
-    "oa" 'yeonghoey-toggle-org-archived
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
+    "on" 'yeonghoey-open
+    )
 
+  (defun yeonghoey-org-download-screenshot ()
+    (interactive)
+    (progn
+      (org-download-screenshot)
+      (evil-previous-line)
+      (evil-previous-line)
+      (org-kill-line)
+      (org-kill-line)
+      (evil-org-open-below 1)
+      (evil-normal-state)
+      )
+    )
+
+  (defun yeonghoey-org-references-drawer ()
+    (interactive)
+    (org-insert-drawer nil "REFERENCES")
+    )
+
+  (defun yeonghoey-toggle-org-archived ()
+    (interactive)
+    (if (string-match "^.*[.]org$" buffer-file-name)
+        (find-file (concat buffer-file-name "_archive"))
+      (find-file (replace-regexp-in-string "_archive$" "" buffer-file-name))
+      )
+    )
+
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "or" 'org-redisplay-inline-images
     "os" 'yeonghoey-org-download-screenshot
-    "on" 'yeonghoey-org-open-readme
     "od" 'yeonghoey-org-references-drawer
+    "oa" 'yeonghoey-toggle-org-archived
     )
   )
