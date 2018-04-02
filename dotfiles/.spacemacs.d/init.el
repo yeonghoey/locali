@@ -295,6 +295,12 @@
       )
     )
 
+  (defun yeonghoey-org-insert-horizontal-rule ()
+    (interactive)
+    (evil-org-open-below 1)
+    (insert-string "-----")
+    )
+
   (defun yeonghoey-org-download-screenshot ()
     (interactive)
     (progn
@@ -350,6 +356,7 @@
     "on" 'yeonghoey-open
 
     "or" 'org-redisplay-inline-images
+    "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
     "od" 'yeonghoey-org-references-drawer
     "oa" 'yeonghoey-toggle-org-archived
