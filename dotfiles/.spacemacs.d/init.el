@@ -299,6 +299,7 @@
     (interactive)
     (evil-org-open-below 1)
     (insert-string "-----")
+    (evil-org-open-below 1)
     )
 
   (defun yeonghoey-org-download-screenshot ()
