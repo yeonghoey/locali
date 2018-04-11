@@ -2,7 +2,7 @@
 
 # ------------------------------------------------------------------------------
 
-info "Use '$(command_path 'pip')'"
+info "Use '$(pyenv which 'pip')'"
 
 pip install -r <(cat <<EOF
 
