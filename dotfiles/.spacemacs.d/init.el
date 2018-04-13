@@ -339,6 +339,11 @@
       )
     )
 
+  (defun yeonghoey-flyspell-mode-off ()
+    (interactive)
+    (flyspell-mode-off)
+    )
+
   (defun yeonghoey-flycheck-reset ()
     (interactive)
     (setq flycheck-disabled-checkers nil)
@@ -370,6 +375,7 @@
     "or" 'org-redisplay-inline-images
     "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
+    "oS" 'yeonghoey-flyspell-mode-off
     "od" 'yeonghoey-org-references-drawer
     "oa" 'yeonghoey-toggle-org-archived
 
