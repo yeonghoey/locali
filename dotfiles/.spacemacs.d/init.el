@@ -125,7 +125,7 @@
    dotspacemacs-highlight-delimiters 'all
    dotspacemacs-enable-server nil
    dotspacemacs-persistent-server nil
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
    dotspacemacs-frame-title-format "%I@%S"
    dotspacemacs-icon-title-format nil
    dotspacemacs-whitespace-cleanup nil
