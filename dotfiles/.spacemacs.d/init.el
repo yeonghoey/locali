@@ -195,9 +195,6 @@
 
   ;; Org
   (setq-default
-   org-directory "~/yeonghoey-org/"
-   org-agenda-files `(,org-directory)
-   org-refile-targets '((org-agenda-files :level . 1))
    org-startup-indented t
    org-startup-folded t
    org-download-method 'directory
@@ -244,42 +241,6 @@
   (advice-add 'org-refile :after 'my-org-save-all-org-buffers)
   (advice-add 'org-archive :after 'my-org-save-all-org-buffers)
 
-  (setq-default
-   yeonghoey-org-inbox (concat org-directory "inbox.org")
-   org-capture-templates
-   `(
-
-     ("c" "Create a task"
-
-      entry (file+headline
-             ,yeonghoey-org-inbox
-             "Inbox"
-             )
-
-
-      "* TODO %t %?"
-
-
-      :empty-lines 1
-      )
-
-     )
-   )
-
-  (defun yeonghoey-find-org-inbox ()
-    (interactive)
-    (find-file yeonghoey-org-inbox)
-    )
-  (defun yeonghoey-find-org-files ()
-    (interactive)
-    (let ((default-directory org-directory))
-      (spacemacs/helm-find-files nil)
-      )
-    )
-  (defun yeonghoey-ag-org-directory ()
-    (interactive)
-    (spacemacs/helm-files-do-ag org-directory)
-    )
   (defun yeonghoey-tr-line-chars (start end)
     (interactive "r")
     (let* ((table (make-translation-table '((?| . ?│) (?+ . ?└) (?- . ?─)))))
@@ -326,19 +287,6 @@
       )
     )
 
-  (defun yeonghoey-org-references-drawer ()
-    (interactive)
-    (org-insert-drawer nil "REFERENCES")
-    )
-
-  (defun yeonghoey-toggle-org-archived ()
-    (interactive)
-    (if (string-match "^.*[.]org$" buffer-file-name)
-        (find-file (concat buffer-file-name "_archive"))
-      (find-file (replace-regexp-in-string "_archive$" "" buffer-file-name))
-      )
-    )
-
   (defun yeonghoey-flyspell-mode-off ()
     (interactive)
     (flyspell-mode-off)
@@ -351,34 +299,14 @@
     )
 
   (spacemacs/set-leader-keys
-    "oo" 'spacemacs/workspaces-transient-state/body
-    "o0" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-0-and-exit
-    "o1" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-1-and-exit
-    "o2" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-2-and-exit
-    "o3" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-3-and-exit
-    "o4" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-4-and-exit
-    "o5" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-5-and-exit
-    "o6" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-6-and-exit
-    "o7" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-7-and-exit
-    "o8" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-8-and-exit
-    "o9" 'spacemacs/workspaces-transient-state/eyebrowse-switch-to-window-config-9-and-exit
-
     "oT" 'spacemacs/toggle-transparency
-
-    "oi" 'yeonghoey-find-org-inbox
-    "of" 'yeonghoey-find-org-files
-    "o/" 'yeonghoey-ag-org-directory
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
     "on" 'yeonghoey-open
-
     "or" 'org-redisplay-inline-images
     "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
     "oS" 'yeonghoey-flyspell-mode-off
-    "od" 'yeonghoey-org-references-drawer
-    "oa" 'yeonghoey-toggle-org-archived
-
     "oe" 'yeonghoey-flycheck-reset
     )
   )
