@@ -267,6 +267,17 @@
       )
     )
 
+  (defun yeonghoey-open-rel ()
+    (interactive)
+    (let ((dir (concat default-directory
+                       (file-name-as-directory (read-string "yeonghoey-open-rel: ")))))
+      (when (not (file-directory-p dir))
+        (make-directory dir)
+        )
+      (find-file (concat dir "README.org"))
+      )
+    )
+
   (defun yeonghoey-org-insert-horizontal-rule ()
     (interactive)
     (evil-org-open-below 1)
@@ -303,6 +314,7 @@
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
     "on" 'yeonghoey-open
+    "oN" 'yeonghoey-open-rel
     "or" 'org-redisplay-inline-images
     "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
