@@ -14,6 +14,7 @@
      csv
      docker
      emacs-lisp
+     ess
      fasd
      git
      go
@@ -223,6 +224,7 @@
      (latex . t)
      (python . t)
      (sh . t)
+     (R . t)
      )
    )
 
