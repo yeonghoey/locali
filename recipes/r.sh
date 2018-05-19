@@ -8,3 +8,11 @@ EOF
 )
 
 defaults write org.R-project.R force.LANG 'en_US.UTF-8'
+
+readonly PACKAGES=(
+  '"ggplot2"'
+  '"rmarkdown"'
+)
+
+readonly PKGS="c($(IFS=','; echo "${PACKAGES[*]}"))"
+R -e "install.packages(${PKGS}, repos = 'https://cran.rstudio.com')"
