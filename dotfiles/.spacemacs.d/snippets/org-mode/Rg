@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Rg
+# key: Rg
+# --
+#+BEGIN_SRC R :file _img/${1:filename}.png :results graphics :exports both
+$0
+#+END_SRC
