@@ -228,6 +228,9 @@
      )
    )
 
+  (setq-default
+   org-confirm-babel-evaluate nil
+   )
 
   ;; Org TODO customizations
   (setq-default
