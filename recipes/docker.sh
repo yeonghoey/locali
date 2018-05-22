@@ -10,8 +10,8 @@ EOF
 docker-machine create --driver virtualbox default || true
 
 localrc 'docker' << 'EOF'
-if [[ -z "${DOCKER_HOST}" ]]; then
+_docker() {
   docker-machine start default || true
   eval $(docker-machine env default)
-fi
+}
 EOF
