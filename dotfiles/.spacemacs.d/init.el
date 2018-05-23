@@ -32,6 +32,7 @@
      (python :variables python-test-runner 'pytest)
      (ranger :variables ranger-show-preview t)
      restclient
+     ruby
      rust
      scala
      (shell :variables shell-default-shell 'eshell)
