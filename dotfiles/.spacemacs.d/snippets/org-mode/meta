@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: meta
-# key: meta
-# --
-#+TITLE:  ${1:title}
-#+AUTHOR: Yeongho Kim
-#+EMAIL:  yeonghoey@gmail.com
