@@ -204,17 +204,6 @@
    org-download-heading-lvl nil
    org-download-annotate-function (lambda (x) nil)
    org-download-screenshot-method "ln -sfF \"$(ls -t $HOME/screenshots/* | head -n 1)\" %s"
-   org-export-with-author nil
-   org-export-with-section-numbers nil
-   org-export-with-timestamps nil
-   org-export-with-toc nil
-   org-html-postamble nil
-   org-html-htmlize-output-type 'css
-   org-html-htmlize-font-prefix "org-"
-   org-format-latex-options '(:foreground "Black"
-                              :background "White"
-                              :scale      1.5
-                              )
    )
 
   ; Org Babel Languages
@@ -231,13 +220,6 @@
 
   (setq-default
    org-confirm-babel-evaluate nil
-   )
-
-  ;; Org TODO customizations
-  (setq-default
-   org-todo-keywords '((sequence "TODO" "NOTE" "|" "DONE" "ABORTED"))
-   org-todo-keyword-faces '(("NOTE" . (:foreground "SteelBlue"))
-                            ("ABORTED" . (:foreground "DarkKhaki")))
    )
 
   ;; Save org files automatically after arranging items
