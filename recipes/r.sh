@@ -12,6 +12,7 @@ defaults write org.R-project.R force.LANG 'en_US.UTF-8'
 readonly PACKAGES=(
   '"ggplot2"'
   '"rmarkdown"'
+  '"mlbench"'
 )
 
 readonly PKGS="c($(IFS=','; echo "${PACKAGES[*]}"))"
