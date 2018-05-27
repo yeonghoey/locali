@@ -246,7 +246,7 @@
 
   (defun yeonghoey-open ()
     (interactive)
-    (let ((dir (concat (file-name-as-directory "~/yeonghoey")
+    (let ((dir (concat (file-name-as-directory "~/yeonghoey/content")
                        (file-name-as-directory (read-string "yeonghoey-open: ")))))
       (when (not (file-directory-p dir))
         (make-directory dir)
