@@ -14,7 +14,7 @@ if [[ "$ZSH" ]]; then
 
   # shellcheck disable=SC2034
   #                      └─ unused check
-  ZSH_THEME='arrow'
+  ZSH_THEME='afowler'
 
   # shellcheck disable=SC2034
   plugins=(
