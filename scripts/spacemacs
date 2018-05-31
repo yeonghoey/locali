@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
 
-echo -e "\\n> Update 'locali'"
-"${HOME}/locali/update.sh"
-
-echo -e "\\n> Update 'yeonghoey'"
-make -C "${HOME}/yeonghoey" update
-
 echo -e "\\n> Run Emacs as a background process"
 emacs &
