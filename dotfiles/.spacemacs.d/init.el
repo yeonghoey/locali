@@ -298,12 +298,12 @@
     )
 
   (spacemacs/set-leader-keys
-    "oT" 'spacemacs/toggle-transparency
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
     "on" 'yeonghoey-open
     "oN" 'yeonghoey-open-rel
-    "or" 'org-redisplay-inline-images
+    "oD" (defun yhy-org-display-show () (interactive) (org-display-inline-images) (setq org-descriptive-links t))
+    "od" (defun yhy-org-display-toggle () (interactive) (org-toggle-inline-images) (org-toggle-link-display))
     "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
     "oS" 'yeonghoey-flyspell-mode-off
