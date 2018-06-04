@@ -297,12 +297,14 @@
     (flycheck-buffer)
     )
 
-  (defun yhy-org-img-paste ()
-    (interactive)
-    (let ((p (shell-command-to-string"yhy img paste -C '_img' 2> /dev/null")))
-      (if (string= p "")
+  (defun yhy-org-img-paste (flags)
+    (let* ((cmd
+            (format "yhy img paste %s 2> /dev/null" flags))
+           (path
+            (shell-command-to-string cmd)))
+      (if (string= path "")
           (message "Clipboard does not contain image data")
-        (insert (format "[[file:%s]]" (string-trim p)))
+        (insert (format "[[file:%s]]" (string-trim path)))
         (org-display-inline-images)
         )
       )
@@ -313,12 +315,28 @@
     "ol" 'yeonghoey-tr-line-chars
     "on" 'yeonghoey-open
     "oN" 'yeonghoey-open-rel
-    "oD" (defun yhy-org-display-show () (interactive) (org-display-inline-images) (setq org-descriptive-links t))
-    "od" (defun yhy-org-display-toggle () (interactive) (org-toggle-inline-images) (org-toggle-link-display))
-    "op" 'yhy-org-img-paste
     "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
+
+    "oD" (defun yhy-org-display-show ()
+           (interactive)
+           (org-display-inline-images)
+           (setq org-descriptive-links t)
+           )
+    "od" (defun yhy-org-display-toggle ()
+           (interactive)
+           (org-toggle-inline-images)
+           (org-toggle-link-display)
+           )
+    "op" (defun yhy-org-img-paste-orig ()
+           (interactive)
+           (yhy-org-img-paste "-C '_img'")
+           )
+    "oP" (defun yhy-org-img-paste-half ()
+           (interactive)
+           (yhy-org-img-paste "-C '_img' --half")
+           )
     )
   )
