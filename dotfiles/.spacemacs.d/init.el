@@ -297,6 +297,17 @@
     (flycheck-buffer)
     )
 
+  (defun yhy-org-img-paste ()
+    (interactive)
+    (let ((p (shell-command-to-string"yhy img paste -C '_img' 2> /dev/null")))
+      (if (string= p "")
+          (message "Clipboard does not contain image data")
+        (insert (format "[[file:%s]]" (string-trim p)))
+        (org-display-inline-images)
+        )
+      )
+    )
+
   (spacemacs/set-leader-keys
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
@@ -304,6 +315,7 @@
     "oN" 'yeonghoey-open-rel
     "oD" (defun yhy-org-display-show () (interactive) (org-display-inline-images) (setq org-descriptive-links t))
     "od" (defun yhy-org-display-toggle () (interactive) (org-toggle-inline-images) (org-toggle-link-display))
+    "op" 'yhy-org-img-paste
     "oh" 'yeonghoey-org-insert-horizontal-rule
     "os" 'yeonghoey-org-download-screenshot
     "oS" 'yeonghoey-flyspell-mode-off
