@@ -199,11 +199,6 @@
   (setq-default
    org-startup-indented t
    org-startup-folded t
-   org-download-method 'directory
-   org-download-image-dir "./_img"
-   org-download-heading-lvl nil
-   org-download-annotate-function (lambda (x) nil)
-   org-download-screenshot-method "ln -sfF \"$(ls -t $HOME/screenshots/* | head -n 1)\" %s"
    )
 
   ; Org Babel Languages
@@ -273,19 +268,6 @@
     (evil-org-open-below 1)
     )
 
-  (defun yeonghoey-org-download-screenshot ()
-    (interactive)
-    (progn
-      (org-download-screenshot)
-      (evil-previous-line)
-      (evil-previous-line)
-      (org-kill-line)
-      (org-kill-line)
-      (evil-org-open-below 1)
-      (evil-normal-state)
-      )
-    )
-
   (defun yeonghoey-flyspell-mode-off ()
     (interactive)
     (flyspell-mode-off)
@@ -316,7 +298,6 @@
     "on" 'yeonghoey-open
     "oN" 'yeonghoey-open-rel
     "oh" 'yeonghoey-org-insert-horizontal-rule
-    "os" 'yeonghoey-org-download-screenshot
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
