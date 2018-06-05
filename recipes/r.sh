@@ -13,6 +13,7 @@ readonly PACKAGES=(
   '"ggplot2"'
   '"rmarkdown"'
   '"mlbench"'
+  '"ISLR"'
 )
 
 readonly PKGS="c($(IFS=','; echo "${PACKAGES[*]}"))"
