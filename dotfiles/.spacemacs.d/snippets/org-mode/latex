@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: latex
-# key: latex
-# --
-#+BEGIN_SRC latex :file _img/${1:filename}.png :results raw :exports results :buffer no
-$0
-#+END_SRC
