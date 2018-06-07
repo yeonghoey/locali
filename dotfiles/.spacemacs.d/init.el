@@ -261,13 +261,6 @@
       )
     )
 
-  (defun yeonghoey-org-insert-horizontal-rule ()
-    (interactive)
-    (evil-org-open-below 1)
-    (insert-string "-----")
-    (evil-org-open-below 1)
-    )
-
   (defun yeonghoey-flyspell-mode-off ()
     (interactive)
     (flyspell-mode-off)
@@ -297,7 +290,6 @@
     "ol" 'yeonghoey-tr-line-chars
     "on" 'yeonghoey-open
     "oN" 'yeonghoey-open-rel
-    "oh" 'yeonghoey-org-insert-horizontal-rule
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
@@ -310,6 +302,10 @@
            (interactive)
            (org-toggle-inline-images)
            (org-toggle-link-display)
+           )
+    "or" (defun yhy-org-references-drawer ()
+           (interactive)
+           (org-insert-drawer nil "REFERENCES")
            )
     "op" (defun yhy-org-img-paste-orig ()
            (interactive)
