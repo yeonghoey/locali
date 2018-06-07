@@ -10,11 +10,17 @@ EOF
 defaults write org.R-project.R force.LANG 'en_US.UTF-8'
 
 readonly PACKAGES=(
-  '"ggplot2"'
-  '"rmarkdown"'
-  '"mlbench"'
   '"ISLR"'
+  '"ggplot2"'
+  '"mlbench"'
+  '"rmarkdown"'
+  '"servr"'
 )
 
 readonly PKGS="c($(IFS=','; echo "${PACKAGES[*]}"))"
-R -e "install.packages(${PKGS}, repos = 'https://cran.rstudio.com')"
+Rscript -e "install.packages(${PKGS}, repos = 'https://cran.rstudio.com')"
+
+
+localrc 'R' << EOF
+alias rmdv2='Rscript -e "servr::rmdv2()" -b'
+EOF
