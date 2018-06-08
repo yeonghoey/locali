@@ -208,7 +208,7 @@
      (emacs-lisp . t)
      (latex . t)
      (python . t)
-     (sh . t)
+     (shell . t)
      (R . t)
      )
    )
