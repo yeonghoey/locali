@@ -27,5 +27,6 @@ if [[ "$ZSH" ]]; then
   source "$ZSH/oh-my-zsh.sh"
 fi
 
-# Ensure compinit
-autoload -U compinit && compinit
+# Ensure compinit and bashcompoinit
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
