@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: gh
-# key: gh
-# --
-#+TITLE: ${1:title}
-
-* Table of Contents :TOC_2_gh:
