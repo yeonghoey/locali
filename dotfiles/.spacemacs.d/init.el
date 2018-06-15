@@ -78,7 +78,7 @@
    dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
    dotspacemacs-colorize-cursor-according-to-state nil
    dotspacemacs-default-font '("DejaVu Sans Mono for Powerline"
-                               :size 14
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
