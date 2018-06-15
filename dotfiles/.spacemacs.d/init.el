@@ -240,12 +240,12 @@
 
   (defun yeonghoey-open ()
     (interactive)
-    (let ((dir (concat (file-name-as-directory "~/repos/yeonghoey/content")
+    (let ((dir (concat (file-name-as-directory "~/repos/yeonghoey/docs")
                        (file-name-as-directory (read-string "yeonghoey-open: ")))))
       (when (not (file-directory-p dir))
         (make-directory dir)
         )
-      (find-file (concat dir "README.org"))
+      (find-file (concat dir "index.org"))
       )
     )
 
@@ -256,7 +256,7 @@
       (when (not (file-directory-p dir))
         (make-directory dir)
         )
-      (find-file (concat dir "README.org"))
+      (find-file (concat dir "index.org"))
       )
     )
 
