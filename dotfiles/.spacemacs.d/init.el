@@ -288,8 +288,8 @@
   (spacemacs/set-leader-keys
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
-    "on" 'yeonghoey-open
-    "oN" 'yeonghoey-open-rel
+    "of" 'yeonghoey-open
+    "oF" 'yeonghoey-open-rel
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
