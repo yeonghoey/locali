@@ -279,6 +279,7 @@
             (shell-command-to-string cmd)))
       (if (string= path "")
           (message "Clipboard does not contain image data")
+        (unless (eolp) (forward-char))
         (insert (format "[[file:%s]]" (string-trim path)))
         (org-display-inline-images)
         )
