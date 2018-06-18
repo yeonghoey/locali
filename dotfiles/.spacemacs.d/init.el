@@ -244,7 +244,7 @@
     (let ((dir (concat (file-name-as-directory "~/repos/yeonghoey/docs")
                        (file-name-as-directory (read-string "yeonghoey-open: ")))))
       (when (not (file-directory-p dir))
-        (make-directory dir)
+        (make-directory dir t)
         )
       (find-file (concat dir "index.org"))
       )
@@ -255,7 +255,7 @@
     (let ((dir (concat default-directory
                        (file-name-as-directory (read-string "yeonghoey-open-rel: ")))))
       (when (not (file-directory-p dir))
-        (make-directory dir)
+        (make-directory dir t)
         )
       (find-file (concat dir "index.org"))
       )
