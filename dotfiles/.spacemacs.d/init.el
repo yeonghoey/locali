@@ -198,6 +198,7 @@
   (setq-default
    org-startup-indented t
    org-startup-folded t
+   org-image-actual-width '(320) ;; inline images are only for preview
    )
 
   ; Org Babel Languages
