@@ -292,7 +292,7 @@
     )
 
   (defvar yhy-org-img-paste-attr nil)
-  (defvar yhy-org-img-paste-flags nil)
+  (defvar yhy-org-img-paste-flags "-C '_img'")
 
   (spacemacs/set-leader-keys
     "ot" 'yeonghoey-trans-en-ko
