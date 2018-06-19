@@ -238,21 +238,25 @@
       (message output))
     )
 
-  (defun yeonghoey-open ()
-    (interactive)
-    ;; FIXME: Read ~/repos/yeonghoey part as an environment variable
-    (let* ((current   (file-name-as-directory (or (magit-toplevel) "")))
-           (yeonghoey (file-name-as-directory (substitute-in-file-name "${HOME}/repos/yeonghoey")))
-           (input     (file-name-as-directory (read-string "yeonghoey-open: ")))
-           (target    (if (string= current yeonghoey)
-                          (concat default-directory input)
-                        (concat yeonghoey "docs/" input)))
+  (defun yeonghoey-open (target)
+    (interactive
+     (list (read-directory-name
+            "yeonghoey-open: "
+            ;; FIXME: Read ~/repos/yeonghoey part as an environment variable
+            (let* ((yeonghoey (file-name-as-directory (substitute-in-file-name "${HOME}/repos/yeonghoey")))
+                   (current   (file-name-as-directory (or (magit-toplevel) "")))
+                   )
+              (if (string= current yeonghoey)
+                  (concat default-directory)
+                (concat yeonghoey "docs/"))
+              )
+            )
            )
-      (when (not (file-directory-p target))
-        (make-directory target t)
-        )
-      (find-file (concat target "index.org"))
+     )
+    (when (not (file-directory-p target))
+      (make-directory target t)
       )
+    (find-file (concat target "index.org"))
     )
 
   (defun yeonghoey-flyspell-mode-off ()
