@@ -279,8 +279,8 @@
           (message "Clipboard does not contain image data")
         (unless (eolp) (forward-char))
         (let* ((link (format "[[file:%s]]" (string-trim path)))
-               (content (if yhy-org-img-paste-attr
-                            (format "#+ATTR_HTML: %s\n%s" yhy-org-img-paste-attr link)
+               (content (if yhy-org-img-paste-attrs
+                            (format "#+ATTR_HTML: %s\n%s" yhy-org-img-paste-attrs link)
                           link
                           ))
                )
@@ -291,8 +291,8 @@
       )
     )
 
-  (defvar yhy-org-img-paste-attr nil)
-  (defvar yhy-org-img-paste-flags "-C '_img'")
+  (defcustom yhy-org-img-paste-attrs nil "Attributes to be customized as #+ATTR_HTML: %s")
+  (defcustom yhy-org-img-paste-flags "-C '_img'" "Flags to be passed when executing `yhy img paste'")
 
   (spacemacs/set-leader-keys
     "ot" 'yeonghoey-trans-en-ko
