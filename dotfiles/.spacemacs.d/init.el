@@ -243,12 +243,11 @@
      (list (read-directory-name
             "yeonghoey-open: "
             ;; FIXME: Read ~/repos/yeonghoey part as an environment variable
-            (let* ((yeonghoey (file-name-as-directory (substitute-in-file-name "${HOME}/repos/yeonghoey")))
-                   (current   (file-name-as-directory (or (magit-toplevel) "")))
-                   )
-              (if (string= current yeonghoey)
-                  (concat default-directory)
-                (concat yeonghoey "docs/"))
+            (let ((yeonghoey-docs (substitute-in-file-name "${HOME}/repos/yeonghoey/docs/"))
+                  )
+              (if (string-prefix-p yeonghoey-docs default-directory)
+                  default-directory
+                yeonghoey-docs)
               )
             )
            )
