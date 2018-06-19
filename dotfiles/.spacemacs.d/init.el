@@ -241,23 +241,18 @@
 
   (defun yeonghoey-open ()
     (interactive)
-    (let ((dir (concat (file-name-as-directory "~/repos/yeonghoey/docs")
-                       (file-name-as-directory (read-string "yeonghoey-open: ")))))
-      (when (not (file-directory-p dir))
-        (make-directory dir t)
+    ;; FIXME: Read ~/repos/yeonghoey part as an environment variable
+    (let* ((current   (file-name-as-directory (or (magit-toplevel) "")))
+           (yeonghoey (file-name-as-directory (substitute-in-file-name "${HOME}/repos/yeonghoey")))
+           (input     (file-name-as-directory (read-string "yeonghoey-open: ")))
+           (target    (if (string= current yeonghoey)
+                          (concat default-directory input)
+                        (concat yeonghoey "docs/" input)))
+           )
+      (when (not (file-directory-p target))
+        (make-directory target t)
         )
-      (find-file (concat dir "index.org"))
-      )
-    )
-
-  (defun yeonghoey-open-rel ()
-    (interactive)
-    (let ((dir (concat default-directory
-                       (file-name-as-directory (read-string "yeonghoey-open-rel: ")))))
-      (when (not (file-directory-p dir))
-        (make-directory dir t)
-        )
-      (find-file (concat dir "index.org"))
+      (find-file (concat target "index.org"))
       )
     )
 
@@ -290,7 +285,6 @@
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
     "of" 'yeonghoey-open
-    "oF" 'yeonghoey-open-rel
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
