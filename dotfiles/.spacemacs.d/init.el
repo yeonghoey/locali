@@ -270,19 +270,29 @@
     (flycheck-buffer)
     )
 
-  (defun yhy-org-img-paste (flags)
-    (let* ((cmd
-            (format "yhy img paste %s 2> /dev/null" flags))
-           (path
-            (shell-command-to-string cmd)))
+  (defun yhy-org-img-paste ()
+    (interactive)
+    (let* ((cmd  (format "yhy img paste %s 2> /dev/null"
+                         (or yhy-org-img-paste-flags "")))
+           (path (shell-command-to-string cmd)))
       (if (string= path "")
           (message "Clipboard does not contain image data")
         (unless (eolp) (forward-char))
-        (insert (format "[[file:%s]]" (string-trim path)))
+        (let* ((link (format "[[file:%s]]" (string-trim path)))
+               (content (if yhy-org-img-paste-attr
+                            (format "#+ATTR_HTML: %s\n%s" yhy-org-img-paste-attr link)
+                          link
+                          ))
+               )
+          (insert content)
+        )
         (org-display-inline-images)
         )
       )
     )
+
+  (defvar yhy-org-img-paste-attr nil)
+  (defvar yhy-org-img-paste-flags nil)
 
   (spacemacs/set-leader-keys
     "ot" 'yeonghoey-trans-en-ko
@@ -305,13 +315,6 @@
            (interactive)
            (org-insert-drawer nil "REFERENCES")
            )
-    "op" (defun yhy-org-img-paste-orig ()
-           (interactive)
-           (yhy-org-img-paste "-C '_img'")
-           )
-    "oP" (defun yhy-org-img-paste-half ()
-           (interactive)
-           (yhy-org-img-paste "-C '_img' --half")
-           )
+    "op" 'yhy-org-img-paste
     )
   )
