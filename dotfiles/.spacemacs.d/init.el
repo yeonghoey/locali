@@ -242,8 +242,8 @@
     (interactive
      (list (read-directory-name
             "yeonghoey-open: "
-            ;; FIXME: Read ~/repos/yeonghoey part as an environment variable
-            (let ((yeonghoey-docs (substitute-in-file-name "${HOME}/repos/yeonghoey/docs/"))
+            ;; FIXME: Read ~/yeonghoey part as an environment variable
+            (let ((yeonghoey-docs (substitute-in-file-name "${HOME}/yeonghoey/docs/"))
                   )
               (if (string-prefix-p yeonghoey-docs default-directory)
                   default-directory
