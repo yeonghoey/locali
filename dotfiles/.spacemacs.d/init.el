@@ -295,7 +295,9 @@
     )
 
   (defcustom yhy-org-img-paste-attrs nil
-    "Attributes to be customized as #+ATTR_HTML: %s")
+    "Attributes to be customized as #+ATTR_HTML: %s"
+    :safe (lambda (v) (member v '(":width 320px", ":width 640px")))
+    )
   (defcustom yhy-org-img-paste-flags "-C '_img'"
     "Flags to be passed when executing `yhy img paste'")
 
