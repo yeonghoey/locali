@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Ra
+# key: Ra
+# --
+#+PROPERTY: header-args:R :session :width ${1:width} :height ${2:height}
