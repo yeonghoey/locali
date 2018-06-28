@@ -2,4 +2,5 @@
 # name: Ra
 # key: Ra
 # --
-#+PROPERTY: header-args:R :session :width ${1:width} :height ${2:height}
+#+PROPERTY: header-args:R  :session :results output :exports both
+#+PROPERTY: header-args:R+ :width ${1:width} :height ${2:height}

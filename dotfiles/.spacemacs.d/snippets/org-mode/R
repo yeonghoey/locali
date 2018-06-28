@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: R
-# key: R
-# --
-#+BEGIN_SRC R :results output :exports both
-$0
-#+END_SRC

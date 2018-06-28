@@ -2,6 +2,6 @@
 # name: Rg
 # key: Rg
 # --
-#+BEGIN_SRC R :file _img/`(format-time-string "%Y%m%d-%H%M%S")`.png :results graphics :exports both
+#+BEGIN_SRC R :file _img/`(format-time-string "plot-%Y%m%d-%H%M%S")`.png :results graphics
 $0
 #+END_SRC
