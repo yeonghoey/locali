@@ -245,24 +245,25 @@
       (message output))
     )
 
-  (defun yeonghoey-open (target)
-    (interactive
-     (list (read-directory-name
-            "yeonghoey-open: "
-            ;; FIXME: Read ~/yeonghoey part as an environment variable
-            (let ((yeonghoey-docs (substitute-in-file-name "${HOME}/yeonghoey/docs/"))
-                  )
-              (if (string-prefix-p yeonghoey-docs default-directory)
-                  default-directory
-                yeonghoey-docs)
-              )
-            )
+  (defun yeonghoey-open-target()
+    (list (read-directory-name
+           "yeonghoey-open: "
+           ;; FIXME: Read ~/yeonghoey part as an environment variable
+           (let ((yeonghoey-docs (substitute-in-file-name "${HOME}/yeonghoey/docs/"))
+                 )
+             (if (string-prefix-p yeonghoey-docs default-directory)
+                 default-directory
+               yeonghoey-docs)
+             )
            )
-     )
+          )
+    )
+
+  (defun yeonghoey-open (target root)
     (when (not (file-directory-p target))
       (make-directory target t)
       )
-    (find-file (concat target "index.org"))
+    (find-file (concat target root))
     )
 
   (defun yeonghoey-flyspell-mode-off ()
@@ -303,10 +304,19 @@
   (spacemacs/set-leader-keys
     "ot" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
-    "of" 'yeonghoey-open
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
+
+    ;; Open 'yeonghoey/docs'
+    "of" (defun yeonghoey-open-index (target)
+           (interactive (yeonghoey-open-target))
+           (yeonghoey-open target "index.org")
+           )
+    "oF" (defun yeonghoey-open-alias (target)
+           (interactive (yeonghoey-open-target))
+           (yeonghoey-open target "alias.txt")
+           )
     ;; Refresh inline displays
     "or" (defun yhy-org-display-toggle ()
            (interactive)
