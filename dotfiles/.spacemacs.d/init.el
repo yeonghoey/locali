@@ -48,7 +48,6 @@
      )
    dotspacemacs-additional-packages '(bats-mode
                                       editorconfig
-                                      polymode
                                       vue-mode
                                       )
    dotspacemacs-frozen-packages '()
@@ -169,12 +168,6 @@
    js2-basic-offset 2
    web-mode-css-indent-offset 2
    css-indent-offset 2)
-
-  ;; polymode
-  (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
-  (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
-  (add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
 
   ;; Depend on eslint and transcompilers Instead
   (add-hook 'js2-mode-hook 'js2-mode-hide-warnings-and-errors)
