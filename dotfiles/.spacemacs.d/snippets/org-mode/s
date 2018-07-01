@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: s
+# key: s
+# --
+#+BEGIN_SRC ${lang} :results output :exports both
+$0
+#+END_SRC
