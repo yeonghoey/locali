@@ -12,6 +12,7 @@ defaults write org.R-project.R force.LANG 'en_US.UTF-8'
 readonly PACKAGES=(
   '"ISLR"'
   '"ggplot2"'
+  '"lmtest"'
   '"mlbench"'
   '"rmarkdown"'
   '"servr"'
