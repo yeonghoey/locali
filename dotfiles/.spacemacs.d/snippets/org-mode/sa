@@ -2,4 +2,4 @@
 # name: sa
 # key: sa
 # --
-#+PROPERTY: header-args :session ${1:$$(yas-choose-value '(":width 640" ":width 800"))} ${2:$$(yas-choose-value '(":height 480" ":height 400"))}
+#+PROPERTY: header-args :session :width 640 :height 480
