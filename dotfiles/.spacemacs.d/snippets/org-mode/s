@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
 # name: s
 # key: s
+# expand-env: ((yas/indent-line 'fixed))
 # --
 #+BEGIN_SRC $1 :results ${2:output$(yas-choose-value '("output" "value"))} :exports ${3:both$(yas-choose-value '("both" "code" "none"))}
-$>$0
+  $0
 #+END_SRC
