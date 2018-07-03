@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: Ra
-# key: Ra
-# --
-# NOTE: Pandoc can't read these args.
-#+PROPERTY: header-args:R :session :width ${1:width} :height ${2:height}

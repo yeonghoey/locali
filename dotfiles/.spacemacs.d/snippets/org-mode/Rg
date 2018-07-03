@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Rg
-# key: Rg
-# --
-#+BEGIN_SRC R :file _img/`(format-time-string "plot-%Y%m%d-%H%M%S")`.png :results graphics :exports both
-$0
-#+END_SRC
