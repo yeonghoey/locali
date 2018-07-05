@@ -295,11 +295,14 @@
     "Flags to be passed when executing `yhy img paste'")
 
   (spacemacs/set-leader-keys
-    "ot" 'yeonghoey-trans-en-ko
+    "ot" (defun yeonghoey-org-table (begin end)
+           (interactive "r")
+           (org-table-convert-region begin end)
+           )
+    "oT" 'yeonghoey-trans-en-ko
     "ol" 'yeonghoey-tr-line-chars
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
-
 
     ;; Open 'yeonghoey/docs'
     "of" (defun yeonghoey-open-index (target)
