@@ -14,6 +14,7 @@ readonly PACKAGES=(
   '"ISLR"'
   '"faraway"'
   '"ggplot2"'
+  '"leaps"'
   '"lmtest"'
   '"mlbench"'
   '"rmarkdown"'
