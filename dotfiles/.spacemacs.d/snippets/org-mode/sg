@@ -1,8 +1,7 @@
 # -*- mode: snippet -*-
 # name: sg
 # key: sg
-# expand-env: ((yas/indent-line 'fixed))
 # --
 #+BEGIN_SRC $1 :file _img/`(format-time-string "src-%Y%m%d-%H%M%S")`.png :results ${2:graphics$(yas-choose-value '("graphics" "output" "value"))} :exports ${3:both$(yas-choose-value '("both" "code" "none"))}
-  $0
+$0
 #+END_SRC

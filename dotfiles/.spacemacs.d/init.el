@@ -198,6 +198,7 @@
   (setq-default
    org-startup-indented t
    org-startup-folded t
+   org-edit-src-content-indentation 0 ;; Make src blocks consistent with other blocks
    )
 
   ; Org Babel Languages
