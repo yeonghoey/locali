@@ -10,6 +10,7 @@ EOF
 defaults write org.R-project.R force.LANG 'en_US.UTF-8'
 
 readonly PACKAGES=(
+  '"car"'
   '"ISLR"'
   '"faraway"'
   '"ggplot2"'
