@@ -51,7 +51,8 @@
                                       vue-mode
                                       )
    dotspacemacs-frozen-packages '()
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(smartparens  ;; SEE: https://github.com/syl20bnr/spacemacs/issues/1603#issuecomment-213553034
+                                    )
    dotspacemacs-install-packages 'used-only))
 
 (defun dotspacemacs/init ()
@@ -151,8 +152,6 @@
    magit-diff-refine-hunk 'all                     ;; Highlight hunks by characters
    )
   (fset 'evil-visual-update-x-selection 'ignore)   ;; Paste like vim in visual mode
-  (remove-hook 'prog-mode-hook #'smartparens-mode) ;; Disable smartparens
-  (spacemacs/toggle-smartparens-globally-off)      ;; https://github.com/syl20bnr/spacemacs/issues/1603#issuecomment-213553034
 
   ;; Korean language setting
   (setq-default default-input-method "korean-hangul")
