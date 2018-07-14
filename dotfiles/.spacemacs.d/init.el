@@ -296,16 +296,16 @@
           (progn
             (goto-char end)
 	          (skip-chars-backward " \r\t\n")
-            (insert "\n\n" text-end)
+            (insert "\n" text-end)
 
             (goto-char begin)
 	          (beginning-of-line)
 	          (skip-chars-forward " \r\t\n")
 
 	          (beginning-of-line)
-            (insert text-begin "\n\n")
+            (insert text-begin "\n")
 	          (deactivate-mark t)
-	          (forward-line -2)
+	          (forward-line -1)
             (search-forward "\"")
             )
         (progn
