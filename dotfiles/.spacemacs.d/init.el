@@ -288,6 +288,36 @@
       )
     )
 
+  (defun yhy-org-insert-div (begin end)
+    (interactive "r")
+    (let ((text-begin "#+HTML: <div class=\"\">")
+          (text-end   "#+HTML: </div>"))
+      (if (org-region-active-p)
+          (progn
+            (goto-char end)
+	          (skip-chars-backward " \r\t\n")
+            (insert "\n\n" text-end)
+
+            (goto-char begin)
+	          (beginning-of-line)
+	          (skip-chars-forward " \r\t\n")
+
+	          (beginning-of-line)
+            (insert text-begin "\n\n")
+	          (deactivate-mark t)
+	          (forward-line -2)
+            (search-forward "\"")
+            )
+        (progn
+	        (beginning-of-line)
+          (insert text-begin "\n" text-end "\n")
+	        (forward-line -2)
+          (search-forward "\"")
+          )
+        )
+      )
+    )
+
   (defcustom yhy-org-img-paste-attrs nil
     "Attributes to be customized as #+ATTR_HTML: %s"
     :safe (lambda (v) (member v '(":width 320px" ":width 640px"))))
@@ -324,6 +354,7 @@
            (org-display-inline-images)
            (setq org-descriptive-links t)
            )
+    "odd" 'yhy-org-insert-div
     "odr" (defun yhy-org-drawer-references ()
             (interactive)
             (org-insert-drawer nil "REFERENCES")
