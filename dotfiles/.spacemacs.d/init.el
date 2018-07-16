@@ -339,10 +339,6 @@
            (interactive (yeonghoey-open-target))
            (yeonghoey-open target "index.org")
            )
-    "oF" (defun yeonghoey-open-alias (target)
-           (interactive (yeonghoey-open-target))
-           (yeonghoey-open target "alias.txt")
-           )
     ;; Refresh inline displays
     "or" (defun yhy-org-display-toggle ()
            (interactive)
