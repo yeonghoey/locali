@@ -21,6 +21,8 @@ readonly PACKAGES=(
   '"lmtest"'
   '"mlbench"'
   '"rmarkdown"'
+  '"rpart"'
+  '"rpart.plot"'
   '"servr"'
 )
 
