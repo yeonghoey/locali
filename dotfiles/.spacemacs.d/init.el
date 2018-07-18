@@ -212,6 +212,8 @@
      )
    )
 
+  (defun org-babel-execute:html (body params) body)
+
   (setq-default
    org-confirm-babel-evaluate nil
    )
