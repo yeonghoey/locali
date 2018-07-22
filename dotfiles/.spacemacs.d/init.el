@@ -170,6 +170,8 @@
 
   ;; Depend on eslint and transcompilers Instead
   (add-hook 'js2-mode-hook 'js2-mode-hide-warnings-and-errors)
+  ;; Disable Method chaining indentations
+  (advice-add 'js--multi-line-declaration-indentation :around (lambda (orig-fun &rest args) nil))
 
   ;; http://editorconfig.org/
   (editorconfig-mode 1)
