@@ -334,7 +334,8 @@
            (org-table-convert-region begin end)
            )
     "oT" 'yeonghoey-trans-en-ko
-    "ol" 'yeonghoey-tr-line-chars
+    "ol" 'avy-copy-line
+    "oL" 'yeonghoey-tr-line-chars
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
