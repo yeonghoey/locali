@@ -287,7 +287,7 @@
           (org-indent-line)
           )
         (insert (format "[[file:%s]]" (string-trim path)))
-        (org-display-inline-images)
+        ;; (org-display-inline-images)
         )
       )
     )
