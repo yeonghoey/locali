@@ -207,6 +207,7 @@
    'org-babel-load-languages
    '((dot . t)
      (emacs-lisp . t)
+     (js . t)
      (latex . t)
      (python . t)
      (shell . t)
