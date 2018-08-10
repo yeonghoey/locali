@@ -14,7 +14,7 @@
      csv
      docker
      emacs-lisp
-     (ess :variables ess-disable-underscore-assign t)
+     ess
      fasd
      git
      go
