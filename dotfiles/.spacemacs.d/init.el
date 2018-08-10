@@ -228,11 +228,6 @@
   (advice-add 'org-refile :after 'my-org-save-all-org-buffers)
   (advice-add 'org-archive :after 'my-org-save-all-org-buffers)
 
-  (defun yeonghoey-tr-line-chars (start end)
-    (interactive "r")
-    (let* ((table (make-translation-table '((?| . ?│) (?+ . ?└) (?- . ?─)))))
-      (translate-region start end table))
-    )
   (defun yeonghoey-trans-en-ko (start end)
     (interactive "r")
     (let* ((text (buffer-substring-no-properties start end))
@@ -336,7 +331,6 @@
            )
     "oT" 'yeonghoey-trans-en-ko
     "ol" 'avy-copy-line
-    "oL" 'yeonghoey-tr-line-chars
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
 
