@@ -77,7 +77,6 @@ mas 'Lightshot Screenshot',     id: 526298438
 mas 'Microsoft Remote Desktop', id: 715768417
 mas 'Movist',                   id: 461788075
 mas 'Pixelmator',               id: 407963104
-mas 'Simple Recorder',          id: 989175722
 
 EOF
 )
