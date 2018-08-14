@@ -9,6 +9,7 @@ import click
 
 DIR = click.Path(exists=True, file_okay=False, dir_okay=True)
 
+# Usage: normalize '0x11' 'the-simpsons.s00.e11'
 
 @click.command()
 @click.option('--dir', 'dir_', default='.', type=DIR)
