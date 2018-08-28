@@ -1,3 +1,4 @@
+# install emacs-plus
 brew bundle --verbose --file=<(cat <<EOF
 
 tap 'd12frosted/emacs-plus'

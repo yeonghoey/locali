@@ -1,3 +1,4 @@
+# install r and rstudio
 brew bundle --verbose --file=<(cat <<EOF
 
 tap 'caskroom/cask'
