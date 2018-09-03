@@ -82,6 +82,7 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(bats-mode
                                       editorconfig
+                                      ob-go
                                       vue-mode
                                       )
 
@@ -549,6 +550,7 @@ before packages are loaded."
    'org-babel-load-languages
    '((dot . t)
      (emacs-lisp . t)
+     (go . t)
      (js . t)
      (latex . t)
      (python . t)
