@@ -669,11 +669,11 @@ before packages are loaded."
     "Flags to be passed when executing `yhy img paste'")
 
   (spacemacs/set-leader-keys
-    "ot" (defun yeonghoey-org-table (begin end)
+    "ot" 'yeonghoey-trans-en-ko
+    "oT" (defun yeonghoey-org-table (begin end)
            (interactive "r")
            (org-table-convert-region begin end)
            )
-    "oT" 'yeonghoey-trans-en-ko
     "ol" 'avy-copy-line
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
