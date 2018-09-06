@@ -44,7 +44,6 @@ This function should only modify configuration layer settings."
      fasd
      git
      (go :variables
-         go-use-gometalinter t
          go-format-before-save t
          gofmt-command "goimports")
      graphviz
