@@ -574,6 +574,24 @@ before packages are loaded."
   (advice-add 'org-refile :after 'my-org-save-all-org-buffers)
   (advice-add 'org-archive :after 'my-org-save-all-org-buffers)
 
+  ;; yeonghoey customizations
+  (setq-default
+   ;; FIXME: Read ~/yeonghoey part as an environment variable
+   yeonghoey-docs (substitute-in-file-name "${HOME}/yeonghoey/docs/")
+   ;; NOTE: Trailing slash is required
+   yeonghoey-dev "http://127.0.0.1:5500/"
+   )
+
+  (defun yeonghoey-current ()
+    (if (string-prefix-p yeonghoey-docs default-directory)
+        default-directory
+      yeonghoey-docs)
+    )
+
+  (defun yeonghoey-open-target()
+    (list (read-directory-name "yeonghoey-open: " (yeonghoey-current)))
+    )
+
   (defun yeonghoey-trans-en-ko (start end)
     (interactive "r")
     (let* ((text (buffer-substring-no-properties start end))
@@ -582,20 +600,6 @@ before packages are loaded."
            )
       (kill-new output)
       (message output))
-    )
-
-  (defun yeonghoey-open-target()
-    (list (read-directory-name
-           "yeonghoey-open: "
-           ;; FIXME: Read ~/yeonghoey part as an environment variable
-           (let ((yeonghoey-docs (substitute-in-file-name "${HOME}/yeonghoey/docs/"))
-                 )
-             (if (string-prefix-p yeonghoey-docs default-directory)
-                 default-directory
-               yeonghoey-docs)
-             )
-           )
-          )
     )
 
   (defun yeonghoey-open (target root)
@@ -676,6 +680,7 @@ before packages are loaded."
            (interactive "r")
            (org-table-convert-region begin end)
            )
+
     "ol" 'avy-copy-line
     "oS" 'yeonghoey-flyspell-mode-off
     "oe" 'yeonghoey-flycheck-reset
@@ -685,6 +690,14 @@ before packages are loaded."
            (interactive (yeonghoey-open-target))
            (yeonghoey-open target "index.org")
            )
+    "ob" (defun yeonghoey-open-dev-browser ()
+           (interactive)
+
+           (let ((path (substring (yeonghoey-current) (length yeonghoey-docs))))
+             (browse-url (concat yeonghoey-dev path))
+             )
+           )
+
     ;; Refresh inline displays
     "or" (defun yhy-org-display-toggle ()
            (interactive)
