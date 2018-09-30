@@ -1,0 +1,32 @@
+# -*- mode: snippet -*-
+# name: main
+# key: main
+# --
+#+TITLE: $1
+#+NOTOC: t
+
+* Tutorials
+:TAGINDEX:
+:QUERY: tutorial
+:END:
+
+* How-to
+:TAGINDEX:
+:QUERY: howto
+:END:
+
+* Discussions
+:TAGINDEX:
+:QUERY: discussion
+:END:
+
+* Reference
+:TAGINDEX:
+:QUERY:  reference
+:SORTBY: href
+:END:
+
+* Index
+:SUBINDEX:
+:SHOWPATH: t
+:END:
