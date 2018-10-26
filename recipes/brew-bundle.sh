@@ -10,7 +10,7 @@ brew 'cmake'
 brew 'editorconfig'
 brew 'emacs-plus'
 brew 'fasd'
-brew 'ffmpeg'
+brew 'ffmpeg', args: ["with-libass"]
 brew 'fpp'
 brew 'gawk'
 brew 'git'
