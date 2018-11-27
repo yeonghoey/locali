@@ -513,6 +513,14 @@ before packages are loaded."
    web-mode-css-indent-offset 2
    css-indent-offset 2)
 
+  ;; evail-surround
+  (add-hook 'org-mode-hook (lambda ()
+                             (progn
+                               (push '(?s . ("‘" . "’")) evil-surround-pairs-alist)
+                               (push '(?d . ("“" . "”")) evil-surround-pairs-alist)
+                               )
+                             ))
+
   ;; Depend on eslint and transcompilers Instead
   (add-hook 'js2-mode-hook 'js2-mode-hide-warnings-and-errors)
   ;; Disable Method chaining indentations
