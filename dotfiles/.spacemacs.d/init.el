@@ -514,12 +514,10 @@ before packages are loaded."
    css-indent-offset 2)
 
   ;; evail-surround
-  (add-hook 'org-mode-hook (lambda ()
-                             (progn
-                               (push '(?s . ("‘" . "’")) evil-surround-pairs-alist)
-                               (push '(?d . ("“" . "”")) evil-surround-pairs-alist)
-                               )
-                             ))
+  (with-eval-after-load 'evil-surround
+    (push '(?s . ("‘" . "’")) evil-surround-pairs-alist)
+    (push '(?d . ("“" . "”")) evil-surround-pairs-alist)
+    )
 
   ;; Depend on eslint and transcompilers Instead
   (add-hook 'js2-mode-hook 'js2-mode-hide-warnings-and-errors)
