@@ -677,7 +677,7 @@ before packages are loaded."
   (defcustom yhy-org-img-paste-attrs nil
     "Attributes to be customized as #+ATTR_HTML: %s"
     :safe (lambda (v) (member v '(":width 320px" ":width 640px"))))
-  (defcustom yhy-org-img-paste-flags "-C '_img'"
+  (defcustom yhy-org-img-paste-flags "-C '_img' --half"
     "Flags to be passed when executing `yhy img paste'")
 
   (spacemacs/set-leader-keys
