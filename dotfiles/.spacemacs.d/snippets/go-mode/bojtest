@@ -12,4 +12,5 @@ import (
 
 func TestSamples(t *testing.T) {
 r := runner.New(t, "go", "run", ".")
+r.Run("input.txt").Want("output.txt")
 }
