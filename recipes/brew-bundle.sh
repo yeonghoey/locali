@@ -69,6 +69,7 @@ cask 'the-unarchiver'
 cask 'visualvm'
 cask 'vlc'
 
+mas 'GIPHY CAPTURE',            id: 668208984
 mas 'KakaoTalk',                id: 869223134
 mas 'Kindle',                   id: 405399194
 mas 'Microsoft Remote Desktop', id: 715768417
