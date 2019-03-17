@@ -68,6 +68,7 @@ cask 'spectacle'
 cask 'steam'
 cask 'the-unarchiver'
 cask 'visualvm'
+cask 'visual-studio-code'
 cask 'vlc'
 
 mas 'GIPHY CAPTURE',            id: 668208984
