@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-echo -e "\\n> Run Emacs as a background process"
+readonly EMACS_CLR="${HOME}/Library/Colors/Emacs.clr"
+if [[ -f "${EMACS_CLR}" ]]; then
+  rm "${EMACS_CLR}"
+fi
 emacs &
