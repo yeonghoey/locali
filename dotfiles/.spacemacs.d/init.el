@@ -51,6 +51,7 @@ This function should only modify configuration layer settings."
      html
      imenu-list
      javascript
+     lua
      (markdown :variables markdown-live-preview-engine 'vmd)
      nginx
      (org :variables
