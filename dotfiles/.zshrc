@@ -30,3 +30,7 @@ fi
 # Ensure compinit and bashcompoinit
 autoload -Uz compinit && compinit
 autoload -Uz bashcompinit && bashcompinit
+
+if command -v tmux &> /dev/null && [[ -z "${TMUX}" ]]; then
+  tmux attach -t default || tmux new -s default
+fi
