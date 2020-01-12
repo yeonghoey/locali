@@ -14,7 +14,7 @@ if [[ "$ZSH" ]]; then
 
   # shellcheck disable=SC2034
   #                      └─ unused check
-  ZSH_THEME='terminalparty'
+  ZSH_THEME=''
 
   # shellcheck disable=SC2034
   plugins=(
@@ -25,6 +25,9 @@ if [[ "$ZSH" ]]; then
     zsh-completions
   )
   source "$ZSH/oh-my-zsh.sh"
+
+  autoload -U promptinit; promptinit
+  prompt pure
 fi
 
 # Ensure compinit and bashcompoinit
